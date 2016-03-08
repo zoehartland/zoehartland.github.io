@@ -40,9 +40,7 @@ h5{
 	font-weight:500;
 	font-size: 15px;
 }
-.header{
-	padding-bottom:5px;
-}
+
 
 	.clearfix:before,
 .clearfix:after,
@@ -635,8 +633,8 @@ h5{
     
     <div class="container-fluid">
            <div class="row header"> 
-               <h3>UK Flow of Funds</h3>
-               <h5>Sector-to-sector interactions for financial balance sheets by financial instrument</h5>
+               <!--<h3>UK Flow of Funds</h3>
+               <h5>Sector-to-sector interactions for financial balance sheets by financial instrument</h5>-->
            </div>
            <div class="row">
            		<div class="yearTxt" > Selected year: </div>
@@ -848,7 +846,7 @@ h5{
 				  "ICPF", 
 				  "CG", 
 				  "PNFC", 
-				  "HH&NPISH", 
+				  "HH_NPISH", 
 				  "RoW", 
 				  "Unknown", 				  
 				  "Currency", 
@@ -887,7 +885,7 @@ h5{
 					  "ICPF": "Insurance Corporations and Pension Funds",
 					  "CG": "Central Government",
 					  "PNFC": "Local Government",
-					  "HH&NPISH": "Households and Non-Profit Institutions Serving Households",
+					  "HH_NPISH": "Households and Non-Profit Institutions Serving Households",
 					  "RoW": "Rest of the World",
 					  "Unknown": "Unknown",
 					  "Currency": "Currency",
@@ -989,7 +987,6 @@ h5{
 						d3.select("#info").html(FoF_labels[node] +" "+ text+ ": <span class='bold'> £" +fmt(d.value)+" billion </span>");
 						d3.select(this).classed("highlight", true);	
 						var name = d.name.replace(/ liability| asset|/gi, "");
-						
 						d3.selectAll("."+name).style("stroke-opacity", 0.5)				
 					})
 				  .on('mouseout',function(d) {
@@ -1009,7 +1006,8 @@ h5{
 				  .attr("text-anchor", "end")
 				  .attr("transform", null)
 				  .text(function(d) { 
-				  		 asset = d.name.replace(" asset", "");
+				  		 name = d.name.replace("_", "&");
+						 asset = name.replace(" asset", "");
 						 liability =asset.replace(" liability", "");
 						return liability; 
 					})
