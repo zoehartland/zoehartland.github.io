@@ -30,7 +30,21 @@
 		margin: 0px auto;	
 	}
 	
-	.clearfix:before,
+		
+	h3{
+		font-weight:600;
+		font-size: 17px;
+	}
+	
+	h5{
+		font-weight:500;
+		font-size: 15px;
+	}
+	.header{
+		padding-bottom:5px;
+	}
+	
+.clearfix:before,
 .clearfix:after,
 .dl-horizontal dd:before,
 .dl-horizontal dd:after,
@@ -85,7 +99,7 @@
 		  pointer-events: none;
 		  font-size:11px;
 		  font-weight:200;
-		  fill:#999;
+		  fill:#7d7d7d;
 		}
 		.table > tbody > tr > td {
 		  pointer-events: none;
@@ -115,7 +129,7 @@
 		.link {
 		  fill: none;
 		  stroke: #000;
-		  stroke-opacity: 0.05;
+		  stroke-opacity: 0.1;
 		}
 		
 		.link:hover {
@@ -165,6 +179,7 @@
   line-height: 1.42857143;
   vertical-align: middle;
 }
+	
 		
 		.container-fluid {
   margin-right: auto;
@@ -345,6 +360,18 @@
   margin-left:10px;
 }
 
+
+.table > thead > tr > th,
+.table > tbody > tr > th,
+.table > tfoot > tr > th,
+.table > thead > tr > td,
+.table > tbody > tr > td,
+.table > tfoot > tr > td {
+  padding: 2px;
+  line-height: 1.42857143;
+  vertical-align: middle;
+}
+
 #info{
 	padding-top:15px;
 	height:30px;	
@@ -507,7 +534,91 @@
     margin-left: 0%;
   }
 }
+	
 		
+.visible-xs,
+.visible-sm,
+.visible-md,
+.visible-lg {
+  display: none !important;
+}
+.visible-xs-block,
+.visible-xs-inline,
+.visible-xs-inline-block,
+.visible-sm-block,
+.visible-sm-inline,
+.visible-sm-inline-block,
+.visible-md-block,
+.visible-md-inline,
+.visible-md-inline-block,
+.visible-lg-block,
+.visible-lg-inline,
+.visible-lg-inline-block {
+  display: none !important;
+}
+@media (max-width: 650px) {
+  .visible-xs {
+    display: block !important;
+  }
+  table.visible-xs {
+    display: table;
+  }
+  tr.visible-xs {
+    display: table-row !important;
+  }
+  th.visible-xs,
+  td.visible-xs {
+    display: table-cell !important;
+  }
+  
+}
+@media (max-width: 650px) {
+  .visible-xs-block {
+    display: block !important;
+  }
+}
+@media (max-width: 650px) {
+  .visible-xs-inline {
+    display: inline !important;
+  }
+}
+@media (max-width: 650px) {
+  .visible-xs-inline-block {
+    display: inline-block !important;
+  }
+}	
+			
+		
+.hidden {
+  display: none !important;
+  visibility: hidden !important;
+}
+
+@media (max-width: 650px) {
+  .hidden-xs {
+    display: none !important;
+  }
+}
+@media (min-width: 650px) and (max-width: 938px) {
+  .hidden-sm {
+    display: none !important;
+  }
+}
+@media (min-width: 939px) and (max-width: 1199px) {
+  .hidden-md {
+    display: none !important;
+  }
+}
+@media (min-width: 1200px) {
+  .hidden-lg {
+    display: none !important;
+  }	
+	
+}
+.footnote{
+	padding-bottom:15px;
+	font-size:11px;
+}	
 		
     </style>
     
@@ -521,22 +632,80 @@
     
     <div class="container-fluid">
            <div class="row header"> 
-               
+               <h3>UK Flow of Funds</h3>
+               <h5>Sector-to-sector interactions for financial balance sheets</h5>
            </div>
            <div class="row">
            		<div class="yearTxt" > Selected year: </div>
                 <div id="dropdown"></div>
                 
            </div>
+           <div class="row">
+           	 <div class="col-sm-3 col-xs-12 visible-xs" >
+                	<div  id="legend table-responsive">
+                		<br>
+	                	<table class="table  col-sm-12 col-xs-6">
+						    <tbody>
+						    <tr>
+						        <td style = "background-color: rgba(23, 51, 91, 0.7); text-align: center; width: 64px; ">PC</td>
+						        <td>Public Corporation</td>
+						      </tr>
+						      <tr>
+						        <td style = "background-color: rgba(180, 213, 97, 0.7); text-align: center; width: 64px;">PNFC</td>
+						        <td>Private Non-Financial Corporation</td>
+						      </tr>
+						      <tr>
+						        <td style = "background-color: rgba(0, 124, 139, 0.7); text-align: center; width: 64px">MFI</td>
+						        <td>Monetary Financial Institutions</td>
+						      </tr>
+						      <tr>
+						        <td style = "background-color: rgba(47, 137, 201, 0.7); text-align: center; width: 64px">OFI</td>
+						        <td>Other Financial Intermediaries and Financial Auxiliaries</td>
+						      </tr>
+						      <tr>
+						        <td style = "background-color: rgba(79, 194, 190, 0.7); text-align: center; width: 64px">ICPF</td>
+						        <td>Insurance Corporations and Pension Funds</td>
+						      </tr>
+						    </tbody>
+					  </table>
+                      <table class="table table-condensed col-sm-12 col-xs-6">
+						    <tbody>
+						      <tr>
+						        <td style = "background-color: rgba(105, 175, 125, 0.7); text-align: center; width: 64px">CG</td>
+						        <td>Central Government</td>
+						      </tr>
+						      <tr>
+						        <td style = "background-color: rgba(0, 81, 114, 0.7); text-align: center; width: 64px">LG</td>
+						        <td>Local Government</td>
+						      </tr>
+						      <tr>
+						        <td style = "background-color: rgba(252, 176, 23, 0.7); text-align: center; width: 64px">HH & NPISH</td>
+						        <td>Households and Non-Profit Institutions Serving Households</td>
+						      </tr>
+						      <tr>
+						        <td style = "background-color: rgba(241, 90, 49, 0.7); text-align: center; width: 64px">RoW</td>
+						        <td>Rest of the World</td>
+						      </tr>
+						      <tr>
+						        <td style = "background-color: rgba(228, 105, 103, 0.7); text-align: center; width: 64px">Unknown</td>
+						        <td>Unknown</td>
+						      </tr>
+
+						    </tbody>
+					  </table>
+                	</div>
+                </div>
+           </div>
+
            <div class="row headings">
            		<div class="col-sm-3 col-xs-4">Liability</div>
                 <div class="col-sm-3 col-xs-4 text-center"></div>
                 <div class="col-sm-3 col-xs-4 text-right">Asset</div>
            </div>
            <div class="row explanation">
-           		<div class="col-sm-3 col-xs-4">(money given)</div>
+           		<div class="col-sm-3 col-xs-4">(e.g money given)</div>
                 <div class="col-sm-3 col-xs-4 text-center"></div>
-                <div class="col-sm-3 col-xs-4 text-right">(money received)</div>
+                <div class="col-sm-3 col-xs-4 text-right">(e.g money received)</div>
            </div>
            <div class="row">
            		<div class="col-sm-9  text-center" id="info"></div>   
@@ -546,7 +715,7 @@
            		<div class="col-sm-9 col-xs-12" >
            			<div id="graphic"></div>
            		</div>
-                <div class="col-sm-3 col-xs-12 " >
+                <div class="col-sm-3 col-xs-12  hidden-xs" >
                 	<div  id="legend table-responsive">
                 		<br>
 	                	<table class="table col-sm-12 col-xs-6">
@@ -747,7 +916,7 @@
                     			source= d.source.name.replace(/ liability| asset|/gi, "");
 								target= d.target.name.replace(/ liability| asset|/gi, "");
 							
-								d3.select("#info").html("Funds from "+FoF_labels[source] + " &#8594; "+FoF_labels[target] + ": <span class='bold'> £" +fmt(d.value)+" billion </span>")
+								d3.select("#info").html(FoF_labels[source] + " &#8594; "+FoF_labels[target] + ": <span class='bold'> £" +fmt(d.value)+" billion </span>")
 								
 								d3.select(this).style("stroke-opacity", 0.5)
 								
@@ -755,7 +924,7 @@
 							  })
 				    .on('mouseout',function() {
 							$("#info").empty();
-							d3.selectAll("path").style("stroke-opacity", 0.05)
+							d3.selectAll("path").style("stroke-opacity", 0.1)
 					})
 		
 		
