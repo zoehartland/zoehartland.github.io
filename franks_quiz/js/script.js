@@ -1,6 +1,9 @@
 //namespace any global variables
 var dvc = {}; 
 
+if (pymChild) {
+	pymChild.sendHeight();
+}
 
 d3.select(".start").on("click",function(){		
 		$("#landing").hide();
