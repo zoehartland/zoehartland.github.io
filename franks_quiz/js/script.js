@@ -1,7 +1,10 @@
 //namespace any global variables
 var dvc = {}; 
+d3.select(".container").style("height", "auto");
 
-
+if (pymChild) {
+   pymChild.sendHeight();
+}
 
 d3.select(".start").on("click",function(){		
 		$("#landing").hide();
@@ -102,9 +105,7 @@ d3.select(".q2a4").on("click",function(){
 	
 	width = $(".container-fluid").width();
 	
-	if (pymChild) {
-	pymChild.sendHeight();
-}
+	
 	
 		//main script
 		Totalspent = 13679;
