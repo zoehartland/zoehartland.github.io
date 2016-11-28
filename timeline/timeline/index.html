@@ -1,0 +1,1864 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
+    <title></title>
+
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+    <link rel="stylesheet" href="../lib/globalStyle.css" />
+    <link rel="stylesheet" href="../lib/bootstrap.min.css" />
+    <link rel="stylesheet" href="../lib/owlcarousel.css" />
+    <link rel="stylesheet" href="../lib/owltheme.css" />
+    <style type="text/css">
+		
+	/*	.line-0 { stroke: #274796; }
+		.border0 { border-top: 2px solid #274796; }*/
+
+				
+		
+		/* legend element labels */
+        #graphic .key label/* required */
+		{
+            white-space: nowrap;
+            font-size: 12px;
+            color: #333;
+            font-weight: normal;
+        }
+		
+	#wrapper {
+			width: 10px;
+		   	min-width: 100%;
+			margin: 0 auto;
+			font-family: 'Open Sans', Arial, sans-serif;
+            align-content: center;
+		}
+				
+	 	body {
+		 	width: 100%;
+			max-width: 800px;
+            margin: 0px auto;
+         	align-content: center;
+        }
+		
+		#xAxis text{
+            font-size: 12px;
+            
+        }
+		
+		#yAxis text{
+            font-size: 12px;
+        } 
+		
+        #graphic .axis line {
+            fill: none;
+            stroke: #bbb;
+            shape-rendering: crispEdges;
+        }
+		
+      	#graphic .axis line
+		{
+            fill: none;
+            stroke: #ddd;
+        }
+		#centreline
+		{
+			stroke-width:1px;
+			stroke: #666;
+		}
+		
+		
+	
+				
+				#image {
+					position: relative;
+					height: 370px;
+                    width: 50%;
+                    float: left;
+                    
+                    
+				}
+				
+				.one img { 
+					display: block; 
+				}
+				
+				.number { 
+					padding: 0px 0px 0px 0px; 
+				}
+				
+				#number {
+					
+                    width: 0px;
+					height: 0px;
+					z-index: 2;
+					position: absolute;
+					top: 0px;
+					left: 0;
+					opacity: 1;
+				} 
+				
+				p {
+					font-family: 'Open Sans', Arial, sans-serif;
+					color: white;
+					font-size: 14px;
+                    font-weight: 100;
+					padding: 10px;
+					margin: 0;
+				}
+		
+				@media screen and (min-width: 570px) and (max-width:779px)	{
+					p {
+							font-family: 'Open Sans', Arial, sans-serif;
+							color: white;
+							font-size: 13px;
+							font-weight: 100;
+							padding: 10px;
+							margin: 0;
+						}
+
+				}	
+	
+				@media screen and (min-width:780px){
+
+					p {
+							font-family: 'Open Sans', Arial, sans-serif;
+							color: white;
+							font-size: 15px;
+							font-weight: 100;
+							padding: 10px;
+							margin: 0;
+						}
+				}			       
+            	
+				
+				#yAxisunit {
+					font-family: 'Open Sans', Arial, sans-serif;
+					color: black;
+					font-size: 18px;
+					margin: 0;
+					padding: 0px 0px 0px 0px;
+				}
+				
+				h1 {
+					font-family: 'Open Sans', Arial, sans-serif;
+					color:grey;
+					font-size: 35px;
+					padding-left: 50px;
+                    padding-bottom: 0px;
+					margin-top: 0px;
+					margin-bottom: 0;
+					font-weight: 700;
+                    float: left;
+				}
+				h4 {
+					font-family: 'Open Sans', Arial, sans-serif;
+					color: #fff;
+                    
+					font-size: 40px;
+					/*padding-left: 30px;*/
+					
+					font-weight: 700;
+					opacity: 100;
+				}
+				h2 {
+					font-family: 'Open Sans', Arial, sans-serif;
+					font-weight: 400;
+					color: #656f6b;
+                    padding-right: 80px;
+					font-size: 20px;
+					padding-left: 10px;
+                    padding-bottom: 20px;
+					margin-top: 10px;
+                    margin-bottom: 0px;
+                    margin-right: 20px;
+                    float: left;
+				}
+				
+				h5 {
+					font-family: 'Open Sans', Arial, sans-serif;
+					color: #fff;
+                    font-size: 18px;
+					font-weight: 600;
+					
+				}
+
+				h3 {
+					font-family: 'Open Sans', Arial, sans-serif;
+                    text-shadow: 2px 2px #2e2e2e;
+					font-weight: 600;
+					color: #fff;
+					font-size: 16px;
+					margin: 0;
+					padding: 0px 0px 3px 0px;
+				}
+				
+				#icon-container {
+					max-width:auto;
+                    max-height:auto;
+					float: left;
+					height: auto;
+                    padding-right: 0px;
+                    margin-top: 20px;
+                    margin-right: 5px;
+                    
+				}
+				
+				#icon-container-top {
+					max-width:auto;
+                    max-height:auto;
+					float: left;
+					height: auto;
+					padding-top: 0px;
+                    padding-right: 0px;
+                    margin-top: 20px;
+                    margin-right: 5px;
+                
+				}
+				
+				
+				.icon-immigration {
+					background-image: url("../images/immigration.svg");
+					background-position: 40px 0px;
+					background-repeat: no-repeat;
+				}
+				
+				.icon-migration {
+					background-image: url("../images/emigration.svg");
+					background-position: 40px 0px;
+					background-repeat: no-repeat;
+				
+				}
+				
+				
+				
+				
+				#text {
+					/*width: 100%;*/
+					height: 370px;
+                    padding: 0px;
+					clear: both;
+                    width: 100%;
+				}
+				
+				#info {
+					background-color: #2e2e2e;
+					background-color: #7A7A7A;
+					display: block;
+                    width: 50%;
+                    float: left;
+						/*width: 100px;*/
+						height: 370px;
+					
+                    
+				
+				}
+        
+            /*#days1 {
+                    margin-top: 0px;
+					
+						
+					}*/
+				
+				
+				.days {
+						padding: 0px;
+                    margin-top: 0px;
+						z-index: 1;
+						position: auto;
+						top: 0%;
+						right: 0px;
+						
+						/*background-color: rgba(38,50,86,0.5);*/
+					}
+			
+				
+                 	.numbermobile {
+						padding: 0px;
+						height: 50px;
+						width:50px;
+						padding-bottom: 10px;
+						right: 0px;
+				}
+                   
+        .numInside {
+		    font-family: 'Open Sans', sans-serif;
+			font-size: 14px;
+			fill: #eee;
+			font-weight:500;
+			pointer-events:none;
+		}
+        
+       @media screen and (max-width: 550px) { 
+        .numInside {
+				font-family: 'Open Sans', sans-serif;
+				font-size: 11px;
+				fill: #eee;
+				font-weight:400;
+				pointer-events:none;
+				
+			}
+		   
+		}
+        
+        @media screen and (max-width: 570px) {
+				
+			
+			
+				#xAxis text{
+					font-size: 11px;
+
+				}
+
+				#yAxis text{
+					font-size: 11px;
+				} 	
+				
+                    .number { 
+					padding: 0 0px 0px 0px;
+					-ms-transform: scale(0.8);  /*IE 9 */
+					-webkit-transform: scale(0.8); /* Safari */
+					transform: scale(0.8);
+				}
+				
+				.days {
+						padding: 10px 0px 20px 0px;
+						height: 0px;
+						
+						top: 130px;
+						right: 0px;
+                    
+				}
+                   
+            
+            
+                     	.numbermobile {
+						padding: 0px;
+						height: 30px;
+						width:30px;
+						top: 0px;
+						right: 0px;
+				}
+                   
+            
+				
+            	#info {
+					background-color: #2e2e2e;
+					background-color: #7A7A7A;
+                    width: 100%;
+                    height: 370px;
+                    z-index:0;
+                    opacity: 0.9;
+                   position: relative
+                    
+				
+				}
+            
+            	#image {
+					
+					
+                    height: 370px;
+                    width: 100%;
+                    margin-top: 52px;
+                    
+                    position: absolute;
+                    z-index: -1;
+                    
+				}
+				
+        
+            
+            
+				#yAxisunit {
+					font-family: 'Open Sans', Arial, sans-serif;
+					color: black;
+					font-size: 18px;
+					margin: 0;
+					padding: 0px 0px 0px 0px;
+				}
+				
+				h1 {
+					font-family: 'Open Sans', Arial, sans-serif;
+					color: grey;
+					font-size: 22px;
+					padding-left: 35px;
+                    padding-bottom: 0px;
+                    padding-right: 200px;
+					margin-top: 0px;
+					margin-bottom: 0;
+					font-weight: 700;
+                    
+				}
+				h4 {
+					font-family: 'Open Sans', Arial, sans-serif;
+					color: #fff;
+                    text-shadow: 2px 2px #2e2e2e;
+                    
+					font-size: 20px;
+					/*padding-left: 30px;*/
+					
+					font-weight: 700;
+					opacity: 100;
+				}
+				h2 {
+					font-family: 'Open Sans', Arial, sans-serif;
+					font-weight: 400;
+					color: #2e2e2e;
+                    padding-right: 0px;
+					font-size: 16px;
+					padding-left: 35px;
+                    padding-bottom: 0px;
+					margin-top: 0px;
+                    margin-bottom: 10px;
+                    margin-right: 0px;
+                
+				}
+				
+				h5 {
+					font-family: 'Open Sans', Arial, sans-serif;
+					color: #fff;
+                    text-shadow: 2px 2px #2e2e2e;
+                    font-size: 16px;
+					font-weight: 600;
+					
+				}
+
+				h3 {
+					font-family: 'Open Sans', Arial, sans-serif;
+                    text-shadow: 2px 2px #2e2e2e;
+                    text-shadow: 2px 2px #2e2e2e;
+					font-weight: 600;
+					color: #fff;
+					font-size: 16px;
+					margin: 0;
+					padding: 0px 0px 0px 0px;
+            }
+            
+            
+
+				
+				.icon-immigration {
+					background-image: url("../images/immigration.svg");
+					background-position: 20px 0px;
+					background-repeat: no-repeat;
+				}
+				
+				.icon-migration {
+					background-image: url("../images/emigration.svg");
+					background-position: 20px 0px;
+					background-repeat: no-repeat;
+				
+				}
+		}
+				
+		
+		.bigDisc{
+			stroke:#E66500;
+			stroke-width:0px;
+			/*display:inline;*/
+			cursor: pointer;
+		}
+		
+		
+		
+		#bigNum {
+		font-family: 'Open Sansbold', sans-serif;
+		font-size:70px;
+		stroke-width:1px;
+		stroke: #FFF;
+		color:#008cba;
+		position:absolute;
+		top:50%;
+		width:auto;
+		text-align: center;
+	}
+	
+	.owl-item h4 {
+		/* width:170px;*/
+		padding-left:0px;
+		padding-top:0px;
+	}
+	
+	
+/*	.owl-carousel {
+		font-family: 'open_sansregular';
+		font-size:32px;
+		color:#abc;
+		z-index:5;
+		background-color:#fafafa;
+		
+	}*/
+	
+	#carousel {
+		padding-bottom:0px;	
+		margin-top:0px;
+        width: 100%;
+		margin-left:0px;
+		margin-right:0px;
+		width:100%;
+		background-position:center;
+	}
+	 
+	#owl-demo .tiles {  /* img  */
+		display: block;
+		width: 100%;
+		height: auto;
+		background-position:center;
+		}
+		
+	ul {
+		list-style-type: disc;
+		color: white;
+		font: inherit;
+		font-weight: 100;
+		font-size: 16px;
+	}
+		
+	li{
+		margin-top:0.7em;
+	}
+		
+	
+    </style>
+    
+</head>
+<body>
+	<div id="wrapper">
+    <div id="graphic">
+    	<img src="fallback.png" alt="[Chart]" />
+    </div>
+	   
+    <div class="row" id="carousel"> 
+			<div>
+               <!-- <div class="span12"> -->
+                
+                                          
+                <div id="owl-demo" class="owl-carousel owl-theme">
+                       <div id="x0" class="tiles">
+                         
+                           <div id="one">
+                        
+                        <div>
+                                
+                                <h1>1964-1968</h1>
+                                <h2>The beginning of a single European market</h2>
+                                
+                        </div>   
+                                 <div id="number">
+                                        <img class="numbermobile" border="0" alt="one" src="../images/1.svg" height="75px" width="75px">
+                                    </div>
+                            
+                               
+                               
+                                <div id="image" class="one">
+                                	<img border="0" alt="Ten Pound Poms" src="../images/images.jpg" style="width: 100%; height: 100%;">
+                               
+                                
+                            </div>
+                                		
+                                   
+                        </div> 
+                                  
+                                <div id="info">
+                                    
+
+                                    <div >
+                                        
+                                       <div class="days" >
+                                		<!-- <h3>Net migration level</h3>
+                                    	<h4 class="days" id="days1"></h4>
+                                        
+                                        <h3>Immigration: 219,000</h3>
+                                    <h3>Emigration: 302,000</h3> -->
+                                            <p>Although the UK wasn’t yet involved, what was to become the modern EU began to take shape. </p>
+                                            <p>The European Community was formed in 1967, there were 6 members Belgium, France, Germany, Italy, Luxembourg and the Netherlands. The following year “freedom of movement” was introduced.</p>
+                                    </div>
+                                
+                                </div>
+                                    
+                      </div>  <!--  one  -->
+  						</div> <!-- #x0-->
+                          
+                    
+                    
+                    
+                    
+                    
+                    <div id="x1" class="tiles">
+                            <div id="two">
+                                
+                                     
+                                 <div>
+                                
+                                <h1>1965 -1971</h1>
+                                <h2>Commonwealth restrictions</h2>
+                                
+                        </div>   
+                                 <div id="number">
+                                        <img class="numbermobile" border="0" alt="one" src="../images/2.svg" height="75px" width="75px">
+                                    </div>
+                            
+                               
+                               
+                                <div id="image" class="one">
+                                	<img border="0" alt="Ten Pound Poms" src="../images/images2.jpg" style="width: 100%; height: 100%;">
+                               
+                                
+                            </div>
+                                		
+                                   
+                        </div> 
+                                  
+                                <div id="info">
+                                    
+
+                                    <div >
+                                        
+                                        <div class="days" >
+<!--
+                                		<h3>Net migration level</h3>
+                                    	<h4 class="days" id="days2"></h4>
+                                        
+                                        <h3>Immigration: 233,000</h3>
+                                    <h3>Emigration: 222,000</h3>
+-->
+                                            <p>Between 1965 and 1971 a series of immigration changes for commonwealth citizens were introduced.
+                                                <ul>
+                                                <li>British Nationality Act 1965 – allowed wives of British subjects to obtain British nationality</li>
+                                                <li>In 1965 the number of employment vouchers available for Commonwealth citizens via the 1962 Commonwealth Act was reduced</li>
+                                                <li>Commonwealth Immigrants Act 1968  - commonwealth citizens could only enter the UK if they had a parent or grandparent who was a UK national. </li>
+												</ul>
+                                            </p>
+                                    </div>
+                                
+                                </div>
+                                
+                                
+ 						 </div>  <!--  two  -->
+                       </div>  <!-- #x1-->
+                       
+                       
+                    
+                    <div id="x2" class="tiles">
+                       <div id="three">
+                           
+                            <div>
+                                
+                                <h1>1945-1982</h1>
+                                        <h2>Ten pound pom emigration</h2>
+                                
+                        </div>   
+                                 <div id="number">
+                                        <img class="numbermobile" border="0" alt="one" src="../images/3.svg" height="75px" width="75px">
+                                    </div>
+                            
+                               
+                               
+                                <div id="image" class="one">
+                                	<img border="0" alt="Ten Pound Poms" src="../images/images3.jpg" style="width: 100%; height: 100%;">
+                               
+                                
+                            </div>
+                                		
+                                   
+                        </div> 
+                                  
+                                <div id="info">
+                                    
+
+                                    <div >
+                                        
+                                        <div class="days" >
+<!--
+                                		<h3>Net migration level</h3>
+                                    	<h4 class="days" id="days3"></h4>
+                                        
+                                        <h3>Immigration: 238,000</h3>
+                                    <h3>Emigration: 197,000</h3>
+-->
+                                            <p>Emigrants relocating from the UK to Australia using the "Assisted Passage Migration Scheme" reached their peak in 1969. </p>
+											<p>Between 1945 and 1972 over 1 million “Ten pound poms” took advantage of the fact that adults could relocate cheaply and children could travel for free.</p><p>The scheme ended in 1982.</p>
+                                    </div>
+                                
+                                </div>
+            
+      					</div>   <!--  three  --> 
+                      </div>  <!-- #x2-->
+                      
+                      
+                    
+                    
+                    
+                    
+                    
+                    <div id="x2" class="tiles">
+                       <div id="four">
+                           
+                               <div>
+                                
+                                <h1>1971-1975</h1>
+                                        <h2>World unrest</h2>
+                                
+                        </div>   
+                                 <div id="number">
+                                        <img class="numbermobile" border="0" alt="one" src="../images/4.svg" height="75px" width="75px">
+                                    </div>
+                            
+                               
+                               
+                                <div id="image" class="one">
+                                	<img border="0" alt="Ten Pound Poms" src="../images/images4.jpg" style="width: 100%; height: 100%;">
+                               
+                                
+                            </div>
+                                		
+                                   
+                        </div> 
+                                  
+                                <div id="info">
+                                    
+
+                                    <div >
+                                        
+                                        <div class="days" >
+<!--
+                                		<h3>Net migration level</h3>
+                                    	<h4 class="days" id="days4"></h4>
+                                        
+                                        <h3>Immigration: 257,000</h3>
+                                    <h3>Emigration: 201,000</h3>
+-->
+                                            <p>War in Bangladesh led to 10 million East Bengali refugees leaving the country in 1971 and the following year, 28,000 Ugandan’s settled in the UK in two months after being expelled from their country.</p>
+											<p>The 1973 oil crisis causes the UK to enter a recession and unemployment rates fall.</p>
+											<p>Political unrest and the end of the Vietnam war in South-East Asia results in many seeking a new life in Britain in 1975. It is estimated that 83 thousand immigrants from the Commonwealth have settled in the UK since 1968.</p>
+                                    </div>
+                                
+                                </div>
+                           
+                           
+                           
+      					</div>  <!--  four  --> 
+                       </div>  <!-- #x3-->
+                       
+                    
+                    
+                <div id="x4" class="tiles">
+                 <div id="five">
+                     
+                     <div>
+                                
+                                <h1>1972-1973</h1>
+                                        <h2>Easier movement within the EC</h2>
+                                
+                        </div>   
+                                 <div id="number">
+                                        <img class="numbermobile" border="0" alt="one" src="../images/5.svg" height="75px" width="75px">
+                                    </div>
+                            
+                               
+                               
+                                <div id="image" class="one">
+                                	<img border="0" alt="Ten Pound Poms" src="../images/images5.jpg" style="width: 100%; height: 100%;">
+                               
+                                
+                            </div>
+                                		
+                                   
+                        </div> 
+                                  
+                                <div id="info">
+                                    
+
+                                    <div >
+                                        
+                                        <div class="days" >
+<!--
+                                		<h3>Net migration level</h3>
+                                    	<h4 class="days" id="days5"></h4>
+                                        
+                                        <h3>Immigration: 174,000</h3>
+                                    <h3>Emigration: 232,000</h3>
+-->
+                                            
+										<p>In 1972 the European Communities Act was passed which paved the way for the UK (along with Republic of Ireland and Denmark) to join the European Community in 1973. As a result, nationals of member countries gained the right to enter and live in the UK freely. In turn, UK citizens  gained the right to live and work in other EC countries.</p>
+										<p>At the same time the Immigration Act, implemented in 1973 made immigration from commonwealth countries to the UK harder.</p>
+                                    </div>
+                                
+                                </div>
+                             
+      				</div>  <!--  five  -->
+                </div>  <!-- #x4-->
+                
+                
+                    
+                    
+                    <div id="x5" class="tiles">
+                	<div id="six">
+                          
+                        <div>
+                                
+                                <h1>1976</h1>
+                                        <h2>Tension in the UK and motivation to emigrate</h2>
+                                
+                        </div>   
+                                 <div id="number">
+                                        <img class="numbermobile" border="0" alt="one" src="../images/6.svg" height="75px" width="75px">
+                                    </div>
+                            
+                               
+                               
+                                <div id="image" class="one">
+                                	<img border="0" alt="Ten Pound Poms" src="../images/images6.jpg" style="width: 100%; height: 100%;">
+                               
+                                
+                            </div>
+                                		
+                                   
+                        </div> 
+                                  
+                                <div id="info">
+                                    
+
+                                    <div >
+                                        
+                                        <div class="days" >
+<!--
+                                		<h3>Net migration level</h3>
+                                    	<h4 class="days" id="days6"></h4>
+                                        
+                                        <h3>Immigration: 250,000</h3>
+                                    <h3>Emigration: 205,000</h3>
+-->
+                                            <p>After the mid-1970s recession Britain applied to the International Monetary Fund for a £2.3 billion loan as a result of the financial crisis. Employment rates were low and there was a level of racial tension in the UK.</p><p>Existing laws to prevent racial discrimination were ineffective and in 1976 the Race Relations Act was introduced to promote equal opportunities regardless of race, colour, nationality, ethnicity or religion.</p>
+                                            <p>
+                                            The Canadian Immigration Act 1976 encouraged family reunification and 23,000 people left the UK for Canada this year.</p>
+                                    </div>
+                                
+                                </div>
+                        
+                        
+                       
+                       </div>  <!--  six  -->
+                    </div>  <!-- #x5-->
+                    
+                    <div id="x6" class="tiles">
+                	<div id="seven">
+                         
+                        <div>
+                                
+                                <h1>1980-1986</h1>
+                                        <h2>Law changes and a growing EC</h2>
+                                
+                        </div>   
+                                 <div id="number">
+                                        <img class="numbermobile" border="0" alt="one" src="../images/7.svg" height="75px" width="75px">
+                                    </div>
+                            
+                               
+                               
+                                <div id="image" class="one">
+                                	<img border="0" alt="Ten Pound Poms" src="../images/images7.jpg" style="width: 100%; height: 100%;">
+                               
+                                
+                            </div>
+                                		
+                                   
+                        </div> 
+                                  
+                                <div id="info">
+                                    
+
+                                    <div >
+                                        
+                                        <div class="days" >
+<!--
+                                		<h3>Net migration level</h3>
+                                    	<h4 class="days" id="days7"></h4>
+                                        
+                                        <h3>Immigration: 329,000</h3>
+                                    <h3>Emigration: 285,000</h3>
+-->
+                                            <p>A series of new laws tighten down on eligibility for citizenship and immigration:
+        	                                   	<ul>
+                                               		<li>Primary purpose rule in 1980  – required proof that the primary purpose of marriage was not to gain British residency</li>
+                                                	<li>British Nationality Act 1981 (implemented in 1983) meant that children born outside the UK to British overseas citizens no longer had automatic British citizenship and right to abode.</li> 
+												</ul>	
+                                            <p>Greece joined the EC in 1981, with Portugal and Spain joining in 1986.</p>
+                                    </div>
+                                
+                                </div>
+                    
+                    
+                       </div>    <!--  seven  -->
+      			</div>  <!-- #x6-->
+                
+                
+                    <div id="x7" class="tiles">
+                	<div id="eight">
+                        <div>
+                                
+                                <h1>1985-1988</h1>
+                                        <h2>Movement around the EC became easier</h2>
+                                
+                        </div>   
+                                 <div id="number">
+                                        <img class="numbermobile" border="0" alt="one" src="../images/8.svg" height="75px" width="75px">
+                                    </div>
+                            
+                               
+                               
+                                <div id="image" class="one">
+                                	<img border="0" alt="Ten Pound Poms" src="../images/images8.jpg" style="width: 100%; height: 100%;">
+                               
+                                
+                            </div>
+                                		
+                                   
+                        </div> 
+                                  
+                                <div id="info">
+                                    
+
+                                    <div >
+                                        
+                                        <div class="days" >
+<!--
+                                		<h3>Net migration level</h3>
+                                    	<h4 class="days" id="days8"></h4>
+                                        
+                                        <h3>Immigration: 454,000</h3>
+                                    <h3>Emigration: 291,000</h3>
+-->
+											<p>The Schengen Agreement 1985 - introduced a passport control free travel area (not including the UK) for EC countries.</p>
+                                            <p>The Immigration Act 1988, ensured people with freedom of movement in the European Communities did not need leave to enter or remain in the UK</p>
+                                    </div>
+                                
+                                </div>
+                       
+                     </div>    <!--  eight  -->        
+                  </div>  <!-- #x7-->
+                  
+                    
+                    
+                    
+                    
+                <div id="x8" class="tiles">
+                 	<div id="nine">
+    					<div>
+                                
+                                 <h1>1989-1990</h1>
+                                        <h2>Baltic independence</h2>
+                                
+                        </div>   
+                                 <div id="number">
+                                        <img class="numbermobile" border="0" alt="one" src="../images/9.svg" height="75px" width="75px">
+                                    </div>
+                            
+                               
+                               
+                                <div id="image" class="one">
+                                	<img border="0" alt="Ten Pound Poms" src="../images/images9.jpg" style="width: 100%; height: 100%;">
+                               
+                                
+                            </div>
+                                		
+                                   
+                        </div> 
+                                  
+                                <div id="info">
+                                    
+
+                                    <div >
+                                        
+                                        <div class="days" >
+<!--
+                                		<h3>Net migration level</h3>
+                                    	<h4 class="days" id="days9"></h4>
+                                        
+                                        <h3>Immigration: 516,000</h3>
+                                    <h3>Emigration: 363,000</h3>
+-->
+											<p>The Berlin Wall was pulled down in 1989 – the first time the border between East and West Germany was open in 28 years. 1990 saw the end of Communist Governments across Eastern Europe and an enlarged and unified Germany became a EC member.</p>
+ 
+                                            <p>The following year Estonia, Latvia and Lithuania gained their independence.</p>
+ 
+                                            <p>In the UK the current Work Permits system was introduced to enable employers to recruit skilled people.</p>
+                                    </div>
+                                
+                                </div>
+                       
+      				</div>   <!--  nine  -->    
+                  </div>   <!-- #x8-->
+                          
+                    
+                    
+                    <div id="x10" class="tiles">
+                 	<div id="ten">
+                        
+                    		<div>
+                                
+                                 <h1>1993-1994</h1>
+                                        <h2>The single market</h2>
+                                
+                        </div>   
+                                 <div id="number">
+                                        <img class="numbermobile" border="0" alt="one" src="../images/10.svg" height="75px" width="75px">
+                                    </div>
+                            
+                               
+                               
+                                <div id="image" class="one">
+                                	<img border="0" alt="Ten Pound Poms" src="../images/images10.jpg" style="width: 100%; height: 100%;">
+                               
+                                
+                            </div>
+                                		
+                                   
+                        </div> 
+                                  
+                                <div id="info">
+                                    
+
+                                    <div >
+                                        
+                                        <div class="days" >
+<!--
+                                		<h3>Net migration level</h3>
+                                    	<h4 class="days" id="days10"></h4>
+                                        
+                                        <h3>Immigration: 589,000</h3>
+                                    <h3>Emigration: 344,000</h3>
+-->
+                                            <p>The Maastricht Treaty established the European Union (EU) in 1993 completing the creation of the single market. The single market allowed freedom of movement of goods services, people and money and extended to economically inactive EU nationals as well as workers.</p>
+
+                                            <p>In 1994 the European Economic Area agreement comes into force bringing together the EU member states and Iceland, Liechtenstein and Norway (European Free Trade Area , or EFTA) — in a single market.</p>
+                                            
+                                            <p>The Channel Tunnel opened in 1994 enabling easier movement between the UK and France. The Sangatte agreement was implemented so the UK could carry out immigration controls on French territory.</p>
+                                    </div>
+                                
+                                </div>    
+                        
+                        
+                        
+                        
+    				</div>   <!--  ten  -->    
+                  </div>   <!-- #x9-->
+                          
+                           <div id="x11" class="tiles">
+                 	<div id="eleven">
+                        
+                        	<div>
+                                
+                                 <h1>1995-1999</h1>
+                                        <h2>Preparation for EU expansion and the Euro</h2>
+                                
+                        </div>   
+                                 <div id="number">
+                                        <img class="numbermobile" border="0" alt="one" src="../images/11.svg" height="75px" width="75px">
+                                    </div>
+                            
+                               
+                               
+                                <div id="image" class="one">
+                                	<img border="0" alt="Ten Pound Poms" src="../images/images11.jpg" style="width: 100%; height: 100%;">
+                               
+                                
+                            </div>
+                                		
+                                   
+                        </div> 
+                                  
+                                <div id="info">
+                                    
+
+                                    <div >
+                                        
+                                        <div class="days" >
+<!--
+                                		<h3>Net migration level</h3>
+                                    	<h4 class="days" id="days11"></h4>
+                                        
+                                        <h3>Immigration: 590,000</h3>
+                                    <h3>Emigration: 427,000</h3>
+-->
+                                            <p>Austria, Finland and Sweden join the European Union in 1995. 2 years later, in 1997 the UK handed back Hong Kong to China.</p>
+                                            <p>In 1999 the Amsterdam Treaty came into force to prepare the EU for enlargement. Member states agreed to devolve certain powers from national governments to the European Parliament, to increase co-operation and protection in areas such as immigration, civil and criminal law, foreign and security policy, health and consumer protection.</p>
+                                            <p>In the same year The Euro was introduced  as the new “single currency” with 11 member states of the EU adopting its use.</p>
+                                    </div>
+                                
+                                </div>    
+                        
+                        
+    					
+      				</div>   <!--  eleven  -->    
+                  </div>   <!-- #x10-->
+                          
+                         
+                    
+                    <div id="x12" class="tiles">
+                 	<div id="twelve">
+                        
+                        	<div>
+                                
+                                 <h1>1999-2002</h1>
+                                        <h2>Asylum seeker law change</h2>
+                                
+                        </div>   
+                                 <div id="number">
+                                        <img class="numbermobile" border="0" alt="one" src="../images/12.svg" height="75px" width="75px">
+                                    </div>
+                            
+                               
+                               
+                                <div id="image" class="one">
+                                	<img border="0" alt="Ten Pound Poms" src="../images/images12.jpg" style="width: 100%; height: 100%;">
+                               
+                                
+                            </div>
+                                		
+                                   
+                        </div> 
+                                  
+                                <div id="info">
+                                    
+
+                                    <div >
+                                        
+                                        <div class="days" >
+<!--
+                                		<h3>Net migration level</h3>
+                                    	<h4 class="days" id="days12"></h4>
+                                        
+                                        <h3>Immigration: 591,000</h3>
+                                    <h3>Emigration: 339,000</h3>
+-->
+                                            <p>In 2002 asylum applications to the UK peaked at over 80,000 , mainly from Africa, Asia and the Middle East. A number of processes and laws were introduced to specifically address the asylum process:
+												<ul>
+													<li>Immigration and Asylum Act 1999, which aimed to speed up the asylum process to combat illegal entry and strengthen powers to deal with those not entitled to remain in the UK.</li>
+													<li>Nationality, Immigration and Asylum Act 2002, which amended the support arrangements for asylum seekers and created provisions for detention and removal.</li>
+												</ul>
+                                            </p>
+                                    </div>
+                                
+                                </div>  
+                    
+      				</div>   <!--  nine  -->    
+                  </div> 
+                          
+                     <div id="x13" class="tiles">
+                 	<div id="thirteen">
+                        
+                        	<div>
+                                
+                                 <h1>2004</h1>
+                                        <h2>The EU8 Accession</h2>
+                                
+                        </div>   
+                                 <div id="number">
+                                        <img class="numbermobile" border="0" alt="one" src="../images/13.svg" height="75px" width="75px">
+                                    </div>
+                            
+                               
+                               
+                                <div id="image" class="one">
+                                	<img border="0" alt="Ten Pound Poms" src="../images/images13.jpg" style="width: 100%; height: 100%;">
+                               
+                                
+                            </div>
+                                		
+                                   
+                        </div> 
+                                  
+                                <div id="info">
+                                    
+
+                                    <div >
+                                        
+                                        <div class="days" >
+<!--
+                                		<h3>Net migration level</h3>
+                                    	<h4 class="days" id="days12"></h4>
+                                        
+                                        <h3>Immigration: 591,000</h3>
+                                    <h3>Emigration: 339,000</h3>
+-->
+                                            <p>The EU8 (Czech Republic Estonia Hungary Latvia Lithuania Poland Slovakia and Slovenia) plus Malta and Cyprus joined the EU in 2004. Over the following years, the UK saw an immediate increase in the number of migrants coming from these countries.</p>
+                                            <p> The Worker Registration Scheme was introduced in 2004 to monitor incoming workers from these countries and help keep track of how the labour market was affected by this influx of migrants. This scheme ended in 2011.</p>
+                                    </div>
+                                
+                                </div>  
+                    
+      				</div>   <!--  nine  -->    
+                  </div> 
+                
+                 <div id="x14" class="tiles">
+                 	<div id="fourteen">
+                        
+                        	<div>
+                                
+                                 <h1>2008-2009</h1>
+                                        <h2>The economic downturn</h2>
+                                
+                        </div>   
+                                 <div id="number">
+                                        <img class="numbermobile" border="0" alt="one" src="../images/14.svg" height="75px" width="75px">
+                                    </div>
+                            
+                               
+                               
+                                <div id="image" class="one">
+                                	<img border="0" alt="Ten Pound Poms" src="../images/images14.jpg" style="width: 100%; height: 100%;">
+                               
+                                
+                            </div>
+                                		
+                                   
+                        </div> 
+                                  
+                                <div id="info">
+                                    
+
+                                    <div >
+                                        
+                                        <div class="days" >
+<!--
+                                		<h3>Net migration level</h3>
+                                    	<h4 class="days" id="days12"></h4>
+                                        
+                                        <h3>Immigration: 591,000</h3>
+                                    <h3>Emigration: 339,000</h3>
+-->
+											<p>In 2008 the UK entered a double dip recession. Immigration from the EU8 had risen sharply, and unemployment was high. A points based immigration system was introduced to replace all previous work permits and entry schemes. </p>
+											<p>In 2009 the number of student visas peaked at more than 300,000 for the first time and the EU expanded further with the addition of Bulgaria and Romania (EU2). Citizens of the EU2 had employment restrictions when they first joined the EU. These were lifted in 2014.</p>
+                                    </div>
+                                
+                                </div>  
+                    
+      				</div>   <!--  nine  -->    
+                  </div> 
+                  
+                  <div id="x15" class="tiles">
+                 	<div id="fifteen">
+                        
+                        	<div>
+                                
+                                 <h1>2010-2015</h1>
+                                        <h2>Migration targets</h2>
+                                
+                        </div>   
+                                 <div id="number">
+                                        <img class="numbermobile" border="0" alt="one" src="../images/15.svg" height="75px" width="75px">
+                                    </div>
+                            
+                               
+                               
+                                <div id="image" class="one">
+                                	<img border="0" alt="Ten Pound Poms" src="../images/images15.jpg" style="width: 100%; height: 100%;">
+                               
+                                
+                            </div>
+                                		
+                                   
+                        </div> 
+                                  
+                                <div id="info">
+                                    
+
+                                    <div >
+                                        
+                                        <div class="days" >
+<!--
+                                		<h3>Net migration level</h3>
+                                    	<h4 class="days" id="days12"></h4>
+                                        
+                                        <h3>Immigration: 591,000</h3>
+                                    <h3>Emigration: 339,000</h3>
+-->
+											<p>Net migration has been higher than 100,000 in every year since 1998 but in 2010 the government set a target to “ reduce net migration from the hundreds of thousands to the tens of thousands” by 2015, however in 2015 net migration was xxx,xxx a xx% increase since 2014. </p>
+											<p>Croatia joined in 2013 the EU as the 28th member state. In 2016 the UK voted to leave the EU and discussions have begun on what effect this will have on migration into and out of the UK in the future.</p>
+                                    </div>
+                                
+                                </div>  
+                    
+      				</div>   <!--  nine  -->    
+                  </div> 
+                
+
+                    
+                    
+               </div>   <!-- owl-demo-->
+              <!-- </div>-->
+            </div>
+       </div>   <!-- row  carousel-->
+        
+    <div id="keypoints">
+        <p></p>
+    </div>
+	
+   
+   </div>
+    
+    <script src="../lib/jquery.js" type="text/javascript"></script>
+    <script src="../lib/bootstrap.min.js" type="text/javascript"></script>
+    <script src="../lib/d3.v3.5.17.min.js" type="text/javascript"></script>
+    <script src="../lib/modernizr.svg.min.js" type="text/javascript"></script>
+    <script src="../lib/pym.js" type="text/javascript"></script>
+    <script src="../lib/owlcarousel.js" type="text/javascript"></script>
+    <script src="../lib/jquery.countTo.js" type="text/javascript"></script>
+    
+    <script>
+		var graphic = d3.select('#graphic');
+		var keypoints = d3.select('#keypoints');
+		var footer = d3.select(".footer");
+		var pymChild = null;
+		var owlCaro = d3.select('#owl-demo');
+		var myPrev = 14;
+		var lastSlide = 0;
+		var count = 0;
+		var prevcount = 0;
+		//dvc = {};
+		barPosNum = 0;
+	
+	var lineColourArray = [ "none" , "#FBB03B","#7DAED3"/* , "#7BCAE2"*/ ]; // some (porbably usually the first 'X' depending on how many lines are shown) may need to be "none" to avoid lines and bars being drawn for the same data
+
+	function drawGraphic() {
+	
+		var threshold_md = 788;
+		var threshold_sm = dvc.optional.mobileBreakpoint; 
+	  
+		//set variables for chart dimensions dependent on width of #graphic
+		if (parseInt(graphic.style("width") )< threshold_sm) {        	
+				var margin = {top: dvc.optional.margin_sm[0], right: dvc.optional.margin_sm[1], bottom: dvc.optional.margin_sm[2], left: dvc.optional.margin_sm[3]}; 
+				var chart_width = parseInt(graphic.style("width") ) - margin.left - margin.right;
+				var height = Math.ceil((chart_width * dvc.optional.aspectRatio_sm[1]) / dvc.optional.aspectRatio_sm[0]) - margin.top - margin.bottom;
+		} else if (parseInt(graphic.style("width") ) < threshold_md){
+				var margin = {top: dvc.optional.margin_md[0], right: dvc.optional.margin_md[1], bottom: dvc.optional.margin_md[2], left: dvc.optional.margin_md[3]}; 
+				var chart_width = parseInt(graphic.style("width") ) - margin.left - margin.right;
+				var height = Math.ceil((chart_width * dvc.optional.aspectRatio_md[1]) / dvc.optional.aspectRatio_md[0]) - margin.top - margin.bottom;
+		} else {
+				var margin = {top: dvc.optional.margin_lg[0], right: dvc.optional.margin_lg[1], bottom: dvc.optional.margin_lg[2], left: dvc.optional.margin_lg[3]}
+				var chart_width = parseInt(graphic.style("width") ) - margin.left - margin.right;
+				var height = Math.ceil((chart_width * dvc.optional.aspectRatio_lg[1]) / dvc.optional.aspectRatio_lg[0]) - margin.top - margin.bottom;
+		}
+
+		// clear out existing graphics
+		graphic.selectAll("*").remove();
+		keypoints.selectAll("*").remove();
+		footer.selectAll("*").remove();
+		//owlCaro.selectAll("*").remove();
+		var owlCaro = $('#owl-demo');
+		
+					
+	// get column headers 
+	dvc.keys = d3.keys(graphic_data[0]).filter(function(key) { return key != 'date';});	// if != 'date'	Creates a Text array of keys
+	
+     lineInter = d3.svg.line()   //.data(d3.entries(dvc.lines[dataSets]))  // there are 3 lines contained in each dataSet
+					 .defined(function(d) { return d.amt != ''; })
+					 .x(function(d) { return x(d.date); })
+					 .y(function(d) { return y(d.amt); });
+
+    // parse data into columns AND INTO DATASETS
+		dvc.lines = []; // all the datasets
+		
+    		dvc.keys.forEach(function(dat) { 
+			
+			//  dvc.lines[3 migrations]	
+        		dvc.lines[dat] = graphic_data.map(function(d) {
+															return {
+																'date': d.date,
+																'amt': d[dat] // 3 keys
+															};
+        										}); // ends dvc.lines
+    							});	// ends for each heading + 2 line, 1 bar
+								
+	var startDate = new Date(dvc.lines[dvc.essential.legendLabels[0]][0].date);  // Net migration's first points date
+	var endDate = new Date(dvc.lines[dvc.essential.legendLabels[1]][dvc.lines[dvc.essential.legendLabels[1]].length-2].date);  // why -2
+	var everyDate = d3.time.day.range(startDate, endDate);
+	//console.log(startDate+"  "+endDate+"  "+everyDate.length/365);
+	var barWidth = chart_width/((everyDate.length/365));
+	
+	 x = d3.time.scale()
+			  .range([0, chart_width ])  //  + barWidth
+			  .domain(d3.extent(graphic_data, function(d) { return d.date; }));
+	//console.log(x.domain());
+	
+	 var xAxis = d3.svg.axis()
+        .scale(x)
+        .orient("top")
+        .tickFormat(function(d,i) {
+            if (parseInt(graphic.style("width") ) <= threshold_md) {  // width
+                var fmt = d3.time.format('%Y');
+				var str = fmt(d);
+               return i % 1 ? "": '\u2019' + str.substring(4,2);  //'\u2019' + fmt(d);
+				 //return fmt(d)
+            } else {
+                var fmt = d3.time.format('%Y');
+                return i % 2 ? "": fmt(d);
+            }
+        });
+	
+	
+		
+		
+	  y = d3.scale.linear()
+        	  .range([height, 0]);
+			      
+    var yAxis = d3.svg.axis()
+        .scale(y)
+        .orient('left');
+		
+		
+		//specify number or ticks on y axis
+	if (parseInt(graphic.style("width") ) <= threshold_sm) {
+		yAxis.ticks(dvc.optional.y_num_ticks_sm_md_lg[0]);
+		xAxis.ticks(dvc.optional.x_num_ticks_sm_md_lg[0]);
+		
+	 } else if (parseInt(graphic.style("width") ) <= threshold_md){
+		yAxis.ticks(dvc.optional.y_num_ticks_sm_md_lg[1]);
+		xAxis.ticks(dvc.optional.x_num_ticks_sm_md_lg[1]);
+		
+	 } else {
+		yAxis.ticks(dvc.optional.y_num_ticks_sm_md_lg[2]);
+		xAxis.ticks(dvc.optional.x_num_ticks_sm_md_lg[2]);
+	 }
+	 
+	  xAxis.tickValues(x.ticks(dvc.optional.x_num_ticks_sm_md_lg[0]).concat( x.domain() ));
+	 	
+	// Now SVG world
+	d3.select('#thousands')
+				//.attr("width", chart_width/* + margin.left + margin.right*/)
+				//.attr("height", 20)
+				.append("text")  // lower all below
+				.attr('id', 'thousands')
+				.html(dvc.essential.yAxisLabel)
+				.attr("transform", "translate(" + 0 + "," + margin.top + ")"); //margin.left
+				
+				
+    var svg = d3.select('#graphic')
+				.append('svg')
+				.attr("width", chart_width/*width*/ + margin.left + margin.right)
+				.attr("height", height + margin.top + margin.bottom)
+				.append("g")
+				.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+	
+	var yDomain = dvc.essential.yAxisScale;
+				
+	y.domain(yDomain);
+		
+	
+	 svg.append('g')
+        .attr('class', 'y axis')
+	    .attr("id", "yAxis")
+	 	.attr('transform', 'translate(5, 0 )')
+        .call(yAxis.tickSize(-chart_width-barWidth, 0));
+		
+	 if (parseInt(graphic.style("width") ) <= threshold_sm){	
+		 svg.append('g')
+			.attr('class', 'x axis')
+			.attr("id", "xAxis")
+			.call(xAxis);
+	
+		//d3.select("#xAxis.x.axis").select("path.domain").remove();
+	}
+		
+    svg.append('g')
+		.attr("class","migLines")
+		.selectAll('path')
+        .data(d3.entries(dvc.lines))   // ADD dvc.lines[x] for current selection
+        .enter()
+        .append('path')
+            .attr('class', function(d, i) {
+										return 'line line-' + i;
+										})
+            .attr('d', function(d) {	
+										return lineInter(d.value);
+									})
+			.style("stroke" , function(d,i){
+										return lineColourArray[i];
+									});
+			//.attr("transform","translate("+ margin.left +", "+ 0 +")");  // margin.top
+									
+
+					// kick start our big Date	  starting on last year
+					//var meDates = graphic_data[1]//.filter(function(d) { console.log(d.Immigration); return d.Immigration == "201"; });
+					//console.log("meDates" + meDates);	
+							
+					svg.append('text')
+						.text(d3.max(graphic_data[0], function(d) { var fmt = d3.time.format('%Y'); return fmt(d.date); }) ) // PLUS the count from ghost bars!!
+						.attr("id",'bigDate')
+						.attr("text-anchor", "middle")
+						.attr("font-size", function(){
+												if (parseInt(graphic.style("width") ) < 600) { return "18px"; }
+																				else { return "23px"; }									
+															})
+						.attr('y',y(520000) )
+						.attr('x',x(d3.time.format(dvc.essential.dateFormat).parse("1970" )) )
+						.attr("fill", "#666");
+										
+		
+	svg.append('g')
+		.attr("class","bars")
+		.selectAll('rect')
+		.data(dvc.lines[dvc.essential.legendLabels[0]])   // ADD dvc.lines[x] for current selection
+		.enter()
+		.append('rect')
+		.attr('class', 'bar')
+		.attr('y',function(d){
+							if(d.amt<0) {return y(0)}
+							else {return y(d.amt)}
+							})
+		.attr('x', function(d) { return (x(d.date) - barWidth/2); })
+		
+		.attr('height',function(d){
+							if(d.amt<0) {return (y(d.amt) - y(0))}
+							else {return (y(0) - y(d.amt))}
+								})
+		.attr('width',barWidth)
+		.attr('stroke', 'white')
+		.attr('padding',"1px")
+		.attr("fill", "grey")
+		.attr('opacity'	, 0.5);
+			
+	// Adds the gap at the start to shift along	
+	d3.selectAll(".bars" ).attr('transform', 'translate('+ barWidth * 1.5 + ',0)');	
+	d3.selectAll(".migLines").attr('transform', 'translate('+ barWidth * 1.5 + ',0)');
+	d3.select("#yAxis" ).selectAll("line").attr('transform', 'translate('+ barWidth * 1 + ',0)');	
+	d3.select("#yAxis" ).selectAll("text").attr("x", -1)
+	d3.select("#xAxis" ).selectAll("text").attr("x", barWidth*1.5)
+	d3.select("#xAxis" ).selectAll("line").attr("x2", barWidth*1.5).attr("x1", barWidth*1.5)
+	d3.select("#xAxis" ).selectAll(".domain").attr('transform', 'translate('+ barWidth * 1.5 + ',0)');//.style("stroke","none")
+	d3.select("#xAxis" ).attr('transform', 'translate(0,-5)');
+				//create centre line if required
+				if (dvc.optional.centre_line == true){
+					svg.append("line")
+						.attr("id","centreline")
+						.attr('y1',y(dvc.optional.centre_line_value))
+						.attr('y2',y(dvc.optional.centre_line_value))
+						.attr('x1',0)
+						.attr('x2',/*chart_width+margin.left*/x.range()[1]+margin.left);
+				} else if(yDomain[0] <0){
+					svg.append("line")
+						.attr("id","centreline")
+						.attr('y1',y(0))
+						.attr('y2',y(0))
+						.attr('x1',barWidth)
+						.attr('x2',/*chart_width+margin.left*/x.range()[1] + barWidth * 2);
+				} 	
+			
+   			// Ghost bars
+			if (parseInt(graphic.style("width") ) > threshold_sm){	
+				
+					svg.append('g')
+						.attr("class", "barNone")
+						.selectAll(".barNone")
+						.data(dvc.lines[dvc.essential.legendLabels[1]])  // 'dates' only on DOM?  d3.entries(lines) key and val.
+						.enter()
+						.append("rect")
+						//.attr("class","barNone")
+						.attr("id", function(d,i) { return "rollover" + i; } ) 
+						.attr("x", function(d)	{ return (x(d.date) - barWidth/2); })
+						.attr("y", 0)
+						.attr("height", height) 
+						.attr("width", barWidth)
+						.attr("opacity", 0)
+						.on("mouseover", function(){ 
+									d3.select(this).attr("opacity", 0.5)
+									var barPos = this.id;
+									barPosNum = barPos.substr(8,2)
+									//console.log("this "+this + " " + barPosNum);
+
+							d3.select("#bigDate")
+							  .text(function(d){ 
+											var bgDate = graphic_data[barPosNum];  // USE MAPPED DATA!!
+											//console.log("imm/em "+bgDate+"  "+bgDate.date);
+											var fmt = d3.time.format('%Y');
+
+											return fmt(bgDate.date);
+												});	// d.date[touchNum];
+							// for the figures
+							dvc.keys.forEach(function(d,i) {
+															commas = d3.format(",000")
+															var figs = graphic_data[barPosNum];
+															//console.log(i + " Imm " + dvc.lines[i][barPosNum]);
+															//d3.select("#annofig"+i).text(dvc.lines[i][barPosNum]);  
+															d3.select("#annofig"+i).text(commas(figs[dvc.keys[i]]));
+														});
+										}) // end text F
+							.on("mouseout", function(){ 
+											d3.select(this).attr("opacity", 0)
+											});	
+
+					d3.selectAll(".barNone").attr('transform', 'translate('+ barWidth * 1.5 + ',0)').attr('opacity', 0.1);
+
+				}
+				
+			if (parseInt(graphic.style("width") ) > threshold_sm){
+				writeAnnotation();
+			}
+			
+							
+			function writeAnnotation(){
+						var ColourArray = [ "grey" , "#FBB03B","#7DAED3"/* , "#7BCAE2"*/];
+						
+						dvc.essential.legendLabels.forEach(function(d,i) {	
+						
+							 svg.append("text") 
+								.text(dvc.essential.legendLab[i]) // PLUS the count from ghost bars!!
+								.attr("id","annotext" + i)
+								.attr("text-anchor", dvc.essential.annotationAlign[i])
+								.attr("font-size", function(){
+												if (parseInt(graphic.style("width") ) < 600) { return "11px"; }
+																				else { return "15px"; }									
+															})
+								.attr("fill", function(){
+															return ColourArray[i];
+															})
+								.attr('y',y(dvc.essential.annotationXY[2-i][1]))  // Use width to control ????
+								.attr('x',x(d3.time.format(dvc.essential.dateFormat).parse(dvc.essential.annotationXY[i][0])));
+										
+							d3.select("#annotext" + i)
+								.each(createBackRect);	
+								
+									svg.append("text")
+										.text(' ') // PLUS the count from ghost bars!!
+										.attr("id","annofig" + i)
+										.attr("text-anchor", "end")
+										.attr("font-size", function(){
+												if (parseInt(graphic.style("width") ) < 600) { return "11px"; }
+																				else { return "15px"; }									
+															})
+										.attr("fill", function(){
+															return ColourArray[i];
+															})
+										.attr('y', y(dvc.essential.annotationXY[2-i][1]))   // Use width to control ????
+										.attr('x',  x(d3.time.format(dvc.essential.dateFormat).parse(dvc.essential.annotationXY2[i][0])));
+						
+
+					function createBackRect() {
+								
+							var BBox = this.getBBox()
+								dvc.bobx = BBox.x + BBox.width+ -36;
+								//console.log("bb "+BBox.x);
+								
+									svg.insert("rect", ".annotext" + (i))
+										.attr("width", BBox.width)
+										.attr("height", BBox.height)
+										.attr("x", BBox.x)
+										.attr("y", BBox.y)
+										.attr("fill", "#fff")
+										.attr("opacity", 0);
+										
+							}; // end function createBackRect()
+						
+						});	// end foreach 		
+					
+					//} // end else ... 
+								
+				}// end function writeAnnotation()
+			
+							
+		//create link to source				
+//		d3.select(".footer").append("p")
+//			.text("Source: ")
+//			.append("a")
+//			.attr("href", dvc.essential.sourceURL)
+//			.attr("target", "_blank")
+//			.html(dvc.essential.sourceText);
+			
+				// John's discs
+			
+			// John's discs
+			
+			dvc.essential.disc.forEach(function(d,i)
+			{
+				 svg.append("circle")
+					.attr("class", "bigDisc")
+					.attr("id", "photo"+i)
+					.attr('cy',function(d){	
+					 	if(parseInt(graphic.style("width") ) <= 480){
+							return y(dvc.essential.annotateDiscXY[i][1])-2
+						} else {
+							return y(dvc.essential.annotateDiscXY[i][1])-5
+						}
+				 	})
+					.attr('cx',x(d3.time.format(dvc.essential.dateFormat).parse(dvc.essential.annotateDiscXY[i][0])))
+					.attr("r", function(d){	if(parseInt(graphic.style("width") ) <= 480){return 7.5} else if(parseInt(graphic.style("width") ) <= 550){ return 9} else {return 11}} )
+					//.style("pointer-events", "auto")
+					.style("fill", "#656f6b")
+					.attr('transform', 'translate('+ barWidth * 1.5 + ',0)');
+					
+				d3.select("#photo"+i).on("mouseover",function(){d3.select(this).style("opacity","0.5");}).on("mouseout",function(){d3.select(this).style("opacity","1");}).on("click", photo);
+				
+				d3.select("#photo0").style("stroke-width",2).style("stroke","orange");
+				
+					
+				svg.append("text")
+					.text(dvc.essential.disc[i])
+					.attr("class","numInside")
+					.attr("text-anchor", "middle")
+					.attr('y', function(d){	
+					 	if(parseInt(graphic.style("width") ) <= 480){
+							return y(dvc.essential.annotateDiscXY[i][1])+2
+						} else {
+							return y(dvc.essential.annotateDiscXY[i][1])
+						}
+					})
+					.attr('x',x(d3.time.format(dvc.essential.dateFormat).parse(dvc.essential.annotateDiscXY[i][0])))
+					.attr('transform', 'translate('+ barWidth * 1.5 + ',0)');
+
+			});
+			
+		//var owl = $("#owl-demo")
+		owlCaro.owlCarousel(
+			{
+					//items : 1,
+					/*items : 10, //10 items above 1000px browser width
+					  itemsDesktop : [1000,5], //5 items between 1000px and 901px
+					  itemsDesktopSmall : [900,3], // betweem 900px and 601px
+					  itemsTablet: [600,2], //2 items between 600 and 0
+					  itemsMobile : false // itemsMobile disabled - inherit from item
+					  */
+		 //navigation : false, // Show next and prev buttons
+					slideSpeed : 300,
+					paginationSpeed : 400,
+					singleItem:true,
+					autoHeight : true,
+					  // "singleItem:true" is a shortcut for:
+					  // items : 1, 
+					  // itemsDesktop : false,
+					  // itemsDesktopSmall : false,
+					  // itemsTablet: false,
+					  // itemsMobile : false
+					//itemsScaleUp : true,
+					
+		 //navigationText : ["prev","next"],
+		
+				dots:false,
+				//center:true,
+				//loop:false,
+				//autoplay:false,
+				//autoplayTimeout:2000,
+				//autoplaySpeed:2000,
+					responsive:true,
+					afterAction : whichOne
+					// CSS Styles
+				//baseClass : "owl-carousel",
+				//theme : "owl-theme",
+			
+			});
+			
+		function whichOne(){
+			
+				var owl = $("#owl-demo"),
+      			//status = $("#owlStatus");
+				myTile = this.owl.currentItem;
+				console.log("whichOne " + myTile);
+				counter(myTile);
+				
+				var im = dvc.lines["Immigration"][dvc.essential.annotateDiscXY[myTile][2]].amt;
+				var em = dvc.lines["Emigration"][dvc.essential.annotateDiscXY[myTile][2]].amt;
+														
+				d3.select("#imm"+myTile).select("h3").html(im);
+				d3.select("#emi"+myTile).select("h3").html(em); 
+				
+				if(myPrev == 13){ console.log(" get the first dot" + myPrev);
+					d3.select("#photo0").style("stroke-width",0); //"+parseInt(myPrev)
+				}
+				
+				d3.select("#photo" + myTile).style("stroke-width", "2px");
+				
+			}
+			
+			
+		function photo(){
+			console.log("photo");
+			var myid = this.id;
+			var owls = $("#owl-demo").data('owlCarousel');
+				
+				var zoo = myid.split("photo");
+				zoomTo = zoo.join("");
+				parseFloat(zoomTo);
+				console.log("photo, zoomTo cos my dots used"+zoomTo);
+				owls.goTo(zoomTo);
+				owls.currentItem = zoomTo;  // not recording this as current slide
+								
+		} // end photo
+			
+			
+		function counter(numbr){
+				console.log("counter, zoomTo "+numbr);
+				
+				d3.select("#photo"+numbr).style("stroke-width",2).style("stroke","orange");
+				
+				if(myPrev != 13){ console.log(" Not first time:" + myPrev);
+				d3.select("#photo"+myPrev).style("stroke-width",0); //"+parseInt(myPrev)
+				}
+				
+				myPrev = numbr;
+				
+					index=parseInt(numbr)+1;
+					//var dates = [-82000,-11000,-41000,-56000,58000,44000,44000,163000,172000,220000,330000,440000];
+					
+					var net = dvc.lines["Net migration"][dvc.essential.annotateDiscXY[numbr][2]].amt;
+					
+						$('#days'+(index)).countTo({
+						from: 0, 
+						to: net,  //dates[numbr],
+						speed: 1000,
+						formatter: function (value, options) { // use format = fm(,0)...
+															  return value.toFixed(options.decimals).replace(/\B(?=(?:\d{3})+(?!\d))/g, ',');
+															}
+						});
+					
+				}
+						
+
+		
+	if (pymChild) {
+					pymChild.sendHeight();
+					}
+					
+} // ends drawGraphic
+	
+		
+
+		//check whether browser can cope with svg	
+	if (Modernizr.svg) {
+		
+		//load config 
+		d3.json("config.json", function(error, config) {
+			
+			dvc=config;
+			//load chart data
+			graphic_data = [];
+						
+							d3.csv("data1.csv", function(error, data) {
+								
+								graphic_data = data;
+										graphic_data.forEach(function(d) {
+																		d.date = d3.time.format(dvc.essential.dateFormat).parse(d.date); 
+																		});
+													
+																	pymChild = new pym.Child({renderCallback: drawGraphic});
+																	})
+						
+				}); // ends loading config
+		
+				} 
+	else {
+				pymChild = new pym.Child();
+				
+				if (pymChild) {
+								pymChild.sendHeight();
+								}
+							
+		} // ends if/else
+
+		
+    </script>
+</body>
+</html>
