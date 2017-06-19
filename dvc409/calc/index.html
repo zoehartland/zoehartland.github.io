@@ -819,19 +819,19 @@
 				d3.select("#flight_mult").text("X0")		
 			} else if (U_T_H_T.length ==2){
 				d3.select("#milk_mult").text("X"+numberfmt((U_T_H_T[1])))
-				d3.select("#cinema_mult").text("X"+numberfmt((U_T_H_T[0])))
+				d3.select("#cinema_mult").text("X"+numberfmt((U_T_H_T[0]/10)))
 				d3.select("#shop_mult").text("X0")
 				d3.select("#flight_mult").text("X0")
 			} else if(U_T_H_T.length ==3) {
 				d3.select("#milk_mult").text("X"+numberfmt((U_T_H_T[2])))
-				d3.select("#cinema_mult").text("X"+numberfmt((U_T_H_T[1])))
-				d3.select("#shop_mult").text("X"+numberfmt((U_T_H_T[0])))
+				d3.select("#cinema_mult").text("X"+numberfmt((U_T_H_T[1]/10)))
+				d3.select("#shop_mult").text("X"+numberfmt((U_T_H_T[0]/100)))
 				d3.select("#flight_mult").text("X0")
 			} else  {
 				d3.select("#milk_mult").text("X"+numberfmt((U_T_H_T[3])))
-				d3.select("#cinema_mult").text("X"+numberfmt((U_T_H_T[2])))
-				d3.select("#shop_mult").text("X"+numberfmt((U_T_H_T[1])))
-				d3.select("#flight_mult").text("X"+numberfmt((U_T_H_T[0])))				
+				d3.select("#cinema_mult").text("X"+numberfmt((U_T_H_T[2]/10)))
+				d3.select("#shop_mult").text("X"+numberfmt((U_T_H_T[1]/100)))
+				d3.select("#flight_mult").text("X"+numberfmt((U_T_H_T[0]/1000)))				
 			}
 			
 			
