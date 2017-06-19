@@ -410,7 +410,7 @@
 		<div class="row first">
 			<div class="bold title">How much do you currently earn?</div>   
 			<div class="form">
-				<div class="input-group">
+				<div class="input-group sal1">
                     	<div class="input-group-addon">£</div>
                     	<input class="form-control inc"  id="current_salary"  placeholder="">
 				 	</div>
@@ -474,7 +474,7 @@
 				
 				<div class="value_title3 ">Next year I will earn</div>
 				<div class="form">
-						<div class="input-group">
+						<div class="input-group sal2">
 							<div class="input-group-addon">£</div>
 							<input class="form-control inc"  id="future_salary"  placeholder="">
 						</div>
@@ -489,7 +489,7 @@
 						<div class="value_title3 ">Or, my salary will <span class="inc_dec">increase</span> by </div>
 
 						<div class="spacing">
-							<div class="input-group">
+							<div class="input-group sal3">
 								<input class="form-control inc"  id="percentage_inc"  placeholder="">
 								<div class="input-group-addon">%</div>
 							</div>
@@ -501,9 +501,15 @@
 		<div class= "row diff hide">			
 				<div class="grey text-center">
 						<p class="medium">That's <span id="future_diff" class="diff_bold value money"></span><span id="future_diff_L_M"></span> per <span class="time">year</span> </p>
-				</div>				
+				</div>		
+				<div class="footer row">
+						<div id="share">
+							<p class="social_div"></p>
+						</div>
+				</div>		
 		</div>
 		<div class= "row diff approxs hide">
+<!--
 				<div class="row">
 					This can buy you approximately..	
 				</div>
@@ -545,11 +551,8 @@
 				  
 				</div>
 			</div>
-			<div class="footer row">
-					<div id="share">
-						<p class="social_div"></p>
-					</div>
-			</div>
+-->
+
 		</div>	
 		<div class= "row">				
 			<p class = "update_info hide">Based on latest <a target="_blank" href="https://www.ons.gov.uk/economy/inflationandpriceindices/timeseries/l55o/mm23/">CPIH</a> figures released on <span id="cpih_last_updated"></span> and latest <a target="_blank" href="https://www.ons.gov.uk/employmentandlabourmarket/peopleinwork/earningsandworkinghours/timeseries/kac3/lms"> growth in earnings</a> figures released on <span id="awe_last_updated"></span>.</p>
@@ -688,63 +691,89 @@
 		 }
 		
 		function inflationCalc(){
-			console.log("inflationCalc")
-			d3.select(".first").classed("hide", true);
-			d3.select(".inflation_div").classed("hide", false);
-			d3.select(".italic").classed("hide", false);
-			d3.selectAll(".diff").classed("hide", false);
-			d3.select(".awediv").classed("hide", false);
-			d3.select(".update_info").classed("hide", false);
-			
+				var salary_check = $("#current_salary").val();
 		
-			curr_salary = $("#current_salary").val().replace(/,/g, '')	
-			
-			inflation_salary = curr_salary*(1+(curr_inf/100))			
-			
-			d3.select("#inflat_sal").text(numberfmt(inflation_salary));
-			//d3.select(".diff").c			
-			d3.select("#inflat_diff").text(numberfmt(inflation_salary-curr_salary))	
-			
-			diffCalcs()
+				var patt = /^[0-9]{1,}/;
+		 
+				if( patt.test(salary_check) == true ){
+					console.log("inflationCalc")
+					d3.select(".sal1").classed("has-error", false);
+					d3.select(".first").classed("hide", true);
+					d3.select(".inflation_div").classed("hide", false);
+					d3.select(".italic").classed("hide", false);
+					d3.selectAll(".diff").classed("hide", false);
+					d3.select(".awediv").classed("hide", false);
+					d3.select(".update_info").classed("hide", false);
+
+
+					curr_salary = $("#current_salary").val().replace(/,/g, '')	
+
+					inflation_salary = curr_salary*(1+(curr_inf/100))			
+
+					d3.select("#inflat_sal").text(numberfmt(inflation_salary));
+					//d3.select(".diff").c			
+					d3.select("#inflat_diff").text(numberfmt(inflation_salary-curr_salary))	
+
+					diffCalcs()			
+				} else {
+					d3.select(".sal1").classed("has-error", true);
+				}
 		}
 		
 		function futureCalc(){
-			console.log("futureCalcs")
+			
+		
+					d3.selectAll(".diff").classed("hide", false);
+					//percentageChange();
+					//future_salary = $("#future_salary").val();
+					//curr_salary = $("#curr_salary").val()
+					//diff = future_salary-curr_salary
+					diffCalcs();
 				
-			
-			d3.selectAll(".diff").classed("hide", false);
-			//percentageChange();
-			
-				//future_salary = $("#future_salary").val();
-				//curr_salary = $("#curr_salary").val()
-				//diff = future_salary-curr_salary
-				diffCalcs();
 		}
 		
 		function percentageChange(){
 			console.log("percentageChange")
-						
+			var salary_check3 = $("#percentage_inc").val();
+
+			var patt = /^[0-9]{1,}/;
+
+			if( patt.test(salary_check3) == true ){				
 		//	console.log($("#future_salary").val());
-			
-			future_salary = (1+($("#percentage_inc").val().replace(/,/g, '')/100))*curr_salary
-			if($("#percentage_inc").val()<0){
-				inc_dec= "decrease"
-				new_per_inc_dec = $("#percentage_inc").val()*-1
-			} else {
-				inc_dec= "increase"
-				new_per_inc_dec = $("#percentage_inc").val()
-			}
-			
-			$("#future_salary").val(numberfmt1(future_salary))
-			
-			
-			d3.select("#perc_pay_inc").text(new_per_inc_dec+"%")
-			d3.selectAll(".inc_dec").text(inc_dec);
-			
-			diffCalcs();
+				d3.select(".sal3").classed("has-error", false);
+				} else {
+					d3.select(".sal3").classed("has-error", true);
+				}			
+				future_salary = (1+($("#percentage_inc").val().replace(/,/g, '')/100))*curr_salary
+				if($("#percentage_inc").val()<0){
+					inc_dec= "decrease"
+					new_per_inc_dec = $("#percentage_inc").val()*-1
+				} else {
+					inc_dec= "increase"
+					new_per_inc_dec = $("#percentage_inc").val()
+				}
+
+				$("#future_salary").val(numberfmt1(future_salary))
+
+
+				d3.select("#perc_pay_inc").text(new_per_inc_dec+"%")
+				d3.selectAll(".inc_dec").text(inc_dec);
+
+				diffCalcs();
+
 		}
 		function futureSalaryChange(){
-		//	console.log("futureSalaryChange")
+		
+			console.log("futureSalaryChange")
+			var salary_check2 = $("#future_salary").val();
+
+			var patt = /^[0-9]{1,}/;
+
+			if( patt.test(salary_check2) == true ){
+				d3.select(".sal2").classed("has-error", false);
+			} else {
+				d3.select(".sal2").classed("has-error", true);
+			}
 			
 				future_salary = $("#future_salary").val().replace(/,/g, '')	;
 				curr_salary = $("#current_salary").val().replace(/,/g, '')	;
@@ -764,80 +793,84 @@
 				d3.select("#perc_pay_inc").text(numberfmt2(new_percent_diff)+"%")
 				d3.selectAll(".inc_dec").text(inc_dec);
 			diffCalcs();
+			
 		}
 		
 		function diffCalcs(){
-			console.log("diffCalcs")
-			if(future_sal_type == "awe"){
-				future_salary = (1+(curr_awe/100))*curr_salary
-				d3.select("#awe_salary").text(numberfmt((1+(curr_awe/100))*curr_salary))	
-				d3.select("#awe_diff").text(numberfmt( ((1+(curr_awe/100))*curr_salary)-curr_salary ))
 				
-				
-			} else {
-				
-				future_salary = $("#future_salary").val().replace(/,/g, '')	;
-				
-			}
 			
-			diff_purchasing = future_salary - inflation_salary;
-			
-			if(diff_purchasing<0){
-				new_diff_purchasing = diff_purchasing*-1;
-				less_more = "less"
-				
-			} else if (diff_purchasing==0){
-				new_diff_purchasing = diff_purchasing
-				less_more = ""
-			} else {
-				new_diff_purchasing = diff_purchasing
-				less_more = "more"
-			}
-			
-			if (d3.select(".diff").attr("class").substr(d3.select(".diff").attr("class").length - 4)=="hide"){
-				d3.select(".approxs").classed("hide", true)
-			} else {
-				if(new_diff_purchasing>9999){ 
-					d3.select(".approxs").classed("hide", true)
-				} else {
-					d3.select(".approxs").classed("hide", false)
-				}
-			}
-			
-			
-			
-			console.log(new_diff_purchasing+"  "+d3.select(".diff").attr("class").substr(d3.select(".diff").attr("class").length - 4) )
-			d3.select("#future_diff").text(numberfmt(new_diff_purchasing));			
-			d3.select("#future_diff_L_M").text(" "+less_more);		
-			
+					console.log("diffCalcs")
+					if(future_sal_type == "awe"){
+						future_salary = (1+(curr_awe/100))*curr_salary
+						d3.select("#awe_salary").text(numberfmt((1+(curr_awe/100))*curr_salary))	
+						d3.select("#awe_diff").text(numberfmt( ((1+(curr_awe/100))*curr_salary)-curr_salary ))
 
-			U_T_H_T = separateNumberIntoUnits(new_diff_purchasing);
-			if(U_T_H_T.length ==1){
-				d3.select("#milk_mult").text("X"+numberfmt((U_T_H_T[0])))
-				d3.select("#cinema_mult").text("X0")
-				d3.select("#shop_mult").text("X0")
-				d3.select("#flight_mult").text("X0")		
-			} else if (U_T_H_T.length ==2){
-				d3.select("#milk_mult").text("X"+numberfmt((U_T_H_T[1])))
-				d3.select("#cinema_mult").text("X"+numberfmt((U_T_H_T[0]/10)))
-				d3.select("#shop_mult").text("X0")
-				d3.select("#flight_mult").text("X0")
-			} else if(U_T_H_T.length ==3) {
-				d3.select("#milk_mult").text("X"+numberfmt((U_T_H_T[2])))
-				d3.select("#cinema_mult").text("X"+numberfmt((U_T_H_T[1]/10)))
-				d3.select("#shop_mult").text("X"+numberfmt((U_T_H_T[0]/100)))
-				d3.select("#flight_mult").text("X0")
-			} else  {
-				d3.select("#milk_mult").text("X"+numberfmt((U_T_H_T[3])))
-				d3.select("#cinema_mult").text("X"+numberfmt((U_T_H_T[2]/10)))
-				d3.select("#shop_mult").text("X"+numberfmt((U_T_H_T[1]/100)))
-				d3.select("#flight_mult").text("X"+numberfmt((U_T_H_T[0]/1000)))				
-			}
+
+					} else {
+
+						future_salary = $("#future_salary").val().replace(/,/g, '')	;
+
+					}
+
+					diff_purchasing = future_salary - inflation_salary;
+
+					if(diff_purchasing<0){
+						new_diff_purchasing = diff_purchasing*-1;
+						less_more = "less"
+
+					} else if (diff_purchasing==0){
+						new_diff_purchasing = diff_purchasing
+						less_more = ""
+					} else {
+						new_diff_purchasing = diff_purchasing
+						less_more = "more"
+					}
+
+					if (d3.select(".diff").attr("class").substr(d3.select(".diff").attr("class").length - 4)=="hide"){
+						d3.select(".approxs").classed("hide", true)
+					} else {
+						if(new_diff_purchasing>9999){ 
+							d3.select(".approxs").classed("hide", true)
+						} else {
+							d3.select(".approxs").classed("hide", false)
+						}
+					}
+
+
+
+			//		console.log(new_diff_purchasing+"  "+d3.select(".diff").attr("class").substr(d3.select(".diff").attr("class").length - 4) )
+					d3.select("#future_diff").text(numberfmt(new_diff_purchasing));			
+					d3.select("#future_diff_L_M").text(" "+less_more);		
+
+
+					U_T_H_T = separateNumberIntoUnits(new_diff_purchasing);
+					if(U_T_H_T.length ==1){
+						d3.select("#milk_mult").text("X"+numberfmt((U_T_H_T[0])))
+						d3.select("#cinema_mult").text("X0")
+						d3.select("#shop_mult").text("X0")
+						d3.select("#flight_mult").text("X0")		
+					} else if (U_T_H_T.length ==2){
+						d3.select("#milk_mult").text("X"+numberfmt((U_T_H_T[1])))
+						d3.select("#cinema_mult").text("X"+numberfmt((U_T_H_T[0]/10)))
+						d3.select("#shop_mult").text("X0")
+						d3.select("#flight_mult").text("X0")
+					} else if(U_T_H_T.length ==3) {
+						d3.select("#milk_mult").text("X"+numberfmt((U_T_H_T[2])))
+						d3.select("#cinema_mult").text("X"+numberfmt((U_T_H_T[1]/10)))
+						d3.select("#shop_mult").text("X"+numberfmt((U_T_H_T[0]/100)))
+						d3.select("#flight_mult").text("X0")
+					} else  {
+						d3.select("#milk_mult").text("X"+numberfmt((U_T_H_T[3])))
+						d3.select("#cinema_mult").text("X"+numberfmt((U_T_H_T[2]/10)))
+						d3.select("#shop_mult").text("X"+numberfmt((U_T_H_T[1]/100)))
+						d3.select("#flight_mult").text("X"+numberfmt((U_T_H_T[0]/1000)))				
+					}
+
+
+
+					addShare();
+					if (pymChild) { pymChild.sendHeight(); }
 			
-			
-			
-			addShare();
-			if (pymChild) { pymChild.sendHeight(); }
 			
 		}
 		

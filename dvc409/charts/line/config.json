@@ -8,20 +8,20 @@
         
             "legendLabels" : ["Inflation",  "Total pay growth"],
         
-            "sourceText":["CPIH and ...."],
+            "sourceText":["CPIH and AWE Total Pay Growth"],
             "sourceURL":["http://www.hscic.gov.uk/catalogue/PUB18472/nhs-immu-stat-eng-2014-15-tab.xlsx"],
             
             "annotationChart": [
-               "Pay fell below inflation  for the 1st time in 2 & a 1/2  years in Feburary"
+               "Pay fell below inflation  for the 1st time in 2 and a  half years in Feburary"
             ],
             "annotationBullet": [
                 "Pay fell below inflation  for the 1st time in 2 & a 1/2  years in Feburary"
             ],
             "annotationXY":[
-                ["2017 FEB","4.7"]
+                ["2016 Dec","3.7"]
             ],
             "annotationAlign":[
-                "end"
+                "middle"
             ],
         
             "circles" : false,    
@@ -50,7 +50,7 @@
             
             "xAxisTextFormat_sm_md_lg" : ["%y", "%Y", "%Y"], 
                 
-            "x_num_ticks_sm_md_lg" : [7,17,10],    
+            "x_num_ticks_sm_md_lg" : [5,5,10],    
             "y_num_ticks_sm_md_lg" : [7,8,8],
             "centre_line" : false,
             "centre_line_value" : 0

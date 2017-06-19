@@ -88,9 +88,9 @@
 		                return  fmt(d);
 		            } else {
 		                var fmt = d3.time.format(dvc.optional.xAxisTextFormat_sm_md_lg[2]);
-						var fmt2 = d3.time.format("%y");
+						var fmt2 = d3.time.format("%b %y");
 						var fmt3 = parseInt(fmt2(d))+1
-		                return fmt(d) +"-" +fmt3;
+		                return fmt2(d);
 		            }
 		        })
 				.tickPadding(5)
