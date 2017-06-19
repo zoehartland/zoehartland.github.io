@@ -314,22 +314,22 @@
 			} 
 
 			
-			svg.append("rect")	
-					.attr('x',x(d3.time.format("%Y").parse("1994")))
-					.attr('width',chart_width)
-					.style('fill', '#d8f0f3')
-					.style('opacity', 0.9) 
-					.attr('y',y(100))
-					.attr('height',y(95));
-					
-			svg.append("line")	
-					.attr('x1',x(d3.time.format("%Y").parse("1994")))
-					.attr('x2',x(d3.time.format("%Y").parse("2014")))
-					.style('stroke', 'teal')
-					.style('stroke-width', 3)	
-					.style('opacity', 0.2) 
-					.attr('y1',y(95))
-					.attr('y2',y(95));
+//			svg.append("rect")	
+//					.attr('x',x(d3.time.format("%Y").parse("1994")))
+//					.attr('width',chart_width)
+//					.style('fill', '#d8f0f3')
+//					.style('opacity', 0.9) 
+//					.attr('y',y(100))
+//					.attr('height',y(95));
+//					
+//			svg.append("line")	
+//					.attr('x1',x(d3.time.format("%Y").parse("1994")))
+//					.attr('x2',x(d3.time.format("%Y").parse("2014")))
+//					.style('stroke', 'teal')
+//					.style('stroke-width', 3)	
+//					.style('opacity', 0.2) 
+//					.attr('y1',y(95))
+//					.attr('y2',y(95));
 							
 			writeAnnotation();
 	
@@ -560,8 +560,7 @@ function createLegend(){
 					console.log(graphic_data);
 					graphic_data.forEach(function(d) {
 						d.date = d3.time.format(dvc.essential.dateFormat).parse(d.date); 
-						if(d.combo != "null") {d.combo =parseFloat(d.combo)} else {d.combo=null};
-						if(d.diphtheria != "null") {d.diphtheria = parseFloat(d.diphtheria)} else {d.diphtheria=null};
+						if(d.Total_pay_growth != "null") {d.Total_pay_growth =parseFloat(d.Total_pay_growth)} else {d.Total_pay_growth=null};					
 						
 					});
 					

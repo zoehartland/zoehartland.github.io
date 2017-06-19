@@ -12,15 +12,10 @@
             "sourceURL":["http://www.hscic.gov.uk/catalogue/PUB18472/nhs-immu-stat-eng-2014-15-tab.xlsx"],
             
             "annotationChart": [
-               "Pay fell below inflation  for the 1st time in 2 & a 1/2  years in Feburary",
-                "",
-                "Andrew Wakefield  report on possible  link between MMR  & autism published",
-                "Partial  retraction  of report",
-                "Full  retraction  of report"
+               "Pay fell below inflation  for the 1st time in 2 & a 1/2  years in Feburary"
             ],
             "annotationBullet": [
-                "",
-                ""
+                "Pay fell below inflation  for the 1st time in 2 & a 1/2  years in Feburary"
             ],
             "annotationXY":[
                 ["2017 FEB","4.7"]
