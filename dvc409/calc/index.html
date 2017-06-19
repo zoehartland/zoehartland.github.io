@@ -45,6 +45,7 @@
 		margin: 0px auto;
 		font-size: 16px;
 		color: #3E3E3E !important;
+		min-height: 300px;
 		
 	}
 		
@@ -567,7 +568,7 @@
 	<script>
 	
 		var dvc ={};
-		//var pymChild = null;
+		var pymChild = null;
 		var numberfmt = d3.format(",.0f");
 		var numberfmt1 = d3.format(".0f");
 		var numberfmt2 = d3.format(".1f")
@@ -836,7 +837,7 @@
 			
 			
 			addShare();
-			
+			if (pymChild) { pymChild.sendHeight(); }
 			
 		}
 		
