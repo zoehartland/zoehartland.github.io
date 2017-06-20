@@ -279,13 +279,25 @@
 <!-- resizer script--> 
 <script type="text/javascript">
    
-	var pymChild = null;
 	
+	setTimeout(function(){ 
+		div_height = document.getElementById('g-Pay_growth_ai2html_V4-box').offsetHeight;
+		alert(div_height); 
+		var pymChild = new pym.Child();
+	}, 100);
+	
+		
 	
 	//use pym to create iframe containing fallback image (which is set as default)
-	pymChild = new pym.Child();
 	
 
+//	
+//	function getSetHeight(){
+//		
+//		if(pymChild){
+//			pymChild.sendHeight()
+//		}
+//	}
 
 		(function() {
 			// only want one resizer on the page
@@ -354,7 +366,8 @@
 			}
 
 		})();
- if (pymChild) { pymChild.sendHeight(); }
+
+	
 </script>
 
 </body>
