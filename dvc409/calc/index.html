@@ -453,7 +453,7 @@
 		</div>			
 		<div class="row awediv hide bottom_border">
 				<h3 class="title2">Average pay growth: <span class = "awe percent"></span> </h3>
-				<p class="options_own italic hide"><input type="checkbox" name="own_pay" value="yes" > Tick to enter your actual pay change next year </p>
+				
 				
 				
 				<div class="bold">
@@ -472,10 +472,11 @@
 							<p><span class="value money" id="awe_diff" ></span> per <span class="time">year</span></p>
 						</div>					
 					</div>	
+					<p class="options_own italic hide"><input type="checkbox" name="own_pay" value="yes" > Tick to enter your actual pay change next year </p>
 		</div>	
 		<div class="row ownpay hide bottom_border">
 			<h3 class="title3">Your pay <span class="inc_dec">increase</span>: <span id="perc_pay_inc"></span></h3>
-			<p class="options_average italic hide"><input type="checkbox" name="average_pay"  value="yes" > Tick to use average pay growth </p>
+			
 			<div class="col-md-6 col-sm-12 col-xs-12 block">	
 				
 				<div class="value_title3 ">Next year I will earn</div>
@@ -502,11 +503,12 @@
 							<p id="submit_future_sal" class="ONS_btn" onClick="futureCalc()"> Apply </p>
 						</div>
 				</div>
+				<p class="options_average italic hide"><input type="checkbox" name="average_pay"  value="yes" > Tick to use average pay growth </p>
 			
 		</div>
 		<div class= "row diff hide">			
 				<div class="grey text-center">
-					<p class="medium"><text>That's </text><span id="future_diff" class="diff_bold value odometer">0</span><span id="future_diff_L_M"></span><text> per </text><span class="time">year</span> </p>
+					<p class="medium"><text>Your earnings are worth </text><span id="future_diff" class="diff_bold value odometer">0</span><span id="future_diff_L_M"></span><text> per </text><span class="time">year</span> </p>
 				</div>		
 				<div class="footer row">
 						<div id="share">
@@ -561,7 +563,7 @@
 
 		</div>	
 		<div class= "row">				
-			<p class = "update_info hide">Based on latest <a target="_blank" href="https://www.ons.gov.uk/economy/inflationandpriceindices/timeseries/l55o/mm23/">CPIH</a> figures released on <span id="cpih_last_updated"></span> and latest <a target="_blank" href="https://www.ons.gov.uk/employmentandlabourmarket/peopleinwork/earningsandworkinghours/timeseries/kac3/lms"> growth in earnings</a> figures released on <span id="awe_last_updated"></span>.</p>
+			<p class = "update_info hide">Based on <span id="cpih_date"></span> <a target="_blank" href="https://www.ons.gov.uk/economy/inflationandpriceindices/timeseries/l55o/mm23/">CPIH</a> figures released on <span id="cpih_last_updated"></span> and <span id="awe_date"></span>  <a target="_blank" href="https://www.ons.gov.uk/employmentandlabourmarket/peopleinwork/earningsandworkinghours/timeseries/kac3/lms"> growth in earnings</a> figures released on <span id="awe_last_updated"></span>.</p>
 		</div>
 		
 		
@@ -996,14 +998,28 @@
 				formatTime = d3.timeFormat("%B %d, %Y");
 				d3.select("#cpih_last_updated").text(formatTime(new Date(inflation.description.releaseDate)))
 				
+				formatTime = d3.timeFormat("%B %Y");
+				parseTime = d3.timeParse("%Y %b");
+				console.log()
+				d3.select("#cpih_date").text(formatTime(parseTime(inflation.description.date)))
+				
 					//load AWE data from API
 					d3.json(config.average_wage_growth, function(json)	{
 						AWE=json;
 
+						
 						curr_awe = 	+AWE[config.time_period][AWE[config.time_period].length-1].value
 						d3.select(".awe").text(curr_awe)	
-						formatTime = d3.timeFormat("%B %d, %Y");
+						
+						formatTime = d3.timeFormat("%B %d, %Y");						
 						d3.select("#awe_last_updated").text(formatTime(new Date(AWE.description.releaseDate)))
+						
+						formatTime = d3.timeFormat("%B %Y");
+						parseTime = d3.timeParse("%Y %b");
+						console.log()
+						d3.select("#awe_date").text(formatTime(parseTime(AWE.description.date)))
+						
+						
 						//inflationCalc();
 						//diffCalcs();	
 
