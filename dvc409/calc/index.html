@@ -108,29 +108,25 @@
 */
 		  
 	   }
-	   
+	   .title1, .title2, .title3, .title4{
+			 font-size:24px;
+			 font-weight: 700;
+		   	 padding-bottom: 8px;
+		}
+	 
 	   .title1{
-		   font-size:20px;
-		   font-weight: 700;
 		   color: #003C57;	
 	   }
-	   
-	   	   
+	   	   	   
 	   .title2{
-		   font-size:20px;
-		   font-weight: 700;
 		   color: #0075A3;
 	   }
 
 	   .title3{
-		   font-size:20px;
-		   font-weight: 700;
 		   color: #008080;
 	   }
-	   
+	   	   
 	   .title4{
-		   font-size:20px;
-		   font-weight: 700;
 		   color: #5F7682;
 	   }
 	   .inflation, .awe{
@@ -199,7 +195,7 @@
 		   	margin-left: 5px;
 	   }
 	   
-	   .ONS_btn : hover, .ONS_btn : focus{
+	   .ONS_btn:hover, .ONS_btn:focus{
 		    background-color: #0b5d30;
 	   }
 	   
@@ -246,7 +242,7 @@
 	   
 	   .update_info{
 		   
-		   font-style: italic;
+/*		   font-style: italic;*/
 
 	   }
 	   .input-group {
@@ -263,7 +259,7 @@
 	   }
 	   
 	   .row{
-		 margin-bottom:25px;
+		 margin-bottom:10px;
 		
 	   }
 	   
@@ -288,7 +284,7 @@
 	
 	 p#submit_current_sal {
 		position: relative;
-		top: -15px;
+		top: -17px;
 	}
 	   
 	   
@@ -301,24 +297,22 @@
 	   .value_title1, .value_title2, .value_title3{
 		   font-weight: 500;
 	   }
-
+		
+		.title1, .title2, .title3{
+			 font-size:20px;
+			 font-weight: 600;
+			padding-bottom: 4px;
+		}
 	 
 	   .title1{
-		   font-size:20px;
-		   font-weight: 600;
 		   color: #003C57;	
 	   }
-	   
-	   	   
+	   	   	   
 	   .title2{
-		   font-size:20px;
-		   font-weight: 600;
 		   color: #0075A3;
 	   }
 
 	   .title3{
-		   font-size:20px;
-		   font-weight: 600;
 		   color: #008080;
 	   }
 	   
@@ -348,11 +342,13 @@
 	   }
 	   
 	   .diff_bold{
-		   color:  #5F7682;
-		   font-size: 20px;
+		   font-size: 22px;
 		   font-weight: 600;
 	   }
-	   
+	 .medium{
+		 max-width: 230px;
+		 margin: 0px auto;
+	 }
 	 
 	 .row{
 		 margin-bottom:15px;
@@ -378,12 +374,16 @@
 			width: 123px;
 			
 		}
-	 p#submit_current_sal {
-		position: relative;
-		top: 5px;
-		margin-left: 0px;
-	}
+		p#submit_current_sal {
+			position: relative;
+			top: 5px;
+			margin-left: 0px;
+		}
 	
+   		.medium{
+		   font-size: 19px;
+	   }
+	 
 }
 	   
 	   #share{
@@ -403,7 +403,9 @@
 				
 		}
 	   
-
+	   .diff{
+		   margin-bottom:0px;
+	   }
 	   
     </style>
 
@@ -472,8 +474,11 @@
 							<p><span class="value money" id="awe_diff" ></span> per <span class="time">year</span></p>
 						</div>					
 					</div>	
-					<p class="options_own italic hide"><input type="checkbox" name="own_pay" value="yes" > Tick to enter your actual pay change next year </p>
+					
 		</div>	
+		<div class="row">
+			<p class="options_own italic hide"><input type="checkbox" name="own_pay" value="yes" > Tick to enter your actual pay change next year </p>
+		</div>
 		<div class="row ownpay hide bottom_border">
 			<h3 class="title3">Your pay <span class="inc_dec">increase</span>: <span id="perc_pay_inc"></span></h3>
 			
@@ -503,8 +508,11 @@
 							<p id="submit_future_sal" class="ONS_btn" onClick="futureCalc()"> Apply </p>
 						</div>
 				</div>
-				<p class="options_average italic hide"><input type="checkbox" name="average_pay"  value="yes" > Tick to use average pay growth </p>
+				
 			
+		</div>
+		<div class="row">
+			<p class="options_average italic hide"><input type="checkbox" name="average_pay"  value="yes" > Tick to use average pay growth </p>
 		</div>
 		<div class= "row diff hide">			
 				<div class="grey text-center">
@@ -920,8 +928,7 @@
 					d3.select(".footer")
 						.append("p")
 						.style("padding-top","8px")
-						.style("color","#333")
-						.style("font-size","18px")
+						.style("color","#333") 
 						.style("padding-bottom","8px")
 						.style("margin","0px auto")
 						.style("text-align","center")
