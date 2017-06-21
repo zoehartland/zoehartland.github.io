@@ -45,7 +45,7 @@
 		max-width: 800px;
 		margin: 0px auto;
 		font-size: 16px;
-		color: #3E3E3E !important;
+		color: #414042 !important;
 		min-height: 300px;
 		
 	}
@@ -156,8 +156,8 @@
 	   }
 	   .medium{
 		   color:  #414042;
-		   font-size: 20px;
-		   font-weight: 700;
+		   font-size: 16px;
+		   font-weight: 500;
 /*
 		   display: inline-flex;
 		   line-height: 3.0;
@@ -356,7 +356,7 @@
 	   }
 	 
 	 .grey{
-		   background: #e3e9ec;
+		   background: #eaeaea;
 		   padding: 5px 0px;
 	   }
 	 
@@ -381,7 +381,7 @@
 		}
 	
    		.medium{
-		   font-size: 19px;
+		   font-size: 14px;
 	   }
 	 
 }
@@ -407,6 +407,38 @@
 		   margin-bottom:0px;
 	   }
 	   
+#suptext {
+	height:150px;
+	
+	margin: 0 auto;
+	padding:50px;
+	background-color:#1B313B;
+	border: 5px solid grey;
+	position:relative;
+}
+
+.IE_P{
+	color:#FFF;
+	font-family:Arial, Helvetica, sans-serif;
+	line-height:1.2;
+	margin-left:10px;
+}
+
+.IE_P a{
+	color:#66CCFF;
+	text-decoration:none;
+}
+
+.IE_P a:hover{
+	color:#F90;
+	
+}
+
+#altImage{
+	top:20px;
+	position:relative;
+}
+
     </style>
 
 </head>
@@ -414,167 +446,176 @@
 	
   
    
-    <div class="container-fluid">
-		<div class="row first">
-			<div class="bold title">How much do you currently earn?</div>   
-			<div class="form">
-				<div class="input-group sal1">
-                    	<div class="input-group-addon">£</div>
-                    	<input class="form-control inc"  id="current_salary"  placeholder="">
-				 	</div>
-				<select class="form-control" id="salary_type1">
-					<option value="week" >per week</option>
-					<option value="month" selected>per month</option>
-					<option value="year">per year</option>
-				</select>		
+    <div class="container-fluid" id="calculator">
+    	 <div id="ieMsg" style="display:none">
+	    	<div id="suptext">
+	              <p class="IE_P">For a safer, faster, better experience online you should upgrade your browser. You will then be able to play with lovely interactive graphics such as this one. </p><br>
+	              <p  class="IE_P"> <a href="https://www.gov.uk/support/browsers" target="_blank">Find out more about browsers</a></p>
+	        </div><!--end suptext div-->
+	        <div id="altImage"><img id="thumbNail" src="fallback.png"></div>
+		</div>
+
+    	<div id="wrapper" style="display:none;">
+			<div class="row first">
+				<div class="bold title">How much do you currently earn?</div>   
+				<div class="form">
+					<div class="input-group sal1">
+	                    	<div class="input-group-addon">£</div>
+	                    	<input class="form-control inc"  id="current_salary"  placeholder="">
+					 	</div>
+					<select class="form-control" id="salary_type1">
+						<option value="week" >per week</option>
+						<option value="month" selected>per month</option>
+						<option value="year">per year</option>
+					</select>		
+					
+				</div>
+				<br class="visible-xs">
+				<p id="submit_current_sal" class="ONS_btn" onClick="inflationCalc()"> Submit </p>	
+			</div>
+			<div class="row inflation_div hide bottom_border">
+						<h3 class="title1">Current inflation rate: <span class = "inflation percent"></span></h3>
+						<div class="bold">
+								 To keep up with the current inflation rate, your pay next year would need to 
+						</div>
+						<div class=" block col-sm-6 col-xs-6 ">
+							<p class=" value_title"> increase to </p>
+							<p>
+								 <span id="inflat_sal" class= "money"></span> per <span class="time">year</span>
+							</p>			
+						</div>
+						<div class=" block col-sm-6 col-xs-6">
+							<p class="value_title">a pay increase of </p>
+							
+							<p><span class="value money" id="inflat_diff" ></span> per <span class="time">year</span></p>
+							</p>			
+						</div>	
+						
+
+						
+			</div>			
+			<div class="row awediv hide bottom_border">
+					<h3 class="title2">Average pay growth: <span class = "awe percent"></span> </h3>
+					
+					
+					
+					<div class="bold">
+						Alternatively, if your pay increased in line with the current average pay growth it would 
+					</div>
+						<div class=" block col-sm-6 col-xs-6">
+							<p class="value_title2 ">increase to </p>
+							<p>
+								<span id="awe_salary"></span></span> per <span class="time">year</span>
+							</p>					
+						</div>	
+						<div class=" block col-sm-6 col-xs-6">
+							<p class="value_title2 "> a pay increase of</p>
+
+							<div class= "value">
+								<p><span class="value money" id="awe_diff" ></span> per <span class="time">year</span></p>
+							</div>					
+						</div>	
+						
+			</div>	
+			<div class="row">
+				<p class="options_own italic hide"><input type="checkbox" name="own_pay" value="yes" > Tick to enter your actual pay change next year </p>
+			</div>
+			<div class="row ownpay hide bottom_border">
+				<h3 class="title3">Your pay <span class="inc_dec">increase</span>: <span id="perc_pay_inc"></span></h3>
+				
+				<div class="col-md-6 col-sm-12 col-xs-12 block">	
+					
+					<div class="value_title3 ">Next year I will earn</div>
+					<div class="form">
+							<div class="input-group sal2">
+								<div class="input-group-addon">£</div>
+								<input class="form-control inc"  id="future_salary"  placeholder="">
+							</div>
+							<select class="form-control" id="salary_type2">
+								<option value="week" >per week</option>
+								<option value="month" selected>per month</option>
+								<option value="year">per year</option>
+							</select>			
+					</div>
+				</div> 
+					<div class="col-md-6 col-sm-12 col-xs-12 block">		
+							<div class="value_title3 ">Or, my salary will <span class="inc_dec">increase</span> by </div>
+
+							<div class="spacing">
+								<div class="input-group sal3">
+									<input class="form-control inc"  id="percentage_inc"  placeholder="">
+									<div class="input-group-addon">%</div>
+								</div>
+								<p id="submit_future_sal" class="ONS_btn" onClick="futureCalc()"> Apply </p>
+							</div>
+					</div>
+					
 				
 			</div>
-			<br class="visible-xs">
-			<p id="submit_current_sal" class="ONS_btn" onClick="inflationCalc()"> Submit </p>	
-		</div>
-		<div class="row inflation_div hide bottom_border">
-					<h3 class="title1">Current inflation rate: <span class = "inflation percent"></span></h3>
-					<div class="bold">
-							 To keep up with the current inflation rate, your pay next year would need to 
-					</div>
-					<div class=" block col-sm-6 col-xs-6 ">
-						<p class=" value_title"> increase to </p>
-						<p>
-							 <span id="inflat_sal" class= "money"></span> per <span class="time">year</span>
-						</p>			
-					</div>
-					<div class=" block col-sm-6 col-xs-6">
-						<p class="value_title">a pay increase of </p>
-						
-						<p><span class="value money" id="inflat_diff" ></span> per <span class="time">year</span></p>
-						</p>			
-					</div>	
-					
-
-					
-		</div>			
-		<div class="row awediv hide bottom_border">
-				<h3 class="title2">Average pay growth: <span class = "awe percent"></span> </h3>
-				
-				
-				
-				<div class="bold">
-					Alternatively, if your pay increased in line with the current average pay growth it would 
-				</div>
-					<div class=" block col-sm-6 col-xs-6">
-						<p class="value_title2 ">increase to </p>
-						<p>
-							<span id="awe_salary"></span></span> per <span class="time">year</span>
-						</p>					
-					</div>	
-					<div class=" block col-sm-6 col-xs-6">
-						<p class="value_title2 "> a pay increase of</p>
-
-						<div class= "value">
-							<p><span class="value money" id="awe_diff" ></span> per <span class="time">year</span></p>
-						</div>					
-					</div>	
-					
-		</div>	
-		<div class="row">
-			<p class="options_own italic hide"><input type="checkbox" name="own_pay" value="yes" > Tick to enter your actual pay change next year </p>
-		</div>
-		<div class="row ownpay hide bottom_border">
-			<h3 class="title3">Your pay <span class="inc_dec">increase</span>: <span id="perc_pay_inc"></span></h3>
-			
-			<div class="col-md-6 col-sm-12 col-xs-12 block">	
-				
-				<div class="value_title3 ">Next year I will earn</div>
-				<div class="form">
-						<div class="input-group sal2">
-							<div class="input-group-addon">£</div>
-							<input class="form-control inc"  id="future_salary"  placeholder="">
-						</div>
-						<select class="form-control" id="salary_type2">
-							<option value="week" >per week</option>
-							<option value="month" selected>per month</option>
-							<option value="year">per year</option>
-						</select>			
-				</div>
-			</div> 
-				<div class="col-md-6 col-sm-12 col-xs-12 block">		
-						<div class="value_title3 ">Or, my salary will <span class="inc_dec">increase</span> by </div>
-
-						<div class="spacing">
-							<div class="input-group sal3">
-								<input class="form-control inc"  id="percentage_inc"  placeholder="">
-								<div class="input-group-addon">%</div>
+			<div class="row">
+				<p class="options_average italic hide"><input type="checkbox" name="average_pay"  value="yes" > Tick to use average pay growth </p>
+			</div>
+			<div class= "row diff hide">			
+					<div class="grey text-center">
+						<p class="medium"><text>Your earnings are worth </text><span id="future_diff" class="diff_bold value odometer">0</span><span id="future_diff_L_M"></span><text> per </text><span class="time">year</span> </p>
+					</div>		
+					<div class="footer row">
+							<div id="share">
+								<p class="social_div"></p>
 							</div>
-							<p id="submit_future_sal" class="ONS_btn" onClick="futureCalc()"> Apply </p>
-						</div>
-				</div>
-				
-			
-		</div>
-		<div class="row">
-			<p class="options_average italic hide"><input type="checkbox" name="average_pay"  value="yes" > Tick to use average pay growth </p>
-		</div>
-		<div class= "row diff hide">			
-				<div class="grey text-center">
-					<p class="medium"><text>Your earnings are worth </text><span id="future_diff" class="diff_bold value odometer">0</span><span id="future_diff_L_M"></span><text> per </text><span class="time">year</span> </p>
-				</div>		
-				<div class="footer row">
-						<div id="share">
-							<p class="social_div"></p>
-						</div>
-				</div>		
-		</div>
-		<div class= "row diff approxs hide">
-<!--
-				<div class="row">
-					This can buy you approximately..	
-				</div>
-				<div class="col-sm-3 col-xs-6">
-					<div class="thumbnail">
-					  <img src= "img/milk.jpg">
-					  <div class="caption">
-						<h3>4pt milk</h3>
-						<p class="cost" id="milk_mult">x 0</p>
-					  </div>
+					</div>	
+			</div>
+			<div class= "row diff approxs hide">
+	<!--
+					<div class="row">
+						This can buy you approximately..	
 					</div>
-				</div>
-				<div class="col-sm-3 col-xs-6">
-					<div class="thumbnail">
-					  <img src= "img/cinema.png">
-					  <div class="caption">
-						<h3>cinema ticket</h3>
-					  <p class="cost" id="cinema_mult">x 0</p>
-					  </div>
+					<div class="col-sm-3 col-xs-6">
+						<div class="thumbnail">
+						  <img src= "img/milk.jpg">
+						  <div class="caption">
+							<h3>4pt milk</h3>
+							<p class="cost" id="milk_mult">x 0</p>
+						  </div>
+						</div>
 					</div>
-				</div>
+					<div class="col-sm-3 col-xs-6">
+						<div class="thumbnail">
+						  <img src= "img/cinema.png">
+						  <div class="caption">
+							<h3>cinema ticket</h3>
+						  <p class="cost" id="cinema_mult">x 0</p>
+						  </div>
+						</div>
+					</div>
+					<div class="col-sm-3 col-xs-6">
+						<div class="thumbnail">
+						  <img src= "img/shop.jpg">
+						  <div class="caption">
+							<h3>weekly shop</h3>
+							<p class="cost" id="shop_mult">x 0</p>
+						  </div>
+						  
+						</div>
+				  </div>
 				<div class="col-sm-3 col-xs-6">
 					<div class="thumbnail">
-					  <img src= "img/shop.jpg">
+					  <img src= "img/flight.jpg">
 					  <div class="caption">
-						<h3>weekly shop</h3>
-						<p class="cost" id="shop_mult">x 0</p>
+						<h3>long haul flight</h3>
+						<p class="cost" id="flight_mult">x 0</p>
 					  </div>
 					  
 					</div>
-			  </div>
-			<div class="col-sm-3 col-xs-6">
-				<div class="thumbnail">
-				  <img src= "img/flight.jpg">
-				  <div class="caption">
-					<h3>long haul flight</h3>
-					<p class="cost" id="flight_mult">x 0</p>
-				  </div>
-				  
 				</div>
-			</div>
--->
+	-->
 
-		</div>	
-		<div class= "row">				
-			<p class = "update_info hide">Based on <span id="cpih_date"></span> <a target="_blank" href="https://www.ons.gov.uk/economy/inflationandpriceindices/timeseries/l55o/mm23/">CPIH</a> figures released on <span id="cpih_last_updated"></span> and <span id="awe_date"></span>  <a target="_blank" href="https://www.ons.gov.uk/employmentandlabourmarket/peopleinwork/earningsandworkinghours/timeseries/kac3/lms"> growth in earnings</a> figures released on <span id="awe_last_updated"></span>.</p>
+			</div>	
+			<div class= "row">				
+				<p class = "update_info hide">Based on <span id="cpih_date"></span> <a target="_blank" href="https://www.ons.gov.uk/economy/inflationandpriceindices/timeseries/l55o/mm23/">CPIH</a> figures released on <span id="cpih_last_updated"></span> and <span id="awe_date"></span>  <a target="_blank" href="https://www.ons.gov.uk/employmentandlabourmarket/peopleinwork/earningsandworkinghours/timeseries/kac3/lms"> growth in earnings</a> figures released on <span id="awe_last_updated"></span>.</p>
+			</div>
+		
 		</div>
-		
-		
 	</div>    
     
    
@@ -1038,7 +1079,10 @@
 
 	
 		//check to see if the web browser can handle 'inline svg'
-			if (Modernizr)	{
+			if (Modernizr.inlinesvg==true)	{
+				
+				$("#wrapper").fadeIn(1000);
+				
 				// open and load configuration file. 					
 				d3.json("config.json", function(error, json){	
 					// store csv data from config file as as global dvc.config variable ...	
@@ -1049,6 +1093,9 @@
 					console.log("2")
 				})
 			} else {
+				
+				$("#ieMsg").fadeIn(1000);
+
 				//use pym to create iframe containing fallback image (which is set as default)
 				pymChild = new pym.Child();
 				if (pymChild) { pymChild.sendHeight(); }
