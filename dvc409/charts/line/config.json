@@ -48,7 +48,7 @@
             "annotateLineX1_Y1_X2_Y2":[ [["Oct-97",100],["Oct-97",75]], [["Jan-03",100],["Jan-03",75]], [["Nov-08",100],["Nov-08",75]] ],
 
             
-            "xAxisTextFormat_sm_md_lg" : ["%y", "%Y", "%Y"], 
+            "xAxisTextFormat_sm_md_lg" : ["%b %y", "%b %y", "%b %Y"], 
                 
             "x_num_ticks_sm_md_lg" : [5,5,10],    
             "y_num_ticks_sm_md_lg" : [7,8,8],

@@ -82,7 +82,7 @@
 		            //specify date format for x axis depending on #graphic width
 		            if (parseInt(graphic.style("width")) <= threshold_sm) {
 		                var fmt = d3.time.format(dvc.optional.xAxisTextFormat_sm_md_lg[0]);
-		                return '\u2019' + fmt(d);
+		                return  fmt(d);
 		            } else if (parseInt(graphic.style("width")) <= threshold_md){
 		                var fmt = d3.time.format(dvc.optional.xAxisTextFormat_sm_md_lg[1]);
 		                return  fmt(d);
@@ -97,7 +97,7 @@
 		    
 	        //specify number of ticks on x axis and whether 1st and last data point labels are included
 	        if(parseInt(graphic.style("width"))<threshold_sm){		
-	            xAxis.tickValues(x.ticks(dvc.optional.x_num_ticks_sm_md_lg[0]).concat( x.domain() ));
+	            xAxis.tickValues(x.ticks(dvc.optional.x_num_ticks_sm_md_lg[0])/*.concat( x.domain() )*/);
 	        } else if (parseInt(graphic.style("width")) <= threshold_md){
 				xAxis.tickValues(x.ticks(dvc.optional.x_num_ticks_sm_md_lg[1])/*.concat( x.domain() )*/);
 			} else {
@@ -340,15 +340,15 @@
 					
 						dvc.essential.annotationBullet.forEach(function(d,i) {
 						
-							d3.select("#keypoints").append("svg")
-								.attr("width","20px")
-								.attr("height","20px")
-								.attr("class","circles")
-								.append("circle")
-								.attr("class", "annocirc" + (i))
-								.attr("r", "2")
-								.attr('cy',"12px")
-								.attr("cx", "10px");
+							// d3.select("#keypoints").append("svg")
+							// 	.attr("width","20px")
+							// 	.attr("height","20px")
+							// 	.attr("class","circles")
+							// 	.append("circle")
+							// 	.attr("class", "annocirc" + (i))
+							// 	.attr("r", "2")
+							// 	.attr('cy',"12px")
+							// 	.attr("cx", "10px");
 							
 							d3.select("#keypoints").append("p").text(dvc.essential.annotationBullet[i]);
 						
