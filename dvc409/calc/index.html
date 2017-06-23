@@ -622,7 +622,7 @@
     <script src="https://cdn.ons.gov.uk/vendor/d3/4.2.7/d3.js" type="text/javascript"></script>
     <script src="lib/modernizr.svg.min.js" type="text/javascript"></script>
     <script src="https://cdn.ons.gov.uk/vendor/pym/0.4.2/pym.js" type="text/javascript"></script>
-	<script src="lib/bootstrap.min.js" type="text/javascript"></script>
+<!--	<script src="lib/bootstrap.min.js" type="text/javascript"></script>-->
 	<script src="lib/odometer.min.js" type="text/javascript"></script>
    
 	<script>
@@ -687,8 +687,7 @@
 		)
 		
 		$('#current_salary').keydown(function(event){
-					 console.log(event.which)
-			
+					
 					  if(event.which == 13 ){
 						  event.preventDefault();
 						  document.getElementById('submit_current_sal').click();
@@ -731,9 +730,8 @@
 		}
 		
 		function switchSalary() {
-			console.log("switchSalary")
+			
 			changed_DD = "#"+this.getAttribute("id")
-			console.log(this.getAttribute("id"))
 			salary_type = $(changed_DD).val()
 			
 			$("#salary_type1").val(salary_type);
@@ -761,7 +759,6 @@
 				var patt = /^[0-9]{1,}/;
 		 
 				if( patt.test(salary_check) == true ){
-					console.log("inflationCalc")
 					d3.select(".sal1").classed("has-error", false);
 					d3.select(".first").classed("hide", true);
 					d3.select(".inflation_div").classed("hide", false);
@@ -798,13 +795,12 @@
 		}
 		
 		function percentageChange(){
-			console.log("percentageChange")
 			var salary_check3 = $("#percentage_inc").val();
 
 			var patt = /^[0-9]{1,}/;
 
 			if( patt.test(salary_check3) == true ){				
-		//	console.log($("#future_salary").val());
+		
 				d3.select(".sal3").classed("has-error", false);
 				} else {
 					d3.select(".sal3").classed("has-error", true);
@@ -829,7 +825,6 @@
 		}
 		function futureSalaryChange(){
 		
-			console.log("futureSalaryChange")
 			var salary_check2 = $("#future_salary").val();
 
 			var patt = /^[0-9]{1,}/;
@@ -843,7 +838,6 @@
 				future_salary = $("#future_salary").val().replace(/,/g, '')	;
 				curr_salary = $("#current_salary").val().replace(/,/g, '')	;
 				diff = future_salary-curr_salary
-		//	console.log(future_salary, curr_salary, diff)
 				percent_diff = diff/curr_salary*100
 				
 				if(percent_diff<0){
@@ -863,8 +857,6 @@
 		
 		function diffCalcs(){
 				
-			
-					console.log("diffCalcs")
 					if(future_sal_type == "awe"){
 						future_salary = (1+(curr_awe/100))*curr_salary
 						d3.select("#awe_salary").text(numberfmt((1+(curr_awe/100))*curr_salary))	
@@ -901,9 +893,6 @@
 						}
 					}
 
-
-
-			//		console.log(new_diff_purchasing+"  "+d3.select(".diff").attr("class").substr(d3.select(".diff").attr("class").length - 4) )
 					d3.select("#future_diff").text(0);
 					d3.select("#future_diff").text(numberfmt(new_diff_purchasing));		
 				
@@ -1055,7 +1044,7 @@
 				
 				formatTime = d3.timeFormat("%B %Y");
 				parseTime = d3.timeParse("%Y %b");
-				console.log()
+                
 				d3.select("#cpih_date").text(formatTime(parseTime(inflation.description.date)))
 				
 					//load AWE data from API
@@ -1071,7 +1060,7 @@
 						
 						formatTime = d3.timeFormat("%B %Y");
 						parseTime = d3.timeParse("%Y %b");
-						console.log()
+						
 						d3.select("#awe_date").text(formatTime(parseTime(AWE.description.date)))
 						
 						
@@ -1094,10 +1083,9 @@
 				d3.json("config.json", function(error, json){	
 					// store csv data from config file as as global dvc.config variable ...	
 					config = json;
-					console.log("1")
 					//use pym to create iframed chart dependent on specified variables
 					pymChild = new pym.Child({ renderCallback: loadData});	
-					console.log("2")
+					
 				})
 			} else {
 				
