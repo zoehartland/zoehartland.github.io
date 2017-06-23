@@ -556,7 +556,7 @@
 			</div>
 			<div class= "row diff hide">			
 					<div class="grey text-center">
-						<p class="medium"><text>Your earnings are worth </text><br><span id="future_diff" class="diff_bold value odometer">0</span><br><span id="future_diff_L_M"></span><text> per </text><span class="time">year</span> </p>
+						<p class="medium"><text>Your earnings are worth </text><br><span id="pound" class="diff_bold value"></span><span id="future_diff" class="diff_bold value">0</span><br><span id="future_diff_L_M"></span><text> per </text><span class="time">year</span> </p>
 					</div>		
 					<div class="footer row">
 							<div id="share">
@@ -638,7 +638,15 @@
 		var future_sal_type = "awe"
 		var less_more = "";
 		var inc_dec = "";
-		
+		var iOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+        
+        if(iOS == false){ 
+            d3.select("#future_diff").classed("odometer", true)
+        } else {
+            d3.select("#pound").text("£")
+        
+        }
+        
 		//d3.select("#current_salary").on("change", inflationCalc).on("keyup", inflationCalc);
 		d3.select("#future_salary").on("change", futureSalaryChange).on("keyup", futureSalaryChange);
 		d3.select("#percentage_inc").on("change", percentageChange).on("keyup", percentageChange);
