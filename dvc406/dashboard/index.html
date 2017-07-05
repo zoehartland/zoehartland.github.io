@@ -1035,13 +1035,11 @@ margin-top: 5px;
 						j++;	
 					
 					if(j<dvc.config.length){ 
-						setTimeout(function(d){ loadData(); },100)
-					}
+						loadData();  
 				});//end json load
 					
 			}//end loadData()
 			if (pymChild) {
-				alert("SDfSDF");
 				pymChild.sendHeight();
 			}
 	} //end of createStructure()
