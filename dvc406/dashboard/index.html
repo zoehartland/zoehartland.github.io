@@ -1039,7 +1039,9 @@ margin-top: 5px;
 			}//end loadData()
 			if (pymChild) {
 				
-				pymChild.sendHeight();
+				setTimeout(function(){  
+					pymChild.sendHeight();
+				}, 3000)
 			}
 	} //end of createStructure()
 		
