@@ -930,10 +930,6 @@ margin-top: 5px;
 			parseStartTime = d3.timeParse("%Y, %m, %d");
 			
 			loadData();
-
-			
-	} //end of createStructure()
-		
 		
 	function loadData(){
 				
@@ -1027,7 +1023,7 @@ margin-top: 5px;
 							getDimensions();
 							
 							if(dvc.config[j].graphic == "line"){
-									setTimeout(function(d){ drawLineChart();},250)
+									drawLineChart();
 							} else if (dvc.config[j].graphic == "bigNo"){
 									drawBigNo();
 							} else if (dvc.config[j].graphic == "vbar"){
@@ -1048,6 +1044,10 @@ margin-top: 5px;
 				});//end json load
 					
 			}//end loadData()
+			
+	} //end of createStructure()
+		
+
 			
 		
 	function getDimensions(){
@@ -1515,7 +1515,6 @@ margin-top: 5px;
 //				alert("SDfd")
 //				pymChild.sendHeight();
 //			}
-
 	} //end drawLineChart()
 	
 //	function drawBigNo(){ 
