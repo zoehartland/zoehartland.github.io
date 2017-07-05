@@ -931,7 +931,11 @@ margin-top: 5px;
 			
 			loadData();
 
-			function loadData(){
+			
+	} //end of createStructure()
+		
+		
+	function loadData(){
 				
 				//console.log(dvc.ons_urls[j])
 				if(dvc.ons_urls[j]=="none"){
@@ -1033,15 +1037,16 @@ margin-top: 5px;
 						j++;	
 					
 					if(j<dvc.config.length){ loadData(); }
-					
+					else {
+						if (pymChild) {
+								pymChild.sendHeight();
+						}
+					}
 
 				});//end json load
-				
+					
 			}//end loadData()
-			if (pymChild) {
-					pymChild.sendHeight();
-			}
-	} //end of createStructure()
+			
 		
 	function getDimensions(){
 		 margin = {top:+dvc.config[j].margin_t, right:+dvc.config[j].margin_r, bottom:+dvc.config[j].margin_b, left: +dvc.config[j].margin_l}; 
