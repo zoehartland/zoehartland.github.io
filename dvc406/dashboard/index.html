@@ -1031,17 +1031,15 @@ margin-top: 5px;
 							}
 							
 						j++;	
-					if(j<dvc.config.length){ loadData(); }
+					
+					setTimeout(function(){ if(j<dvc.config.length){ loadData(); }}, 3000);
 					
 
 				});//end json load
 				
 			}//end loadData()
 			if (pymChild) {
-				
-				setTimeout(function(){  
 					pymChild.sendHeight();
-				}, 3000)
 			}
 	} //end of createStructure()
 		
