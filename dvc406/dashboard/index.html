@@ -954,7 +954,7 @@ margin-top: 5px;
 				//console.log(chartData)
 							if(dvc.ons_urls[j]=="none"){
 								startDate = parseStartTime(dvc.config[j].data_start);
-								console.log(chartData[dvc.period[j]]);
+								
 								chartData[dvc.period[j]].catLabels.forEach(function(d,i) {
 												
 									if(dvc.period[j]=="days"){
@@ -1038,7 +1038,7 @@ margin-top: 5px;
 							
 						j++;	
 					
-					if(j<dvc.config.length){ loadData(); }
+					if(j<dvc.config.length){setTimeout(function(d){ loadData(); },3050) }
 					else {
 						if (pymChild) {
 							pymChild.sendHeight();
