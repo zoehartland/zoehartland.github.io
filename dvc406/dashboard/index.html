@@ -1027,7 +1027,7 @@ margin-top: 5px;
 							getDimensions();
 							
 							if(dvc.config[j].graphic == "line"){
-									drawLineChart();
+									setTimeout(function(d){ drawLineChart();},250)
 							} else if (dvc.config[j].graphic == "bigNo"){
 									drawBigNo();
 							} else if (dvc.config[j].graphic == "vbar"){
@@ -1038,7 +1038,7 @@ margin-top: 5px;
 							
 						j++;	
 					
-					if(j<dvc.config.length){setTimeout(function(d){ loadData(); },250) }
+					if(j<dvc.config.length){ loadData();  }
 					else {
 						if (pymChild) {
 							pymChild.sendHeight();
