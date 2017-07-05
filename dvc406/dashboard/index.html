@@ -933,22 +933,22 @@ margin-top: 5px;
 		
 	function loadData(){
 				
-				//console.log(dvc.ons_urls[j])
-				if(dvc.ons_urls[j]=="none"){
+//				//console.log(dvc.ons_urls[j])
+//				if(dvc.ons_urls[j]=="none"){
 					filepth = 'data/' + dvc.measures[j].toLowerCase()+".json";
-				} else if(dvc.ons_urls[j]=="bigNo"){
-					filepth = 'data/' + dvc.measures[j].toLowerCase()+".json";
-				} else if(dvc.ons_urls[j]=="hbar"||dvc.ons_urls[j]=="vbar"){
-					filepth = 'data/' + dvc.measures[j].toLowerCase()+".json";
-				}  else {
-					filepth = dvc.ons_urls[j];
-				}
+//				} else if(dvc.ons_urls[j]=="bigNo"){
+//					filepth = 'data/' + dvc.measures[j].toLowerCase()+".json";
+//				} else if(dvc.ons_urls[j]=="hbar"||dvc.ons_urls[j]=="vbar"){
+//					filepth = 'data/' + dvc.measures[j].toLowerCase()+".json";
+//				}  else {
+//					filepth = dvc.ons_urls[j];
+//				}
 				
 				d3.json(filepth, function(json)	{
 							chartData=json;
 				//console.log(filepth)
 				//console.log(chartData)
-							if(dvc.ons_urls[j]=="none"){
+//							if(dvc.ons_urls[j]=="none"){
 								startDate = parseStartTime(dvc.config[j].data_start);
 								
 								chartData[dvc.period[j]].catLabels.forEach(function(d,i) {
@@ -977,65 +977,66 @@ margin-top: 5px;
 //									console.log(chartData[dvc.period[j]].dataValues);
 									
 								})
-							 } else if (dvc.ons_urls[j]=="bigNo"){
-								 
-							 } else if (dvc.ons_urls[j]=="hbar"||dvc.ons_urls[j]=="vbar"){
-								 
-							 } else {	
+//							 } else if (dvc.ons_urls[j]=="bigNo"){
+//								 
+//							 } else if (dvc.ons_urls[j]=="hbar"||dvc.ons_urls[j]=="vbar"){
+//								 
+//							 } else {	
+//								
+//								startDate = parseStartTime(dvc.config[j].data_start);
+//								
+//								chartData[dvc.period[j]].catLabels =[];
+//								chartData[dvc.period[j]].dataValues =[];
+//								
+//								 
+//								chartData[dvc.period[j]].forEach( function(d,i){
+//									
+//										if(dvc.period[j]=="days"){
+//											parseTime = d3.timeParse("%d-%b-%Y")
+//										} else if (dvc.period[j]=="months"){
+//											parseTime = d3.timeParse("%Y %b")
+//										} else if (dvc.period[j]=="years") {
+//											parseTime = d3.timeParse("%Y")
+//										} else if (dvc.period[j] == "quarters"){
+//											parseTime = d3.timeParse("%Y %b")
+//											d.date = d.date.replace("Q1", "JAN")
+//											d.date = d.date.replace("Q2", "APR")
+//											d.date = d.date.replace("Q3", "JUL")
+//											d.date = d.date.replace("Q4", "OCT")
+//										}
+//										
+//										d.date = parseTime(d.date); 
+//																			
+//										
+//										if(d.date>= startDate) {
+//											chartData[dvc.period[j]].catLabels.push(d.date) 
+//											chartData[dvc.period[j]].dataValues.push(+d.value)								
+//										}
+//									//console.log(chartData)
+//										 
+//								})	
+//								
 								
-								startDate = parseStartTime(dvc.config[j].data_start);
-								
-								chartData[dvc.period[j]].catLabels =[];
-								chartData[dvc.period[j]].dataValues =[];
-								
-								 
-								chartData[dvc.period[j]].forEach( function(d,i){
-									
-										if(dvc.period[j]=="days"){
-											parseTime = d3.timeParse("%d-%b-%Y")
-										} else if (dvc.period[j]=="months"){
-											parseTime = d3.timeParse("%Y %b")
-										} else if (dvc.period[j]=="years") {
-											parseTime = d3.timeParse("%Y")
-										} else if (dvc.period[j] == "quarters"){
-											parseTime = d3.timeParse("%Y %b")
-											d.date = d.date.replace("Q1", "JAN")
-											d.date = d.date.replace("Q2", "APR")
-											d.date = d.date.replace("Q3", "JUL")
-											d.date = d.date.replace("Q4", "OCT")
-										}
-										
-										d.date = parseTime(d.date); 
-																			
-										
-										if(d.date>= startDate) {
-											chartData[dvc.period[j]].catLabels.push(d.date) 
-											chartData[dvc.period[j]].dataValues.push(+d.value)								
-										}
-									//console.log(chartData)
-										 
-								})	
-								
-								
-							}
+							//}
 								
 							
 							getDimensions();
 							
-							if(dvc.config[j].graphic == "line"){
+//							if(dvc.config[j].graphic == "line"){
 									drawLineChart();
-							} else if (dvc.config[j].graphic == "bigNo"){
-									drawBigNo();
-							} else if (dvc.config[j].graphic == "vbar"){
-									drawVerticalBarChart();
-							} else if (dvc.config[j].graphic == "hbar"){
-									drawHorizontalBarChart();
-							}
+//							} else if (dvc.config[j].graphic == "bigNo"){
+//									drawBigNo();
+//							} else if (dvc.config[j].graphic == "vbar"){
+//									drawVerticalBarChart();
+//							} else if (dvc.config[j].graphic == "hbar"){
+//									drawHorizontalBarChart();
+//							}
 							
 						j++;	
 					
-					if(j<dvc.config.length){ loadData();  }
-					else {
+					if(j<dvc.config.length){ 
+						loadData();  
+					} else {
 						if (pymChild) {
 							pymChild.sendHeight();
 						}
@@ -1053,9 +1054,6 @@ margin-top: 5px;
 	function getDimensions(){
 		 margin = {top:+dvc.config[j].margin_t, right:+dvc.config[j].margin_r, bottom:+dvc.config[j].margin_b, left: +dvc.config[j].margin_l}; 
 		 chart_width = parseInt(d3.select('.graphic').style("width")) - margin.left - margin.right;
-		
-		
-		
 		
 //		if(chart_width>200){
 //			 aspectRatio = [5,4];
