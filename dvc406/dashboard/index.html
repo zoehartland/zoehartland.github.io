@@ -1033,10 +1033,14 @@ margin-top: 5px;
 						j++;	
 					if(j<dvc.config.length){ loadData(); }
 					
-					
+
 				});//end json load
 				
 			}//end loadData()
+						if (pymChild) {
+				alert("SDfd")
+				pymChild.sendHeight();
+			}
 	} //end of createStructure()
 		
 	function getDimensions(){
