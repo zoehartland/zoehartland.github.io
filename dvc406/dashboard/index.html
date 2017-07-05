@@ -1032,7 +1032,7 @@ margin-top: 5px;
 							
 						j++;	
 					
-					setTimeout(function(){ if(j<dvc.config.length){ loadData(); }}, 3000);
+					if(j<dvc.config.length){ loadData(); }
 					
 
 				});//end json load
@@ -1766,11 +1766,14 @@ margin-top: 5px;
 //				
 //			})
 //	
-//	$(window).resize(function(){
-//			if($(window).width() != window_width){
-//				location.reload();			
-//			}
-//	})
+	$(window).resize(function(){
+			if($(window).width() != window_width){
+				if (pymChild) {
+					pymChild.sendHeight();
+				}
+				//location.reload();			
+			}
+	})
 	
 		
 		
