@@ -434,10 +434,7 @@
 				
 				d3.selectAll("text").attr("font-family","'Open Sans', sans-serif");
 						
-			//use pym to calculate chart dimensions	
-		    if (pymChild) {
-		        pymChild.sendHeight();
-		    }
+			
 		}
 
 
@@ -680,7 +677,11 @@
 //		d3.select("#horiz").selectAll("text").attr("transform",function(d,i){if(i % 2){return "translate(0,10)"}});			
 //		
 //		g2.append("text").attr("id","keyunit").text(dvc.unittext).attr("transform","translate(0,-10)");
-
+				
+			//use pym to calculate chart dimensions	
+		    if (pymChild) {
+		        pymChild.sendHeight();
+		    }
 			
 		}
 		
