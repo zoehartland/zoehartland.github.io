@@ -535,6 +535,7 @@
 			//	.call(zoom.event);
 
 			if (pymChild) {
+				console.log("pym 1")
 				pymChild.sendHeight();
 			}
 
@@ -680,6 +681,7 @@
 				
 			//use pym to calculate chart dimensions	
 		    if (pymChild) {
+				console.log("pym 2")
 		        pymChild.sendHeight();
 		    }
 			
@@ -705,7 +707,7 @@
 //				if (IE != 9) {
 //					zoomcontrols();
 //				}
-				drawGraphic()
+				pymChild = new pym.Child({ renderCallback:drawGraphic});
 				pymChild = new pym.Child({ renderCallback: makeMap(geog2,data2,config2)});
 
 
