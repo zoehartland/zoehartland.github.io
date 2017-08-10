@@ -82,9 +82,9 @@
 					chart_width = parseInt(graphic.style("width")) - margin.left - margin.right;
 					map_width = chart_width + margin.left + margin.right
 		            height = config2.essential.barHeight_sm_md_lg[0] * data2.length - margin.top - margin.bottom;
-		    } else if (parseInt(graphic.style("width")) < 768){
+		    } else if (parseInt(graphic.style("width")) < 650){
 		        	var margin = {top: config2.optional.margin_md[0], right: config2.optional.margin_md[1], bottom: config2.optional.margin_md[2], left: config2.optional.margin_md[3]}; 
-					chart_width = parseInt(graphic.style("width"))*0.55 - margin.left - margin.right;
+					chart_width = parseInt(graphic.style("width"))*0.5 - margin.left - margin.right;
 					map_width = parseInt(graphic.style("width"))- chart_width - margin.left - margin.right;   
 					height = config2.essential.barHeight_sm_md_lg[1] * data2.length - margin.top - margin.bottom;
 		  	} else {
@@ -193,7 +193,7 @@
 				        .attr("width", map_width /*+ margin.left + margin.right*/)
 				        .attr("height", height + margin.top + margin.bottom)
 				        .append("g")
-				        .attr("transform", "translate(50, 0)");
+				        .attr("transform", "translate(40, 0)");
 				
 					map.append("rect")
 						.attr("class","svgRect")
@@ -243,7 +243,24 @@
 							})
 				        .call(yAxis);
 			
-			
+			if(config2.optional.display_average == "yes"){
+						svg.append("line")
+							.attr('y1',-10)
+							.attr('y2',height)
+							.attr('x1',x(config2.optional.average))
+							.attr('x2',x(config2.optional.average))
+							.attr("stroke","grey")
+							.attr("stoke-width",1);	
+
+						svg.append("text")
+							.style("font-size", "11px")
+							.style("text-anchor", "end")
+							.style("fill", "#666")
+							.attr("y",-5)
+							.attr("x",function(d,i){return x(config2.optional.average)-5})
+							.attr("class","average")
+							.text("UK average: "+config2.optional.average);
+					}
 			
 
 			svg.append('g').attr("class","bars").selectAll('rect')
@@ -275,7 +292,7 @@
 					}  	
 			
 			
-			
+					
 			
 			writeAnnotation();
 							
@@ -339,7 +356,7 @@
 								for (var j = 0; j < words.length; j++) {
 									var tspan = d3.select(this).append('tspan').text(words[j]);
 									if (j > 0)
-										tspan.attr('x', x(config2.essential.annotationXY[i][0])).attr('dy', '22');													
+										tspan.attr('x', x(config2.essential.annotationXY[i][0])).attr('dy', '18');													
 								}
 							};					
 													
@@ -400,11 +417,15 @@
 							
 								for (var j = 0; j < words.length; j++) {
 									var tspan = d3.select(this).append('tspan').text(words[j]);
-									if (j > 0)
+									
+									if (j > 0){
+										d3.select(this).attr("y", "-6")
+										
 										tspan
 										.attr('x', -10)			
-										.attr('dy', '1em');													
-										}
+										.attr('dy', '1em');	
+									}												
+								}
 				};	
 				
 				d3.selectAll(".y text").each(insertLinebreaksLabels)
@@ -433,7 +454,8 @@
 	
 				
 				d3.selectAll("text").attr("font-family","'Open Sans', sans-serif");
-						
+				
+			makeMap(geog2,data2,config2);
 			
 		}
 
@@ -535,7 +557,6 @@
 			//	.call(zoom.event);
 
 			if (pymChild) {
-				console.log("pym 1")
 				pymChild.sendHeight();
 			}
 
@@ -568,7 +589,7 @@
 		var xAxis = d3.svg.axis()
 		    .scale(x)
 		    .orient("bottom")
-    		.tickSize(15)
+    		.tickSize(5)
 		    .tickValues(color.domain())
 			.tickFormat(d3.format(".2s"));
 
@@ -576,12 +597,12 @@
 		var yAxis = d3.svg.axis()
 		    .scale(y)
 		    .orient("left")
-    		.tickSize(15)
+    		.tickSize(5)
 		    .tickValues(color.domain())
 			.tickFormat(d3.format(".2s"));
 
 		var g = svgkey.append("g").attr("id","vert")
-			.attr("transform", "translate(60,80)");
+			.attr("transform", "translate(35,80)");
 		
 		
 		g.selectAll("rect")
@@ -600,25 +621,28 @@
 		
 		g.call(yAxis).append("text");
 
-		g.append("line")
-			.attr("x1","8")
-			.attr("x2","65")
-			.attr("y1",function(d,i){return y(config2.optional.average)})
-			.attr("y2",function(d,i){return y(config2.optional.average)})
-			.attr("stroke","blue")
-			.attr("stoke-width",1);	
+		if(config2.optional.display_average == "yes"){
+			g.append("line")
+				.attr("x1","8")
+				.attr("x2","65")
+				.attr("y1",function(d,i){return y(config2.optional.average)})
+				.attr("y2",function(d,i){return y(config2.optional.average)})
+				.attr("stroke","blue")
+				.attr("stoke-width",1);	
+
+			g.append("text")
+				.attr("x","10")
+				.attr("y",function(d,i){return y(config2.optional.average) - 4})
+				.attr("class","average")
+				.text("UK average");
+
+			g.append("text")
+				.attr("x","10")
+				.attr("y",function(d,i){return y(config2.optional.average) + 11})
+				.attr("class","average")
+				.text(config2.optional.average);
+		}
 		
-		g.append("text")
-			.attr("x","10")
-			.attr("y",function(d,i){return y(config2.optional.average) - 4})
-			.attr("class","average")
-			.text("UK average");
-			
-		g.append("text")
-			.attr("x","10")
-			.attr("y",function(d,i){return y(config2.optional.average) + 11})
-			.attr("class","average")
-			.text(config2.optional.average);
 
 		//add units
 		
@@ -680,10 +704,9 @@
 //		g2.append("text").attr("id","keyunit").text(dvc.unittext).attr("transform","translate(0,-10)");
 				
 			//use pym to calculate chart dimensions	
-		    if (pymChild) {
-				console.log("pym 2")
-		        pymChild.sendHeight();
-		    }
+//		    if (pymChild) {
+//				pymChild.sendHeight();
+//		    }
 			
 		}
 		
@@ -707,8 +730,8 @@
 //				if (IE != 9) {
 //					zoomcontrols();
 //				}
-				pymChild = new pym.Child({ renderCallback:drawGraphic});
-				pymChild = new pym.Child({ renderCallback: makeMap(geog2,data2,config2)});
+			pymChild = new pym.Child({ renderCallback: drawGraphic});
+			
 
 
 //				$(window).resize(function(){
