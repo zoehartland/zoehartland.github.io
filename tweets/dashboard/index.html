@@ -85,8 +85,11 @@
   
 	<script>
 		var pymChild = null;
-		window.onload = function () {pymChild.sendHeight();  }
 		
+		
+		$(document).ready(function(){
+			setTimeout(function(){  pymChild.sendHeight(); }, 1000);
+		});
 		//use pym to create iframe containing fallback image (which is set as default)
 		pymChild = new pym.Child();
 		if (pymChild) { pymChild.sendHeight(); }
