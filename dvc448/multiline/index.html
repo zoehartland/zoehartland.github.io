@@ -259,7 +259,7 @@ input{
 		function drawChoose() {
 			d3.select("#occselect").remove();
 			d3.select("#sel").remove();		
-			alert("drawchoose")
+			
 			if(whichOne == 0){
 				drawGraphic(graphic_data);	
 			} else {
@@ -271,7 +271,7 @@ input{
 			
 
 		function drawGraphic(graphic_data) {
-			alert("drawgraphic")
+			
 		   var threshold_md = 788;
 		   var threshold_sm = dvc.optional.mobileBreakpoint; 
 		  
@@ -536,8 +536,7 @@ input{
 						.attr('x1',0)
 						.attr('x2',chart_width);
 				}  
-            
-        alert("before linegroup")
+ 
             
 				//create lines 		
 			    svg.append('g')
@@ -575,10 +574,13 @@ input{
 						.attr("opacity",0)
 						.style("stroke-width","4px")
 						.attr('id', function(d, i) {
+							if(i==4){alert("id")}
 							return "index"+i;
 			            })
-			            .attr('d', function(d) {
-			                return line(d.value);
+			            .attr('d', function(d,i) {
+			        if(i==4){alert("data")}
+							        
+					return line(d.value);
 			            })
 						.on("mouseout",function(){
                             d3.selectAll('.mouse').remove();
@@ -624,7 +626,7 @@ input{
 							if(listnames.indexOf(currclass) == -1 && listnames.length <= 5) {	
 								listnames.push(currclass);
 							}
-							 alert("after linegroup")
+							
 							
 							$("#occselect").val(listnames);
 				            $("#occselect").trigger("chosen:updated");
@@ -640,7 +642,7 @@ input{
 							});
 						});	
             
-			
+			 alert("after linegroup")
             
  //       j=0;
 //		for (var column in graphic_data[0]) {
