@@ -1132,13 +1132,13 @@ input{
 		urlParent = document.referrer;
 		
 		var listnamesLocal = urlLocal.split("#")[1];
-		var listnamesParent = urlParent.split("?")[1];
+	//	var listnamesParent = urlParent.split("?")[1];
 		
 		if(listnamesLocal != undefined) {
 			listnamesAll = 	listnamesLocal;
-		} else if(listnamesParent != undefined) {
+		/*} else if(listnamesParent != undefined) {
 			listnamesAll = 	listnamesParent;
-		} else {var listnamesAll}
+		*/} else {var listnamesAll}
 		
 		if(listnamesAll != undefined) {
 			whichOne = listnamesAll.split(',')[0];
