@@ -639,8 +639,7 @@ input{
 							});
 						});	
             
-			 alert("after linegroup")
-            
+		   
  //       j=0;
 //		for (var column in graphic_data[0]) {
 //			if (column == 'date') continue;
@@ -698,11 +697,10 @@ input{
 				.html(dvc.essential.sourceText[3]);
 				
 				
-			 alert("before check url")
+			
 			//Check if there are any preselects
-			checkUrl();
-			 alert("after check url")
-		
+			//checkUrl();
+			
 			//use pym to calculate chart dimensions	
 		    if (pymChild) {
 		        pymChild.sendHeight();
@@ -1160,7 +1158,7 @@ input{
 				drawChoose();
 				
 		});
-			 alert(whichOne)
+			
 		d3.select("#cat" + whichOne).attr("class","tab-current");
 		
 		
@@ -1168,11 +1166,8 @@ input{
 	
 	
 	function checkUrl() {
-		 alert("check url1")
 		urlLocal = window.location.href;
-		 alert("check url2")
 		urlParent = document.referrer;
- alert("check url3")
 		var listnamesLocal = urlLocal.split("#")[1];
 		var listnamesParent = urlParent.split("?")[1];
 		
