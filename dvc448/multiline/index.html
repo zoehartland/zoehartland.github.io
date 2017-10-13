@@ -1160,8 +1160,8 @@ input{
 				drawChoose();
 				
 		});
-			
-		//d3.select("#cat" + whichOne).attr("class","tab-current");
+			 alert(whichOne)
+		d3.select("#cat" + whichOne).attr("class","tab-current");
 		
 		
 	}
@@ -1171,7 +1171,7 @@ input{
 		
 		urlLocal = window.location.href;
 		urlParent = document.referrer;
-
+ alert("check url")
 		var listnamesLocal = urlLocal.split("#")[1];
 		var listnamesParent = urlParent.split("?")[1];
 		
