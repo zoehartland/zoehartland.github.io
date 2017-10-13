@@ -259,7 +259,7 @@ input{
 		function drawChoose() {
 			d3.select("#occselect").remove();
 			d3.select("#sel").remove();		
-			
+			alert("draw")
 			if(whichOne == 0){
 				drawGraphic(graphic_data);	
 			} else {
@@ -850,7 +850,7 @@ input{
 	}    
         
     function hoverLine(myId,no,method){
-                console.log(myId)
+                
                 var currpath = d3.select("#graphic")
                         .select("#" + myId)
                         .attr("d");
@@ -1218,18 +1218,18 @@ input{
 		   //load config 
 			d3.json("config1.json", function(error, config) {
 			dvc=config
-
+alert("config")
 				//load chart data
 				d3.csv(dvc.essential.graphic_data_url, function(error, data) {
 					graphic_data = data;
-                    			
+                    alert("data1")			
 					graphic_data.forEach(function(d) {
 						d.date = d3.time.format(dvc.essential.dateFormat).parse(d.date); 
 					});
 					
 					d3.csv(dvc.essential.graphic_data_url2, function(error, data2) {
 						graphic_data2 = data2;
-                    			
+                    	  alert("data2")		
 						graphic_data2.forEach(function(d) {
 							d.date = d3.time.format(dvc.essential.dateFormat).parse(d.date); 
 						});
