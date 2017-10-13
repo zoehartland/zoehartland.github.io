@@ -558,8 +558,7 @@ input{
 						.style("pointer-events","none")
 						.on("mouseout",null)
                         .on("mouseover",null);
-						
-				 alert("before select linegroup")		
+							
 						
 				d3.select(".linegroup")
 					//.attr("class", "linegroup")
@@ -574,11 +573,9 @@ input{
 						.attr("opacity",0)
 						.style("stroke-width","4px")
 						.attr('id', function(d, i) {
-							if(i==4){alert("id")}
 							return "index"+i;
 			            })
 			            .attr('d', function(d,i) {
-			        if(i==4){alert("data")}
 							        
 					return line(d.value);
 			            })
@@ -701,10 +698,10 @@ input{
 				.html(dvc.essential.sourceText[3]);
 				
 				
-			
+			 alert("before check url")
 			//Check if there are any preselects
 			checkUrl();
-			
+			 alert("after check url")
 		
 			//use pym to calculate chart dimensions	
 		    if (pymChild) {
