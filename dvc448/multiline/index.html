@@ -259,7 +259,7 @@ input{
 		function drawChoose() {
 			d3.select("#occselect").remove();
 			d3.select("#sel").remove();		
-			alert("draw")
+			alert("drawchoose")
 			if(whichOne == 0){
 				drawGraphic(graphic_data);	
 			} else {
@@ -271,6 +271,7 @@ input{
 			
 
 		function drawGraphic(graphic_data) {
+			alert("drawgraphic")
 		   var threshold_md = 788;
 		   var threshold_sm = dvc.optional.mobileBreakpoint; 
 		  
@@ -536,7 +537,7 @@ input{
 						.attr('x2',chart_width);
 				}  
             
-        
+        alert("before linegroup")
             
 				//create lines 		
 			    svg.append('g')
@@ -559,7 +560,7 @@ input{
 						.on("mouseout",null)
                         .on("mouseover",null);
 						
-						
+				 alert("before select linegroup")		
 						
 				d3.select(".linegroup")
 					//.attr("class", "linegroup")
@@ -623,7 +624,7 @@ input{
 							if(listnames.indexOf(currclass) == -1 && listnames.length <= 5) {	
 								listnames.push(currclass);
 							}
-							
+							 alert("after linegroup")
 							
 							$("#occselect").val(listnames);
 				            $("#occselect").trigger("chosen:updated");
@@ -1218,18 +1219,15 @@ input{
 		   //load config 
 			d3.json("config1.json", function(error, config) {
 			dvc=config
-alert("config")
 				//load chart data
 				d3.csv(dvc.essential.graphic_data_url, function(error, data) {
 					graphic_data = data;
-                    alert("data1")			
 					graphic_data.forEach(function(d) {
 						d.date = d3.time.format(dvc.essential.dateFormat).parse(d.date); 
 					});
 					
 					d3.csv(dvc.essential.graphic_data_url2, function(error, data2) {
 						graphic_data2 = data2;
-                    	  alert("data2")		
 						graphic_data2.forEach(function(d) {
 							d.date = d3.time.format(dvc.essential.dateFormat).parse(d.date); 
 						});
