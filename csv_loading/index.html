@@ -1,0 +1,149 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600|Open+Sans+Condensed:300" rel="stylesheet" type="text/css">
+<title></title>
+<meta name="description" content>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no"/>
+<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+
+</head>
+<body>
+
+
+
+
+<script src="https://cdn.ons.gov.uk/vendor/jquery/2.1.4/jquery.min.js"></script>
+<script src="https://cdn.ons.gov.uk/vendor/d3/4.2.7/d3.js" type="text/javascript"></script>
+
+<script>
+
+
+
+
+//				d3.csv("data_single.csv", function(error, data) {
+//
+//					graphic_data = data;
+//					d3.select("body").append("p").text("Imported object "+graphic_data)
+//					
+//					names = d3.keys(graphic_data[0])
+//									.filter(function(key) { 
+//										return key;
+//									 });							
+//					d3.select("body").append("p").text("names "+names)
+//					
+//					graphic_data.forEach(function(d,i) {
+//							var parseTime = d3.timeParse("%Y")
+//									d.date = parseTime(d.date);
+//									
+//					})
+//					
+//					
+//					fruit = {};
+//					
+//					for (var column in graphic_data[0]) {
+//						if (column == 'date') continue;
+//						
+//						fruit[column] = graphic_data.map(function(d) {
+//						console.log(d[column])	
+//							return {
+//								'date': d.date,
+//								'amt': d[column]
+//							};
+//						});
+//					}
+//					 
+//					d3.select("body").selectAll('div')
+//						.data(d3.entries(fruit))
+//						.enter()
+//						.append('div')
+//						.attr("class", "fruit")
+//						.append("h1")
+//						.text(function(d,i){ return d.key })
+//				
+//					d3.selectAll(".fruit")
+//						.append("p")
+//						.text(function(d,i){
+//								date_array=[];
+//								d.value.forEach(function(e){
+//									
+//									var formatTime = d3.timeFormat("%Y");
+//									date_array.push( formatTime(e.date) )
+//
+//								 })
+//							
+//							return  date_array
+//							
+//						})
+//					
+//					d3.selectAll(".fruit")
+//						.append("p")
+//						.text(function(d,i){
+//								value_array=[];
+//								d.value.forEach(function(e){
+//									value_array.push( e.amt )
+//
+//								 })
+//							
+//							return  value_array
+//							
+//						})
+//				
+//					
+//				});
+	
+
+//				d3.csv("data_array.csv", function(error, data) {
+//
+//					graphic_data2 = data;
+//					//console.log(graphic_data2)
+//					
+//					names2 = d3.keys(graphic_data2[0]).filter(function(key) { return key;});	// if != 'row'
+//				
+//					graphic_data2.forEach(function(d) {
+//
+//							names2.forEach(function(e,i){
+//								//console.log(d)
+//								//console.log(e)
+//
+//								//console.log(d[e],i);	
+//
+//								if(i!=0){
+//									console.log(d[e])
+//									d[e] = JSON.parse(d[e] );
+//									console.log(d[e])
+//								}
+//							})
+//								
+//					});					
+//				 
+//				});
+	
+	
+				
+	
+				
+//					//load AWE data from API
+					d3.json("https://www.ons.gov.uk/economy/inflationandpriceindices/timeseries/l55o/mm23/data", function(json)	{
+						AWE=json;
+						console.log(AWE)
+						
+						curr_awe = 	+AWE["months"][AWE["months"].length-1].value
+						d3.select("body").append("p").text(AWE.description.title+": "+curr_awe)	
+						
+						formatTime = d3.timeFormat("%B %d, %Y");						
+						d3.select("body").append("p").text("AWE Last updated: "+formatTime(new Date(AWE.description.releaseDate)))
+						
+						d3.select("body").append("p").text("Contact:"+AWE.description.contact.name)
+						
+						d3.select("body").append("p").html('<iframe src="https://www.ons.gov.uk/'+AWE.relatedDocuments[0].uri+'"></iframe>')
+					});
+				
+	
+	
+
+    </script>
+</body>
+</html>
