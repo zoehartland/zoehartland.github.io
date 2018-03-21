@@ -668,7 +668,7 @@ function createLegend(){
 															function onScroll(parentInfo) {
 																//console.log("Region_FT "+ parentInfo) // would display for example: 874 776 1091 8 1673 866
 																
-																//console.log("Region_FT "+parentInfo.split(" ")[2])
+																console.log("Region_FT "+parentInfo.split(" ")[2])
 																
 																
 																function something() {
@@ -682,7 +682,9 @@ function createLegend(){
 																	}
 																}
 
-																
+																console.log("height: "+ window.innerHeight)
+															//	console.log(window.innerHeight/2)
+															//	console.log(-50+window.innerHeight/2)
 
 																if(parentInfo.split(" ")[2]>-50+window.innerHeight/2 && parentInfo.split(" ")[2]<50+window.innerHeight){
 																	something();
