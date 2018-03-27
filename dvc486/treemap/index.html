@@ -585,7 +585,7 @@ console.log(JSON.stringify(root));
         g.append("rect")
             .attr("class", "parent")
 			.attr("desc",function(d) { return d.name} )
-			.attr("id",function(d) { return d.code} )
+			.attr("id",function(d) { return d.id} )
 			.attr("vals",function(d) { return d.size} )
 			.attr("realvals",function(d) { return d.var2} )
 			.on("mouseover", mouseover)

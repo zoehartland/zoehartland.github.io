@@ -107,6 +107,7 @@ DataStructures.Tree = Base.extend({
                         simpleChildRepresentation.push(decorateNode({
                             "name" :  node.name,
 							"size" :  node.size,
+							"id"   :  node.id,
 							"var2" :  node.var2,
 							"var3" :  node.var3,
 							"var4" :  node.var4,
