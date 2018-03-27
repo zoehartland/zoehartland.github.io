@@ -22,64 +22,73 @@ time, mark, audio, video
 
 body{
 	font-family: 'Open Sans',Helvetica,Arial,sans-serif;
+	font-size: 14px;
 	font-weight:400;
-	background: #fff;
-	max-width: 800px;
-	margin: 0px auto;
-	font-size: 16px;
+	line-height: 24px;
 	color: #414042 !important;
+	background: #fff;
+	
 /*	min-height: 300px;
 	padding-bottom:40px;*/
 	-webkit-font-smoothing: antialiased;
+
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin: .5rem 0;
+    line-height: 1.2;
 }
 
 h1 {
     font-size: 35px;
     font-weight: 400;
-    line-height: 48px;
-    margin: 48px 0;
-    padding: 2px 0 6px 0;
+/*    margin: 48px 0;
+    padding: 2px 0 6px 0;*/
 }
 
 h2 {
     font-size: 24px;
     font-weight: 400;
-    line-height: 24px;
-    margin: 40px 0 0 0;
-    padding: 3px 0 5px 0;
+/*    margin: 40px 0 0 0;
+    padding: 3px 0 5px 0;*/
 }
 
 h3 {
     font-size: 21px;
     font-weight: 400;
-    line-height: 24px;
-    margin: 16px 0 0 0;
-    padding: 3px 0 5px 0;
+/*    margin: 16px 0 0 0;
+    padding: 3px 0 5px 0;*/
 }
 
 h4 {
     font-size: 17px;
     font-weight: 400;
-    line-height: 24px;
-    margin: 16px 0;
-    padding: 5px 0 3px 0;
+/*    margin: 16px 0;
+    padding: 5px 0 3px 0;*/
 }
 
 h5 {
     font-size: 16px;
     font-weight: 700;
-    margin: 16px 0;
+/*    margin: 16px 0;*/
 }
 
 h6 {
     font-size: 14px;
     font-weight: 700;
-    margin: 16px 0 0 0;
+/*    margin: 16px 0 0 0;*/
 }
 
 p{
     overflow: visible;
     clear: both;
+	margin: 0 0 10px 0;
+}
+
+a {
+    text-decoration: none;
+    color: #206095;
+    word-wrap: break-word;
 }
 
 .wrapper{
@@ -269,7 +278,7 @@ p{
 .col-xs-offset-0 {
   margin-left: 0%;
 }
-@media (min-width: 400px) {
+@media (min-width: 500px) {
   .col-sm-1, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-10, .col-sm-11, .col-sm-12 {
     float: left;
   }
@@ -771,4 +780,30 @@ p{
 }
 .show {
   display: block !important;
+}
+
+.btn--large {
+    font-size: 16px;
+}
+.btn--primary-alternative {
+    background-color: #206095;
+    color: #fff;
+}
+.btn--bold {
+    font-weight: 600;
+}
+.btn {
+    font-family: "Open Sans",Helvetica,Arial,sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    display: inline-block;
+    width: auto;
+    cursor: pointer;
+    padding: 6px 16px 10px 16px;
+    border: 0 none;
+    text-align: center;
+    -webkit-appearance: none;
+    transition: background-color 0.25s ease-out;
+    text-decoration: none;
+    line-height: 24px;
 }
