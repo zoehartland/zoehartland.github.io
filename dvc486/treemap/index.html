@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no" />
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <link rel="stylesheet" href="css/styles.css" media="screen">
-
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
 
 <style>
 body{
@@ -44,6 +44,7 @@ rect {
 rect.parent,
 .grandparent rect {
   stroke-width: 2px;
+  fill: none;
 }
 
 .grandparent line {
@@ -69,55 +70,10 @@ rect.parent,
   fill: #bbb;
 }
 
-*[code*=c1_] {
+*[code*=c1_], *[code*=c2_], *[code*=c3_], *[code*=c4_], *[code*=c5_] {
 	fill:teal;
 }
 
-*[code*=c2_] {
-	fill:#006080;
-}
-
-*[code*=c3_] {
-	fill:#9C566B;
-}
-
-*[code*=c4_] {
-	fill:#0073b3;
-}
-
-*[code*=c5_] {
-	fill:#007c58;
-}
-*[code*=c6_] {
-	fill:#ce5b67;
-}
-
-*[code*=c7_] {
-	fill:#d32b3c;
-}
-
-*[code*=c8_] {
-	fill:#75bc9a;
-}
-
-*[code*=c9_] {
-	fill:#44a2cc;
-}
-
-*[code*=c10_] {
-	fill:#f4b97d;
-}
-
-*[code*=c11_] {
-	fill:#f6aa53;
-}
-
-*[code*=c12_] {
-	fill:#007c58;
-}
-*[code*=c13_] {
-	fill:#ed7d04;
-}
 
 .depth text{
 	fill:white;
@@ -285,7 +241,47 @@ hr {
 	width:80px;
 	height:80px;
 }
+	
 
+#selectNav {
+	margin-top:10px;
+	left:0px;
+	width:80%;
+	height:45px;
+	background-color:rgba(255,255,255,0.8);
+	z-index:1;
+}
+	
+.select2-container--default .select2-selection--single{
+	border-color: #d3d3d3!important;
+}
+
+
+	.y text, .x text{
+		font-size: 12px;
+		fill:"#666";
+	}	
+	
+	.x line{
+		stroke:#ccc;
+		stroke-width: 1px;
+		shape-rendering: crispEdges;
+	}
+	
+	.x path{
+		stroke:none;
+		fill:none;
+	}
+	.y path{
+		fill:none;
+		stroke-width:2px;
+			stroke:#666;
+	}	
+	
+	.bars rect{
+		stroke:none;
+	}
+	
 </style>
 
 
@@ -311,8 +307,10 @@ hr {
 					<button type="button" id="topBtn" class="nav btn btn-ons ">
 					  <span class="glyphicon glyphicon-upload" aria-hidden="true"></span> Back to top
 					</button>
-				</div>
-
+					<div id="selectNav"> 
+						
+					</div>
+			  </div>
 
               <div class="row" >
                     <div id="chart" class="col-sm-6"></div>
@@ -340,10 +338,11 @@ hr {
 <script src="https://cdn.ons.gov.uk/vendor/jquery/1.12.4/jquery.min.js"></script>
 <script src="js/modernizr.custom.56904.js"></script>
 <script src="https://cdn.ons.gov.uk/vendor/bootstrap/3.3.7/js/bootstrap.min.js" charset="utf-8"></script>
-<script src="https://cdn.ons.gov.uk/vendor/pym/0.4.2/pym.js" charset="utf-8"></script>
+<script src="https://cdn.ons.gov.uk/vendor/pym/1.3.2/pym.js" charset="utf-8"></script>
 <script src="js/base.js" charset="utf-8"></script>
 <script src="js/DataStructures.Tree.js" charset="utf-8"></script>
 <script src="https://cdn.ons.gov.uk/vendor/d3/3.5.17/d3.min.js" charset="utf-8"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
 
 
 
@@ -370,7 +369,7 @@ hr {
 	var	transitioning;
 	var widthCalc;
 	var heightCalc;
-
+	var params;
 
 	getSizes();
 
@@ -389,12 +388,12 @@ hr {
 		divwidth = d3.select("#chart").style("width");
 		width = divwidth.replace('px', '') - 30;
 		if(bwidth >= 767) {
-			console.log("here")
+			
 			fullheight = 400;
 			ratiovar = 0.5;
 			
 		} else {
-			console.log("or here")
+			
 			var url = (window.location != window.parent.location) ;
 			if(url == false){
 					ratiovar = 0.2;
@@ -409,7 +408,6 @@ hr {
 						fullheight = window.innerHeight - 450;
 					}
 			} else {
-				console.log("or even here")
 				ratiovar = 0.2;
 					windowheight = 350;
 					fullheight =400;
@@ -421,9 +419,72 @@ hr {
 
 	}
 
+	
+	function create_dropdown(){
+		
+		d3.select("#selectNav").selectAll("*").remove();
+		// Build option menu for occupations
+			var optns = d3.select("#selectNav").append("div").attr("id","sel").append("select")
+				.attr("id","areaselect")
+				.attr("style","width:98%")
+				.attr("class","chosen-select");
+
+			optns.append("option")
+				// .attr("value","first")
+				// .text("");
+
+			optns.selectAll("p").data(trade).enter().append("option")
+				.attr("value", function(d){ return d.id})
+				//.attr("id",function(d){return d.id})
+				.html(function(d){ return d.name});
+
+
+			 $('#areaselect').select2({placeholder:"Total",allowClear:true,dropdownParent:$('#sel')})
+
+			 //$('#areaselect').on('input',function(){console.log("click")})
+
+			$('#areaselect').on('change',function(){
+				if(typeof params != 'undefined' /*||  params =="c0"*/) {
+					console.log("here")
+					backToTop();
+					
+				} else {
+					console.log(" or here")
+					backToTop();
+					hierarchy = [];
+					
+					$('#areaselect').val().split("_").forEach(function(d,i){ 
+						if(i!=0){ 
+							hierarchy.push(hierarchy[i-1].concat("_"+d)) 
+						} else {
+							hierarchy.push(d)
+						}
+					})
+					storyArray = hierarchy;
+					params = hierarchy;
+					selectedView = storyArray.join().replace(/,/g , "/")
+
+					$(storyArray).each(function(i){
+						setTimeout(function(){
+							storyId = "#"+storyArray[i];
+							//console.log(d3.select(storyId)[0][0])
+							simulateClick(d3.select(storyId)[0][0]);
+						}, 760*i);
+					});
+				}	
+				
+				
+			})
+		
+	}
+	
+	
 	var graphic = d3.select('#bar_chart');
 	
 	function draw_barchart(){
+			create_dropdown();
+		
+		
 		   var threshold_md = 788;
 		   var threshold_sm = dvc.optional.mobileBreakpoint; 
 		  
@@ -445,12 +506,13 @@ hr {
 			// clear out existing graphics
 		    graphic.selectAll("*").remove();
 		
-			var x = d3.scale.linear()
+			xBar = d3.scale.linear()
 		        .range([ 0, chart_width]);
 
-			var y = d3.scale.ordinal()
+			yBar = d3.scale.ordinal()
 				.rangeRoundBands([0, height], .3)
-				
+			
+		
 			selected_country = trade.filter(function(d) { if(d.id == "c0"){ /*console.log(d);*/ return d;} });
 			
 			 // parse data into columns
@@ -469,30 +531,21 @@ hr {
 			top5_trade_vals.push(selected_country[0].trade_val3)
 			top5_trade_vals.push(selected_country[0].trade_val4)
 			top5_trade_vals.push(selected_country[0].trade_val5)
-				
-		    
-		    y.domain(top5_countries);
+			
+		    yBar.domain(top5_countries);
 		
-			var yAxis = d3.svg.axis()
-		        .scale(y)
+			var yBarAxis = d3.svg.axis()
+		        .scale(yBar)
 		        .orient("left")
 		    
-		    var xAxis = d3.svg.axis()
-		        .scale(x)
+		    var xBarAxis = d3.svg.axis()
+		        .scale(xBar)
 		        .orient('bottom')
 				.tickSize(-height, 0, 0);
 		    			    
-			//specify number or ticks on x axis
-			if (parseInt(graphic.style("width")) <= threshold_sm) {
-				xAxis.ticks(dvc.optional.x_num_ticks_sm_md_lg[0])
-			 } else if (parseInt(graphic.style("width")) <= threshold_md){
-				xAxis.ticks(dvc.optional.x_num_ticks_sm_md_lg[1])
-			 } else {
-				xAxis.ticks(dvc.optional.x_num_ticks_sm_md_lg[2])
-			 }
 		
-			var xDomain = [0, d3.max(top5_trade_vals)];
-			x.domain(xDomain)
+			var xBarDomain = [0, d3.max(top5_trade_vals)];
+			xBar.domain(xBarDomain)
 			
 			var svg = d3.select('#bar_chart').append('svg')
 						//.attr("id","chart")
@@ -511,7 +564,7 @@ hr {
 				    svg.append('g')
 				        .attr('class', 'x axis')
 				        .attr("transform", "translate(0, "+height+")")
-				        .call(xAxis).append("text")
+				        .call(xBarAxis).append("text")
 						 .attr("y", 25)
 						 .attr("x",chart_width)
 						 .attr("dy", ".71em")
@@ -524,37 +577,77 @@ hr {
 						.data(top5_trade_vals)
 						.enter()
 						.append('rect')
-						.attr("fill", function(d,i){return dvc.essential.colour_palette})
-						.attr("width", function(d,i) { console.log(d); return 0 + Math.abs(x(d) - x(0)); })
-						.attr("x", function(d,i) { return x(Math.min(0, d)); })
-						.attr("y", function(d,i) { return y(top5_countries[i]); })
-						.attr("height", y.rangeBand())
-					
-			d3.selectAll(".x line")
-				.attr("stroke","#CCC")
-				.attr("stroke-width","1px")
-				.attr("shape-rendering","crispEdges");
-			
-						
-			d3.selectAll("text").attr("font-family","'Open Sans', sans-serif");
+						.attr("fill", "teal")
+						.attr("opacity", "0.8")
+						.attr("width", function(d,i) { return 0 + Math.abs(xBar(d) - xBar(0)); })
+						.attr("x", function(d,i) { return xBar(Math.min(0, d)); })
+						.attr("y", function(d,i) { return yBar(top5_countries[i]); })
+						.attr("height", yBar.rangeBand())
+	
+
 
 		//create y axis, if x axis doesn't start at 0 drop x axis accordingly	
 			svg.append('g')
 				.attr('class', 'y axis')
-				.call(yAxis);
+				.call(yBarAxis);
 
-			d3.selectAll(".y text").attr("font-size","12px").attr("fill","#666");
-			d3.selectAll(".x text").attr("font-size","12px").attr("fill","#666"); // dates - timelines
-						
-			d3.selectAll(".y line")
-				.attr("stroke","#CCC")
-				.attr("stroke-width","1px")
-				.style("shape-rendering","crispEdges");
-		
-			d3.select(".y").select("path").style("stroke", "#666").style("fill", "none");
 
+
+			
 	} //end draw_barchart
 
+	function update_barchart(selection){
+		selected_country = trade.filter(function(d) { if(d.id == selection){ return d;} });
+			
+			 // parse data into columns
+		    top5_countries =[];
+		    
+			top5_countries.push(selected_country[0].rank1)
+			top5_countries.push(selected_country[0].rank2)
+			top5_countries.push(selected_country[0].rank3)
+			top5_countries.push(selected_country[0].rank4)
+			top5_countries.push(selected_country[0].rank5)
+			
+			top5_trade_vals =[];
+		    
+			top5_trade_vals.push(selected_country[0].trade_val1)
+			top5_trade_vals.push(selected_country[0].trade_val2)
+			top5_trade_vals.push(selected_country[0].trade_val3)
+			top5_trade_vals.push(selected_country[0].trade_val4)
+			top5_trade_vals.push(selected_country[0].trade_val5)	
+	
+			yBar.domain(top5_countries);
+	
+			var yBarAxis = d3.svg.axis()
+		        .scale(yBar)
+		        .orient("left")
+		    
+		    var xBarAxis = d3.svg.axis()
+		        .scale(xBar)
+		        .orient('bottom')
+				.tickSize(-height, 0, 0);
+			
+			var xBarDomain = [0, d3.max(top5_trade_vals)];
+			
+			xBar.domain(xBarDomain);
+			
+		  
+		     
+			d3.select(".y").transition().delay(500).call(yBarAxis);
+			
+			d3.select(".x").transition().duration(500).call(xBarAxis);
+				
+		d3.select("#bar_chart").selectAll(".bars")
+			.selectAll("rect")
+			.data(top5_trade_vals)
+			.transition()
+			.duration(500)
+			.attr("width", function(d,i) { 
+				 return 0 + Math.abs(xBar(d) - xBar(0)); 
+			})
+		
+
+	} //end update_barchart
 
 	function makeChart(width, fullheight) {
 
@@ -635,7 +728,7 @@ var tree = DataStructures.Tree.createFromFlatTable(data),
 				dvc=config
 			d3.csv("trade.csv", function(data){
 				trade = data
-				console.log(trade)
+				//console.log(trade)
 				draw_barchart();
 			}) // end trade csv
 		}) //end json config
@@ -889,13 +982,20 @@ var tree = DataStructures.Tree.createFromFlatTable(data),
 			var	selectClass = $(this).attr('desc');
 			var	selectValue = $(this).attr('realvals');
 	//	console.log($(this).attr('name'))
-			d3.select("#blurb").select("#txt3").html(selectClass+": £"+formatNumber(selectValue)+" billion");
-
+			d3.select("#blurb").select("#txt3").html(selectClass+": £"+formatNumber(selectValue)+" billion")
+				
+			//$('#areaselect').val($(this).attr("id")); // Select the option with a value of '1'
+			//$('#areaselect').trigger('change'); // Notify any JS components that the value changed
+			d3.select(".select2-selection__placeholder").text($(this).attr("desc"))
+			update_barchart($(this).attr("id"));
+		
 	};
 
 	function mouseout (){
 		//console.log(dataset)	
 		d3.select("#blurb").select("#txt3").html("Total exports: £"+/*formatNumber*/(dataset.var2)+" billion");
+		d3.select(".select2-selection__placeholder").text("Total")
+			
 	};
 
 	function simulateClick(elem /* Must be the element */) {
@@ -947,14 +1047,17 @@ var tree = DataStructures.Tree.createFromFlatTable(data),
 				params[0] = params[0].replace("#", "")
 				storyArray = params;
 				selectedView = storyArray.join().replace(/,/g , "/")
-
+				//console.log(selectedView)
 				$(storyArray).each(function(i){
 
 					setTimeout(function(){
 						storyId = "#"+storyArray[i];
 						simulateClick(d3.select(storyId)[0][0]);
+						//$("#areaselect").val(storyId).trigger('change.select2');
+						$('#areaselect').val(storyArray[i]); // Select the option with a value of '1'
+						$('#areaselect').trigger('change'); // Notify any JS components that the value changed
 					}, 760*i);
-			});
+				});
 
 			}
 
