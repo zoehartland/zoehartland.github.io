@@ -1,0 +1,109 @@
+id,name,rank1,rank2,rank3,rank4,rank5,trade_val1,trade_val2,trade_val3,trade_val4,trade_val5,eu_row_split
+c0,Total,A1,B1,C1,D1,E1,5,4,3,2,1,0.5
+c1,Food & live animals,A2,B2,C2,D2,E2,5,4,3,2,1,0.5
+c1_1,Live animals,A3,B3,C3,D3,E3,5,4,3,2,1,0.5
+c1_2,Meat & meat preparations,A4,B4,C4,D4,E4,5,4,3,2,1,0.5
+c1_3,Dairy products & eggs,A5,B5,C5,D5,E5,5,4,3,2,1,0.5
+c1_4,Fish & shellfish,A6,B6,C6,D6,E6,5,4,3,2,1,0.5
+c1_5,Cereals,A7,B7,C7,D7,E7,5,4,3,2,1,0.5
+c1_6,Animal feeding stuffs,A8,B8,C8,D8,E8,5,4,3,2,1,0.5
+c1_7,Vegetables & fruit,A9,B9,C9,D9,E9,5,4,3,2,1,0.5
+c1_8,Sugar,A10,B10,C10,D10,E10,5,4,3,2,1,0.5
+c1_9,"Coffee, tea, cocoa etc",A11,B11,C11,D11,E11,5,4,3,2,1,0.5
+c1_10,Miscellaneous foods,A12,B12,C12,D12,E12,5,4,3,2,1,0.5
+c2,Beverages & tobacco,A13,B13,C13,D13,E13,5,4,3,2,1,0.5
+c2_1,Beverages,A14,B14,C14,D14,E14,5,4,3,2,1,0.5
+c2_2,Tobacco,A15,B15,C15,D15,E15,5,4,3,2,1,0.5
+c3,Crude materials,A16,B16,C16,D16,E16,5,4,3,2,1,0.5
+c3_1,Wood & cork,A17,B17,C17,D17,E17,5,4,3,2,1,0.5
+c3_2,Pulp & waste paper,A18,B18,C18,D18,E18,5,4,3,2,1,0.5
+c3_3,Textile fibres,A19,B19,C19,D19,E19,5,4,3,2,1,0.5
+c3_4,Metal ores & scrap,A20,B20,C20,D20,E20,5,4,3,2,1,0.5
+c3_5,"Hides, skins & furskins",A21,B21,C21,D21,E21,5,4,3,2,1,0.5
+c3_6,Oil-seeds & oleaginous fruits,A22,B22,C22,D22,E22,5,4,3,2,1,0.5
+c3_7,Crude rubber,A23,B23,C23,D23,E23,5,4,3,2,1,0.5
+c3_8,Crude minerals & fertilisers,A24,B24,C24,D24,E24,5,4,3,2,1,0.5
+c3_9,Other crude animal & vegetable materials,A25,B25,C25,D25,E25,5,4,3,2,1,0.5
+c4,Animal & vegetable oils & fats,A26,B26,C26,D26,E26,5,4,3,2,1,0.5
+c4_1,Animal oils & fats,A27,B27,C27,D27,E27,5,4,3,2,1,0.5
+c4_2,Vegetable oils & fats,A28,B28,C28,D28,E28,5,4,3,2,1,0.5
+c4_3,Processed oils & fats,A29,B29,C29,D29,E29,5,4,3,2,1,0.5
+c5,Fuels,A30,B30,C30,D30,E30,5,4,3,2,1,0.5
+c5_1,Crude oil,A31,B31,C31,D31,E31,5,4,3,2,1,0.5
+c5_2,Refined oil,A32,B32,C32,D32,E32,5,4,3,2,1,0.5
+c5_3,"Coal, coke & briquettes",A33,B33,C33,D33,E33,5,4,3,2,1,0.5
+c5_4,Gas,A34,B34,C34,D34,E34,5,4,3,2,1,0.5
+c5_5,Electricity,A35,B35,C35,D35,E35,5,4,3,2,1,0.5
+c6,Chemicals,A36,B36,C36,D36,E36,5,4,3,2,1,0.5
+c6_1,Organic chemicals,A37,B37,C37,D37,E37,5,4,3,2,1,0.5
+c6_2,Inorganic chemicals,A38,B38,C38,D38,E38,5,4,3,2,1,0.5
+c6_3,"Dyeing, tanning & colouring materials",A39,B39,C39,D39,E39,5,4,3,2,1,0.5
+c6_4,Medicinal & pharmaceutical products,A40,B40,C40,D40,E40,5,4,3,2,1,0.5
+c6_5,Toilet & cleansing preparations,A41,B41,C41,D41,E41,5,4,3,2,1,0.5
+c6_6,Plastics in primary forms,A42,B42,C42,D42,E42,5,4,3,2,1,0.5
+c6_7,Plastics in non-primary forms,A43,B43,C43,D43,E43,5,4,3,2,1,0.5
+c6_8,Processed fertilisers,A44,B44,C44,D44,E44,5,4,3,2,1,0.5
+c6_9,Other chemicals,A45,B45,C45,D45,E45,5,4,3,2,1,0.5
+c7,Material manufactures,A46,B46,C46,D46,E46,5,4,3,2,1,0.5
+c7_1,Leather manufactures,A47,B47,C47,D47,E47,5,4,3,2,1,0.5
+c7_2,Rubber manufactures,A48,B48,C48,D48,E48,5,4,3,2,1,0.5
+c7_3,Wood & cork manufactures,A49,B49,C49,D49,E49,5,4,3,2,1,0.5
+c7_4,Paper & paperboard,A50,B50,C50,D50,E50,5,4,3,2,1,0.5
+c7_5,Textile fabrics,A51,B51,C51,D51,E51,5,4,3,2,1,0.5
+c7_6,Mineral manufactures,A52,B52,C52,D52,E52,5,4,3,2,1,0.5
+c7_7,Iron & steel,A53,B53,C53,D53,E53,5,4,3,2,1,0.5
+c7_8,Non-ferrous metals,A54,B54,C54,D54,E54,5,4,3,2,1,0.5
+c7_9,Miscellaneous metal manufactures,A55,B55,C55,D55,E55,5,4,3,2,1,0.5
+c8,Machinery & transport equipment,A56,B56,C56,D56,E56,5,4,3,2,1,0.5
+c8_1,Mechanical power generators (consumer),A57,B57,C57,D57,E57,5,4,3,2,1,0.5
+c8_2,Specialised machinery (consumer),A58,B58,C58,D58,E58,5,4,3,2,1,0.5
+c8_3,General industrial machinery (consumer),A59,B59,C59,D59,E59,5,4,3,2,1,0.5
+c8_4,Mechanical power generators (intermediate),A60,B60,C60,D60,E60,5,4,3,2,1,0.5
+c8_5,Specialised machinery (intermediate),A61,B61,C61,D61,E61,5,4,3,2,1,0.5
+c8_6,Metal working machinery (intermediate),A62,B62,C62,D62,E62,5,4,3,2,1,0.5
+c8_7,General industrial machinery (intermediate),A63,B63,C63,D63,E63,5,4,3,2,1,0.5
+c8_8,Mechanical power generators (capital),A64,B64,C64,D64,E64,5,4,3,2,1,0.5
+c8_9,Specialised machinery (capital),A65,B65,C65,D65,E65,5,4,3,2,1,0.5
+c8_10,Metal working machinery (capital),A66,B66,C66,D66,E66,5,4,3,2,1,0.5
+c8_11,General industrial machinery (capital),A67,B67,C67,D67,E67,5,4,3,2,1,0.5
+c8_12,Office machinery (consumer),A68,B68,C68,D68,E68,5,4,3,2,1,0.5
+c8_13,Telecoms & sound equipment (consumer),A69,B69,C69,D69,E69,5,4,3,2,1,0.5
+c8_14,Miscellaneous electrical goods (consumer),A70,B70,C70,D70,E70,5,4,3,2,1,0.5
+c8_15,Electric motors (intermediate),A71,B71,C71,D71,E71,5,4,3,2,1,0.5
+c8_16,Office machinery (intermediate),A72,B72,C72,D72,E72,5,4,3,2,1,0.5
+c8_17,Telecoms & sound equipment (intermediate),A73,B73,C73,D73,E73,5,4,3,2,1,0.5
+c8_18,Miscellaneous electrical goods (intermediate),A74,B74,C74,D74,E74,5,4,3,2,1,0.5
+c8_19,Electric motors (capital),A75,B75,C75,D75,E75,5,4,3,2,1,0.5
+c8_20,Office machinery (capital),A76,B76,C76,D76,E76,5,4,3,2,1,0.5
+c8_21,Telecoms & sound equipment (capital),A77,B77,C77,D77,E77,5,4,3,2,1,0.5
+c8_22,Miscellaneous electrical goods (capital),A78,B78,C78,D78,E78,5,4,3,2,1,0.5
+c8_23,Cars,A79,B79,C79,D79,E79,5,4,3,2,1,0.5
+c8_24,Road vehicles other than cars (consumer),A80,B80,C80,D80,E80,5,4,3,2,1,0.5
+c8_25,Road vehicles other than cars (intermediate),A81,B81,C81,D81,E81,5,4,3,2,1,0.5
+c8_26,Road vehicles other than cars (capital),A82,B82,C82,D82,E82,5,4,3,2,1,0.5
+c8_27,Railway equipment (intermediate),A83,B83,C83,D83,E83,5,4,3,2,1,0.5
+c8_28,Railway equipment (capital),A84,B84,C84,D84,E84,5,4,3,2,1,0.5
+c8_29,Aircraft,A85,B85,C85,D85,E85,5,4,3,2,1,0.5
+c8_30,Ships,A86,B86,C86,D86,E86,5,4,3,2,1,0.5
+c9,Miscellaneous manufactures,A87,B87,C87,D87,E87,5,4,3,2,1,0.5
+c9_1,Clothing,A88,B88,C88,D88,E88,5,4,3,2,1,0.5
+c9_2,Footwear,A89,B89,C89,D89,E89,5,4,3,2,1,0.5
+c9_3,Scientific instruments (consumer),A90,B90,C90,D90,E90,5,4,3,2,1,0.5
+c9_4,Photographic & optical goods & clocks (consumer),A91,B91,C91,D91,E91,5,4,3,2,1,0.5
+c9_5,Scientific instruments (intermediate),A92,B92,C92,D92,E92,5,4,3,2,1,0.5
+c9_6,Photographic & optical goods & clocks (intermediate),A93,B93,C93,D93,E93,5,4,3,2,1,0.5
+c9_7,Scientific instruments (capital),A94,B94,C94,D94,E94,5,4,3,2,1,0.5
+c9_8,Photographic & optical goods & clocks (capital),A95,B95,C95,D95,E95,5,4,3,2,1,0.5
+c9_9,Works of art,A96,B96,C96,D96,E96,5,4,3,2,1,0.5
+c9_10,Jewellery,A97,B97,C97,D97,E97,5,4,3,2,1,0.5
+c9_11,"Plumbing, heating & lighting fixtures (consumer)",A98,B98,C98,D98,E98,5,4,3,2,1,0.5
+c9_12,Furniture (consumer),A99,B99,C99,D99,E99,5,4,3,2,1,0.5
+c9_13,"Travel goods, handbags etc",A100,B100,C100,D100,E100,5,4,3,2,1,0.5
+c9_14,Other manufactures (consumer),A101,B101,C101,D101,E101,5,4,3,2,1,0.5
+c9_15,"Plumbing, heating & lighting fixtures (intermediate)",A102,B102,C102,D102,E102,5,4,3,2,1,0.5
+c9_16,Furniture (intermediate),A103,B103,C103,D103,E103,5,4,3,2,1,0.5
+c9_17,Other manufactures (intermediate),A104,B104,C104,D104,E104,5,4,3,2,1,0.5
+c9_18,"Plumbing, heating & lighting fixtures (capital)",A105,B105,C105,D105,E105,5,4,3,2,1,0.5
+c9_19,Furniture (capital),A106,B106,C106,D106,E106,5,4,3,2,1,0.5
+c9_20,Other manufactures (capital),A107,B107,C107,D107,E107,5,4,3,2,1,0.5
+c10,Unspecified goods,A108,B108,C108,D108,E108,5,4,3,2,1,0.5
