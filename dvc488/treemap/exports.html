@@ -541,6 +541,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 <script>
+	$('a').on('click touchend', function(e) {
+	    var el = $(this);
+	    var link = el.attr('href');
+	    window.location = link;
+	});
 
 	if (Modernizr.inlinesvg= true ){
 
