@@ -30,13 +30,20 @@
 			-moz-box-sizing: border-box;
 			-webkit-box-sizing: border-box;
 		}
+		
+		.btn{
+			margin-top:5px!important;
+		}
 	
 	</style>
 
 </head>
+<script src="https://cdn.ons.gov.uk/vendor/jquery/2.1.4/jquery.min.js" type="text/javascript"></script>
+<script src="https://cdn.ons.gov.uk/vendor/pym/1.3.2/pym.min.js" type="text/javascript"></script>
 <body>
 	<div class="wrapper">
 		<div class="row">
+			<h1 class="text-center">Global styles</h1>
 			<h1>Heading 1</h1>
 			<h2>Heading 2</h2>
 			<h3>Heading 3</h3>
@@ -47,48 +54,50 @@
 
 			<p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
 		</div>	
-		
-		<h6>Large grid (950+)</h6>
 		<div class="row">
-			<div class="col-lg-3">Large col 3</div>
-			<div class="col-lg-3">Large col 3</div>
-			<div class="col-lg-3">Large col 3</div>
-			<div class="col-lg-3">Large col 3</div>			
+			<h1 class="text-center">Grid (and grid actions)</h1>
+			<h6>Large grid (950+)</h6>
+			<div class="row">
+				<div class="col-lg-3">Large col 3</div>
+				<div class="col-lg-3">Large col 3</div>
+				<div class="col-lg-3">Large col 3</div>
+				<div class="col-lg-3">Large col 3</div>			
+			</div>
+
+			<h6>Medium grid (670 - 944)</h6>
+			<div class="row">
+				<div class="col-md-3">Medium col 3</div>
+				<div class="col-md-3">Medium col 3</div>
+				<div class="col-md-3">Medium col 3</div>
+				<div class="col-md-3">Medium col 3</div>
+			</div>
+
+			<h6>Small grid (669 - 500)</h6>
+			<div class="row">
+				<div class="col-sm-3">Small col 3</div>
+				<div class="col-sm-3">Small col 3</div>
+				<div class="col-sm-3">Small col 3</div>
+				<div class="col-sm-3">Small col 3</div>
+			</div>
+
+			<h6>Extra small grid (<500)</h6>
+			<div class="row">
+				<div class="col-xs-3">Extra small col 3</div>
+				<div class="col-xs-3">Extra small col 3</div>
+				<div class="col-xs-3">Extra small col 3</div>
+				<div class="col-xs-3">Extra small col 3</div>
+			</div>
 		</div>
-		
-		<h6>Medium grid (670 - 944)</h6>
 		<div class="row">
-			<div class="col-md-3">Medium col 3</div>
-			<div class="col-md-3">Medium col 3</div>
-			<div class="col-md-3">Medium col 3</div>
-			<div class="col-md-3">Medium col 3</div>
-		</div>
-		
-		<h6>Small grid (669 - 500)</h6>
-		<div class="row">
-			<div class="col-sm-3">Small col 3</div>
-			<div class="col-sm-3">Small col 3</div>
-			<div class="col-sm-3">Small col 3</div>
-			<div class="col-sm-3">Small col 3</div>
-		</div>
-		
-		<h6>Extra small grid (<500)</h6>
-		<div class="row">
-			<div class="col-xs-3">Extra small col 3</div>
-			<div class="col-xs-3">Extra small col 3</div>
-			<div class="col-xs-3">Extra small col 3</div>
-			<div class="col-xs-3">Extra small col 3</div>
-		</div>
-		<div class="row">
-			<h6>Buttons</h6>
+			<h1 class="text-center">Buttons</h1>
+			<h3 class="text-center">Single buttons</h3>
 			<button class="btn btn--primary-alternative btn--bold btn--large">
 				Alternative primary button
 			</button>
 			<button class="btn btn--primary-alternative btn--bold btn--small">
 				Small alternative primary button
 			</button>
-			<br>
-
+		</br>
 			<!-- Alternative secondary buttons -->
 			<button class="btn btn--secondary-alternative btn--bold btn--large">
 				Alternative secondary button
@@ -96,8 +105,7 @@
 			<button class="btn btn--secondary-alternative btn--bold btn--small">
 				Small alternative secondary button
 			</button>
-			<br>
-
+		</br>
 			<!-- Neutral button -->
 			<button class="btn btn--neutral btn--bold btn--large">
 				Neutral button
@@ -106,7 +114,79 @@
 				Small neutral button
 			</button>
 		</div>	
+		<div class="row">
+			<h3 class="text-center">Button group</h3>
+			<p>Some script for active state is also included</p>
+			<div class="btn-group">
+				<button class="btn btn--neutral">
+					Monthly
+				</button>
+
+				<button class="btn btn--neutral">
+					Quarterly
+				</button>
+
+
+				<button class="btn btn--neutral">
+					Yearly
+				</button>
+			</div>
+
+			<!-- Small thin buttons -->
+			<div class="btn-group">
+				<button class="btn btn--neutral btn--small btn--thin">
+					5 years
+				</button>
+
+				<button class="btn btn--neutral btn--small btn--thin btn-active">
+					10 years
+				</button>
+
+				<button class="btn btn--neuatral btn--small btn--thin">
+					15 years
+				</button>
+			</div>
+		</div>
+		<div class="row">
+			<div class="form">
+				<div class="input-group">
+						<div class="input-group-addon">£</div>
+						<input class="form-control" placeholder="">
+				</div>
+<!--				<select class="form-control">
+					<option value="week" >per week</option>
+					<option value="month" selected>per month</option>
+					<option value="year">per year</option>
+				</select>-->		
+					
+			</div>
+		</div>
 		
 	</div>
+<script>
+	new pym.Child();
+	
+	$(document).ready(function(){
+		//Active button state (need to sort out logic here)
+		$(".btn-group > button").click(function(){
+			//alert("Button clicked")
+			$(".btn-group > .btn-active").toggleClass("btn-active")
+			$(this).toggleClass("btn-active")
+		});
+	});
+</script>
+<script>
+		  var _gaq = _gaq || [];
+		  _gaq.push(['_setAccount', 'UA-37894017-1']);
+		  _gaq.push(['_trackPageview']);
+		
+		
+		  (function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		  })();
+
+</script>
 </body>
 </html>

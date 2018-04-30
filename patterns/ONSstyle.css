@@ -19,7 +19,7 @@ time, mark, audio, video
 	font: inherit;
 	vertical-align: baseline;
 }
-
+/*Global styles*/
 body{
 	font-family: 'Open Sans',Helvetica,Arial,sans-serif;
 	font-size: 14px;
@@ -91,6 +91,9 @@ a {
     word-wrap: break-word;
 }
 
+/*End of global styles*/
+
+/*Grid system*/
 .wrapper{
   margin-right: auto;
   margin-left: auto;
@@ -775,23 +778,19 @@ a {
   clear: both;
 }
 
+/*End of grid system*/
+
+/*Custom grid actions*/
 .hide {
   display: none !important;
 }
 .show {
   display: block !important;
 }
+/*End of custom grid actions*/
 
-.btn--large {
-    font-size: 16px;
-}
-.btn--primary-alternative {
-    background-color: #206095;
-    color: #fff;
-}
-.btn--bold {
-    font-weight: 600;
-}
+
+/*Buttons*/
 .btn {
     font-family: "Open Sans",Helvetica,Arial,sans-serif;
     font-weight: 400;
@@ -806,4 +805,148 @@ a {
     transition: background-color 0.25s ease-out;
     text-decoration: none;
     line-height: 24px;
+}
+
+.btn--bold{
+	font-weight:600;
+}
+
+.btn--primary-alternative{
+	background-color:#206095;
+	color:#fff;
+}
+
+.btn--primary-alternative:hover,.btn--primary-alternative:focus{
+	background-color:#003C57;
+}
+
+.btn--secondary-alternative{
+	background-color:#5F7682;
+	color:#fff;
+}
+
+.btn--secondary-alternative:hover,.btn--secondary-alternative:focus{
+	background-color:#45565E;
+}
+
+.btn--neutral{
+	background-color:#F9F9F9;
+	border:1px solid #A6A8AB;
+}
+
+.btn--neutral:hover,.btn--neutral:focus{
+	background-color:#E5E6E7;
+}
+
+.btn--large{
+	font-size:16px
+}
+
+.btn--small{padding:0 8px;
+	font-size:12px;
+}
+
+.btn-group{
+	overflow:auto;
+}
+
+.btn-group .btn{
+	float:left;
+	margin:0;
+	border:1px solid #A6A8AB;
+}
+
+.btn-group .btn:first-child {
+    border: none;
+    border-left: 1px solid #A6A8AB;
+    border-top: 1px solid #A6A8AB;
+    border-bottom: 1px solid #A6A8AB;
+}
+
+.btn-group .btn:last-child {
+    border: none;
+    border-right: 1px solid #A6A8AB;
+    border-top: 1px solid #A6A8AB;
+    border-bottom: 1px solid #A6A8AB;
+}
+
+.btn-group legend{
+	padding:6px 0 10px 0;
+}
+
+.btn-group input{
+	height:0px;
+	width:0px;
+	position:absolute;
+	left:-100px;
+}
+
+.btn-group--active legend{
+	text-decoration:underline;
+}
+
+.btn-active{
+	background-color: #A6A8AB;
+	color:#FFFFFF;
+}
+/*End of buttons*/
+
+/*Form elements*/
+.form {
+    display: inline-flex;
+}
+
+.input-group {
+    position: relative;
+    display: table;
+    border-collapse: separate;
+}
+
+.input-group .form-control:first-child, .input-group-addon:first-child, .input-group-btn:first-child > .btn, .input-group-btn:first-child > .btn-group > .btn, .input-group-btn:first-child > .dropdown-toggle, .input-group-btn:last-child > .btn:not(:last-child):not(.dropdown-toggle), .input-group-btn:last-child > .btn-group:not(:last-child) > .btn {
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
+}
+.input-group-addon {
+	box-sizing: border-box;
+    padding: 7px 11px;
+    font-size: 15px;
+    font-weight: normal;
+    line-height: 1;
+    color: #6f6f6f;
+    text-align: center;
+    background-color: #eeeeee;
+    border: 1px solid #cccccc;
+    border-radius: 0;
+	border-right: none;
+}
+.input-group-addon, .input-group-btn {
+    width: 1%;
+    white-space: nowrap;
+    vertical-align: middle;
+}
+.input-group-addon, .input-group-btn, .input-group .form-control {
+    display: table-cell;
+}
+
+.input-group .form-control {
+    position: relative;
+    z-index: 2;
+    float: left;
+    margin-bottom: 0;
+}
+
+.form-control {
+    display: block;
+    width: 100px;
+	padding: 8px 12px;
+    color: #6f6f6f;
+    background-color: #ffffff;
+    background-image: none;
+    border: 1px solid #cccccc;
+    border-radius: 0;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    -webkit-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
 }
