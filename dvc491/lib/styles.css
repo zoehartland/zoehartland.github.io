@@ -7,10 +7,9 @@
 
 
 		/* x-axis baseline; not to be confused with centreline. Can consider overlaying this with #centreline */
-        #graphic .axis path  /* required */
-		{
+		#graphic .axis path {
             fill: none;
-            stroke: #ccc;
+            stroke: none;
             shape-rendering: crispEdges;
         }
 
@@ -32,12 +31,10 @@
 			display: none;
 		}
 
-
-
 		/* y-axis full width grid lines */
         #graphic .grid .tick line/* required */
 		{
-            stroke: #CCC;
+            stroke: #E5E6E7;
             stroke-width: 1px;
             shape-rendering: crispEdges;
         }

@@ -199,9 +199,14 @@
 	.select2{
 		width:120px!important;
 	}
-		.comparison div{
-			display: inline-grid;
-		}
+	
+	.comparison div{
+		display: inline-grid;
+	}
+		
+	.domain{
+		stroke:none!important;
+	}
 	</style>
 
 </head>
@@ -386,7 +391,7 @@ function drawTieFighter(){
 			.attr("width", chart_width + margin.left + margin.right)
 			.attr("height", height + margin.top + margin.bottom +80)
 			.append("g")
-			.attr("transform", "translate(" + margin.left + "," + (margin.top+40) + ")")
+			.attr("transform", "translate(" + margin.left + "," + (margin.top) + ")")
 
 	svg.append("rect")
 		.attr("class","svgRect")
@@ -411,18 +416,12 @@ function drawTieFighter(){
 		 .text(dvc.essential.xAxisLabel);
 
 	//move the x number down a bit
-	d3.selectAll(".tick").select("text").attr("transform","translate(0,15)")
+	d3.select("#graphic_dots").selectAll(".tick").select("text").attr("transform","translate(0,10)")
 
 	//create y axis, if x axis doesn't start at 0 drop x axis accordingly
 	svg.append('g')
 		.attr('class', 'y axis')
-		.attr('transform', function(d){
-					if(xDotDomain[0] != 0){
-						return 'translate(' + ( -30) + ',0)'
-					} else {
-						return 'translate(' + 0  + ', 0)'
-					}
-			})
+		.attr('transform', 'translate(' + 0  + ', 0)')
 		.call(yDotAxis);
 
 	d3.select(".y.axis").selectAll("line").remove();
@@ -472,7 +471,7 @@ graphic_data_dots.columns.forEach(
 
 	d3.selectAll(".y text").each(insertLinebreaksLabels)
 	
-	
+	d3.select(".container-fluid").classed("hide", true)
 } //end drawTieFighter()
 
 		
@@ -610,13 +609,7 @@ function drawLineChart(){
 		//create x axis, if y axis doesn't start at 0 drop x axis accordingly
 		svg.append('g')
 			.attr('class', 'x axis')
-			.attr('transform', function(d){
-						if(yDomain[0] != 0){
-							return 'translate(0,' + (height + 30) + ')'
-						} else {
-							return 'translate(0,' + height  + ')'
-						}
-				})
+			.attr('transform', 'translate(0,' +  height  + ')')
 			.call(xAxis);
 
 		d3.select(".x").select("path").style("stroke", "#666")
@@ -686,8 +679,9 @@ function drawLineChart(){
 			.attr('class', function(d){
 				 return 'line ' + d.key})
 			.style("stroke", "grey")
+			.style("opacity", 0.4)
 			.style("fill", 'none')
-			.style("stroke-width", 3)
+			.style("stroke-width", 2)
 			.style("stroke-linecap", 'round')
 			.style("stroke-linejoin", 'round')
 			.attr('d', function(d) {
@@ -925,7 +919,7 @@ function drawBarChart(){
 		.attr("id","barchart")
 		.style("background-color","#fff")
 		.attr("width", chart_width + margin.left + margin.right)
-		.attr("height", height + margin.top + margin.bottom +30)
+		.attr("height", height + margin.top + margin.bottom)
 		.append("g")
 		.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
@@ -933,16 +927,17 @@ function drawBarChart(){
 			.attr('class', 'y axis')
 			.call(yAxis.tickSize(-chart_width, 0))
 		
+		svg.append('g')
+			.attr('class', 'y grid')
+			.call(y_axis_grid()
+				.tickSize(-chart_width, 0, 0)
+				.tickFormat('')
+			); 
+	
 	//create x axis, if y axis doesn't start at 0 drop x axis accordingly
 	svg.append('g')
 		.attr('class', 'x axis')
-		.attr('transform', function(d){
-					if(yDomain[0] != 0){
-						return 'translate(0,' + (height + 30) + ')'
-					} else {
-						return 'translate(0,' + height  + ')'
-					}
-			})
+		.attr('transform', 'translate(0,' + height  + ')')
 		.call(xAxis);
 
 	 d3.select(".x").select("path").style("stroke", "#666")
@@ -1146,17 +1141,21 @@ if (Modernizr)
 					
 					//Work out the equivalisation factor
 					//0.67+((Questions!B3+Calculations!B6-1)*0.33)+(Calculations!B7*0.2)
-					//dvc.equivalisation = 0.67 + ((+dvc.adults - 1)*0.33) + (dvc.children*0.2);
+					equivalisation = 0.67 + ((+adults - 1)*0.33) + (children*0.2);
 					
 					//Work out disposable income
-					//dvc.respDisposable = +dvc.respIncome - +dvc.respTax;
+					//respDisposable = +respIncome - +respTax;
 					
 					//Work out equivalised  disposable income
 					//dvc.respDisposableEquiv = dvc.respDisposable / dvc.equivalisation;
 					
+						
+					// ZH WOrk out equivalised income
+					equiv_income = income/equivalisation;
+						
 					//Let's work out what decile this falls into
 					for(i = 0; i <= 10; i++){
-						if(income > deciles[i]){
+						if(equiv_income > deciles[i]){
 							decile = i;
 						}
 					}
@@ -1237,7 +1236,7 @@ if (Modernizr)
 						//.text(dvc_bar.essential.annotationChart[i])
 						.attr("class","annotext")
 						.attr("text-anchor", dvc_bar.essential.annotationAlign[i])
-						.attr('y',55)
+						.attr('y',25)
 						.attr('x',5);
 
 					d3.select(".annotext").append("tspan").text(function(){
@@ -1251,9 +1250,32 @@ if (Modernizr)
 					d3.select(".annotext").append("tspan").text("around ").attr("x", 5).attr("dy","28")
 						
 						
-					d3.select(".annotext").append("tspan").attr("class","decile").text((100-(10*(decile+1)))+ "%")	
+					d3.select(".annotext").append("tspan").attr("class","decile").text(function(){
+							if(decile+1 <=4){
+							   	return (100-(10*(decile+1)))+ "%" 
+							} else {
+							   	return (10*(decile+1))-10+ "%"
+							} 
+					})
 					
 					d3.select(".annotext").append("tspan").text(" of the population")
+					
+					
+						
+						
+						
+					d3.select("#line_chart")
+						.append("text")
+						//.text(dvc_bar.essential.annotationChart[i])
+						.attr("class","annotext2")
+						.attr("text-anchor", "start")
+						.attr('y',35)
+						.attr('x',65);
+
+					d3.select(".annotext2").append("tspan").text("It experiances inflation of ")
+					
+					d3.select(".annotext2").append("tspan").attr("class","decile").text("xx%")
+						
 					
 						
 //						.html(function(){
@@ -1295,19 +1317,55 @@ if (Modernizr)
 						
 					//.selectAll(".decile"+(decile+1))
 				
-					d3.select("#selected_line").remove();
-					
-						d3.select('.lines')
-						.append("path")
-						.attr("d", d3.select(".lines").selectAll(".decile"+(decile+1)).attr("d"))
-						.attr("id","selected_line")
-						.style("fill", "none")
-						.style("opacity", 0.4)
-						.style("stroke", "#3CB0F9")
-						.style("stroke-width", 2);
+					unhighlight_all_deciles();
+					highlight_all_deciles();
 						
-					d3.select(".bars").selectAll(".decile"+(decile+1)).attr("fill", "#3CB0F9")					
-								.attr("opacity", "0.7")
+					function unhighlight_all_deciles (){
+						d3.select("#selected_line").remove();
+						d3.selectAll(".selceted_circle").remove();
+						d3.select(".bars").selectAll(".bar").attr("fill", "grey")					
+								.attr("opacity", "0.4")
+					
+					}
+						
+					function highlight_all_deciles (){
+						
+						d3.select('.lines')
+							.append("path")
+							.attr("d", d3.select(".lines").selectAll(".decile"+(decile+1)).attr("d"))
+							.attr("id","selected_line")
+							.style("fill", "none")
+							.style("opacity", 1)
+							.style("stroke", "#3CB0F9")
+							.style("stroke-width", 2);
+						
+						d3.select(".bars").selectAll(".decile"+(decile+1)).attr("fill", "#3CB0F9")					
+								.attr("opacity", "0.9")
+						
+						highlight_circles_cx=[]
+						highlight_circles_cy=[]
+
+						d3.selectAll(".circle_decile"+(decile+1))
+							.selectAll(".decile"+(decile+1))
+							.each( function(d,i){
+
+								highlight_circles_cx.push(d3.select(this).attr("cx"))
+								highlight_circles_cy.push(d3.select(this).attr("cy"))
+
+
+								d3.selectAll(".circles").append("circle")
+									.style("stroke", "#3CB0F9" )
+									.style("fill", "#3CB0F9")
+									.attr("class", "selected_circle")
+									.style("stroke-width", 2)							
+									.attr("opacity", "0.7")
+									.attr("cx", function(d){ return highlight_circles_cx[i]})
+									.attr("cy", function(d){ return highlight_circles_cy[i]})
+									.attr('r', ball)
+							})	
+					}	
+						
+					
 //						
 //					d3.select(".circles")
 //						.append("circle")
@@ -1319,29 +1377,8 @@ if (Modernizr)
 //						.attr('r', ball)
 						
 						
-					d3.selectAll(".selceted_circle").remove();
 					
-					highlight_circles_cx=[]
-					highlight_circles_cy=[]
-						
-					d3.selectAll(".circle_decile"+(decile+1))
-						.selectAll(".decile"+(decile+1))
-						.each( function(d,i){
-
-							highlight_circles_cx.push(d3.select(this).attr("cx"))
-							highlight_circles_cy.push(d3.select(this).attr("cy"))
-							
-
-							d3.selectAll(".circles").append("circle")
-								.style("stroke", "#3CB0F9" )
-								.style("fill", "#3CB0F9")
-								.attr("class", "selected_circle")
-								.style("stroke-width", 2)							
-								.attr("opacity", "0.7")
-								.attr("cx", function(d){ return highlight_circles_cx[i]})
-								.attr("cy", function(d){ return highlight_circles_cy[i]})
-								.attr('r', ball)
-						})	
+					
 						
 						
 						
