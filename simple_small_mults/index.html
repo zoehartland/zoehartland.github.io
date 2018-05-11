@@ -312,7 +312,7 @@ if (Modernizr){
 				 	nest = d3.nest()
 					  .key(function(d) { return d.category;})
 					  .entries(csv);
-					
+					console.log(csv)
 					nest.forEach(function(d,i) {
 						d.values.forEach(function (d,k){
 							d.date = d3.timeParse("%Y")(d.date);
