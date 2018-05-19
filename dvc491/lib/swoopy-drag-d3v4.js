@@ -2,7 +2,7 @@ d3.swoopyDrag = function(){
   var x = d3.scaleLinear()
   var y = d3.scaleLinear()
 
-  var annotations = []
+   annotations = []
   var annotationSel
 
   var draggable = false

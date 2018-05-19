@@ -33,15 +33,15 @@
 
     },
     "optional" : {
-            "margin_sm": [15, 20, 5, 175],
-            "margin_md": [15, 300, 5, 175],
-            "margin_lg": [15, 20, 5, 175],
+            "margin_sm": [10, 10, 45, 45],
+            "margin_md": [10, 10, 45, 5],
+            "margin_lg": [10, 10, 45, 5],
         
-            "aspectRatio_sm" : [8,10],
-            "aspectRatio_md" : [8,5],
-            "aspectRatio_lg" : [16,6],
+            "aspectRatio_sm" : [8,7],
+            "aspectRatio_md" : [8,6],
+            "aspectRatio_lg" : [8,4],
         
-            "mobileBreakpoint" : 510, 
+            "mobileBreakpoint" : 690, 
                            
             "x_num_ticks_sm_md_lg" : [6,8,10],
             "centre_line" : false,

@@ -994,6 +994,7 @@ a {
 .form-control {
     display: block;
     width: 25px;
+	 height: 39px;
 	padding: 8px 12px;
     color: #6f6f6f;
     background-color: #ffffff;

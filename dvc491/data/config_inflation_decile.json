@@ -1,7 +1,7 @@
 {
     "essential" : {
             "graphic_data_url": "data_inflation_decile.csv",
-            "dateFormat":"%Y",
+            "dateFormat":"%b-%y",
             
             "legendLabels" : ["grey", "grey", "grey", "grey", "grey", "grey", "grey", "grey", "grey", "grey"],
             "legendStyle": "line", 
@@ -9,27 +9,27 @@
             
             "sourceText":["Statistics"],
             "sourceURL":["http://www.ons.gov.uk"],
-            "draggable": true,
+            "draggable": false,
            "annotationsChart" : [
               {
-                "xVal": "1903-06-23T00:00:00.000Z",
-                "yVal": 160,
-                "path": "",
-                "text": "T-bone hamburger swine pancetta kielbasa, ribeye boudin bresaola chicken. Flank andouille drumstick kielbasa biltong pancetta",
+                "xVal": "2010-06-23T00:00:00.000Z",
+                "yVal": 1,
+                "path": "M19,101C9,73,-42,75,-41,103",
+                "text": "anno1",
                 "textOffset": [0,0]
               },
                
               {
-                "xVal": "1905-06-23T00:00:00.000Z",
-                "yVal": 120,
-                "path": "",
+                "xVal": "2010-06-23T00:00:00.000Z",
+                "yVal": 2,
+                "path": "M19,101C9,73,-42,75,-41,103",
                 "text": "Flank andouille drumstick kielbasa biltong pancetta",
                 "textOffset": [0,0]
               },
                
               {
-                "xVal": "1011-06-01T00:00:00.000Z",
-                "yVal": 60,
+                "xVal": "2013-06-01T00:00:00.000Z",
+                "yVal": 0,
                 "path": "",
                 "text": "Versicolor",
                 "textOffset": [0,0]
@@ -37,7 +37,7 @@
             ],
             
             "wordwrap":[30,20,10],
-            "annoAlign": ["middle","middle","end"],
+            "annoAlign": ["start","middle","end"],
             "annotationBullet" : ["Some other annotation","Some more annotation"],
         
             "circles" : true,    
@@ -46,27 +46,27 @@
                 ["Jan-99","73"]
             ],
         
-            "yAxisLabel":"%",
-            "yAxisScale":"auto_zero_max",   
+            "yAxisLabel":" ",
+            "yAxisScale":[0, 5.5],   
             "yAxisBreak": false,
             "yAxisBreak_sm_md_lg": [65,65,65]            
     },
     
     "optional" : {
-            "margin_sm": [50, 10, 55, 30],
-            "margin_md": [50, 10, 55, 30],
-            "margin_lg": [50, 10, 55, 30],
+            "margin_sm": [55, 10, 55, 20],
+            "margin_md": [55, 40, 55, 20],
+            "margin_lg": [60, 60, 55, 20],
         
-            "aspectRatio_sm" : [16,13],
-            "aspectRatio_md" : [16,12],
-            "aspectRatio_lg" : [16,10],
+            "aspectRatio_sm" : [16,12],
+            "aspectRatio_md" : [16,10],
+            "aspectRatio_lg" : [16,7],
         
             "mobileBreakpoint" : 610, 
             
             "xAxisTextFormat_sm_md_lg" : ["%y", "%Y", "%b %y"], 
                 
             "x_num_ticks_sm_md_lg" : [6,12,12],    
-            "y_num_ticks_sm_md_lg" : [5,11,11],
+            "y_num_ticks_sm_md_lg" : [5,5,5],
         
             "lineMarkers" : true,
         

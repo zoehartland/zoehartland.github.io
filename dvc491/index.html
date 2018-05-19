@@ -3,7 +3,7 @@
 
 <head>
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600' rel='stylesheet' type='text/css'>
-    <title>Title goes here</title>
+    <title>CPIH by household group</title>
 
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
@@ -120,6 +120,8 @@
 		
 		#submit{
 			margin-top:15px;
+			margin-bottom:15px;
+			display:inline-block;
 		}
 	
 		.pound{
@@ -214,6 +216,61 @@
 	.domain{
 		stroke:none!important;
 	}
+		
+	@media only screen and (max-width: 630px) {
+   		.anno{
+			font-size:11px;
+		}
+	}
+		
+		#keypoints_dots, #keypoints_dots2{
+			font-size:12px;
+			line-height: 15px;
+		}
+
+		.reveal{
+			margin-bottom: 30px;
+			font-weight:700;
+			font-size:16px;
+		}
+		input#hhincome {
+			width: 90px;
+		}
+		#incPeriod{
+			height:41px;
+		}
+		
+		#graphic .key {
+            margin: 0 0 1em 0;
+            padding: 0;
+            list-style-type: none;
+        }
+
+        #graphic .key li {
+            display: inline-block;
+            margin: 0 18px 0 0;
+            padding: 0;
+            line-height: 15px;
+        }
+
+        #graphic .key  b {
+            display: inline-block;
+            width: 15px;
+            height: 15px;
+            margin-right: 6px;
+            float: left;
+			background-color:red;
+			border-radius:15px;
+			opacity: 0.8
+        }
+
+        #graphic .key label {
+            white-space: nowrap;
+        }
+		
+		#graphic .unit {
+           text-align: left;
+        }
 	</style>
 
 </head>
@@ -223,13 +280,21 @@
 <script src="https://cdn.ons.gov.uk/vendor/pym/1.3.2/pym.min.js" type="text/javascript"></script>
 <script src="./lib/swoopy-drag-d3v4.js" type="text/javascript"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+<script src="lib/d3v4jetpack.js" type="text/javascript"></script>
 	
 <body>
 	
 	<div class="wrapper">
 		<div class="dashboard">
 			<div id="graphic" >
-				<div id="inputs">
+				
+				<div class="decile_exp "></div>
+				<div class="col-sm-offset-1  reveal hidden-xs">
+					Click here to find where your household fits into the distribution.
+                    <button id="reveal" type="button" class=" btn btn--neutral btn--bold btn--large btnnext">How do you fit in?</button>
+							
+				</div>
+                <div id="inputs" class="hide hidden-xs">
 					<div class="row">
 							<div id="adultfor" class="form-group col-sm-8 col-xs-12">
 
@@ -284,9 +349,15 @@
 								<div class="input-group-addon pound">£</div>
 								<input class="form-control inc" id="hhincome" placeholder="">
 							</div>
-
-							<button id="submit" type="submit" class=" btn btn--neutral btn--bold btn--large form-group btnnext">Find out how you compare</button>
-							<div class="popup">
+							<select id="incPeriod" class="form-control">
+                                <option value="1">Weekly</option>
+                                <option value="2" selected>Monthly</option>
+                                <option value="3">Yearly</option>
+                            </select>
+                            </br>
+							<button id="submit" type="submit" class=" btn btn--neutral btn--bold btn--large form-group btnnext">Show me...</button>
+							 <button id="refresh" type="button" class="hide btn btn--neutral btn--bold btn--large btnnext">Refresh</button>
+                            <div class="popup">
 							  <span class="popuptext" id="myPopup">
 								<p>Include all income you receive from wages, salaries, pensions, investments and cash benefits.</p>
 								<p>Cash benefits are those you receive as money. For example Child Benefit, Jobseeker's Allowance, Disability Living Allowance, State Pension, Tax Credits etc.</p>
@@ -296,37 +367,42 @@
 						  <!--<div class="form-group form-inline col-sm-4 col-xs-12 hidden-xs">
 							<p class="helppara" for="hhincome">Include all income you receive from wages, salaries, pensions, investments and cash benefits.</p><p class="helppara">Cash benefits are those you receive as money, they include Child Benefit, Jobseeker's Allowance, Disability Living Allowance, State Pensions, Tax Credits etc.</p>
 						</div>-->
+                        
+                           
+                        
 					</div>
 				</div>
-				<div class="decile_exp hide"></div>
 				<div class="container-fluid"> 
 					<div class="row">
-						<div class="col-sm-5 hidden-xs" id="graphic_bar">
-							<img src="fallback.png" alt="[Chart]" />
+						<div class="col-xs-12 col-sm-12" id="bar_annotation" >
+							<!--Your household has a <tspan class="tspans" id="high_low"></tspan> income than around <tspan class="tspans" id="percent_pop"></tspan> of the population. Households in your income decile <tspan class="tspans" id="your_decile">xx</tspan> had an inflation rate of <tspan class="tspans" id="percent_inflat"> </tspan> in March 2018. 
+							<div class="comparison">
+								<text class="comparison1"></text>
+								<div id="dropdown"></div>
+								<text class= "comparison2"></text>
+							</div>-->
+							<div class="" id="graphic_line">
+                            	<img src="fallback_line.png" alt="[Chart]" />
+							</div>
+							<div id="keypoints_line">
+								<p></p>
+							</div>
 						</div>
-						<div class="col-xs-12 visible-xs" id="bar_annotation" >
-							Your household has a <tspan class="tspans" id="high_low"></tspan> income than around <tspan class="tspans" id="percent_pop"></tspan> of the population. It experiances inflation of <tspan class="tspans" id="percent_inflat"> </tspan> 
-						</div>
-						<div class="col-sm-5 col-sm-offset-1 hidden-xs" id="graphic_line">
-							<img src="fallback.png" alt="[Chart]" />
-						</div>
-					</div>
-					<div class="row comparison">
-						<div class="comparison1"></div>
-						<div id="dropdown"></div>
-						<div class= "comparison2"></div>
-					</div>
-					<div class="row">
-						<div class="col-sm-12" id="graphic_dots">
-							<img src="fallback.png" alt="[Chart]" />
+						
+						<div class="col-xs-12 col-sm-12">
+							<!--By March 2018, households similar to yours experienced a price change of <tspan class= "tspans" id="price_change">X</tspan> since 2005, compared with 32% for the average CPIH (which covers all households). On average, your group spends the following proportion of expenditure on…-->
+							<div id="keypoints_dots">
+								<p></p>
+							</div>
+							<div id="graphic_dots"><img src="fallback_dot.png" alt="[Chart]" /></div>
+							<div id="keypoints_dots2">
+								<p></p>
+							</div>
 						</div>
 					</div>
 				</div>  
-				<div class="blurb hide">
-					<p></p>
-					<button id="refresh" type="button" class=" btn btn--neutral btn--bold btn--large btnnext">Refresh</button>
-							
-				</div>
+				
+				
 			</div>
 		</div>
 	</div>
@@ -334,16 +410,23 @@
 
 var graphic_dots = d3.select('#graphic_dots');
 var graphic_line = d3.select('#graphic_line');
-var graphic_bar = d3.select('#graphic_bar');
+var keypoints_line = d3.select('#keypoints_line');
+var keypoints_dots = d3.select('#keypoints_dots');
+var keypoints_dots2 = d3.select('#keypoints_dots2');
+		
 var pymChild = null;
-var deciles = [0, 12040, 15262, 17740, 20521, 23316, 27067, 31800, 37522, 49782];
-	
-
+var deciles = [0, 13697, 17534, 20486, 23640, 27317, 31666, 36835, 43363, 55391];
+			  
 function drawTieFighter(){
-	var threshold_sm =500;
+	var labels = ['Aggregate CPIH', "Decile 2", "Decile 9"]
+	var colourArray = ["#aaa", "#ff9933", "#36add9"]
+	var threshold_sm =550;
+	var threshold_md_dots = 680;
+	//console.log(parseInt(graphic_dots.style("width")))
 	
 	if(parseInt(graphic_dots.style("width"))<threshold_sm){
-		ball = 5;
+		//console.log("sm")
+		ball = 6;
 		var margin = {	top: dvc_dots.optional.margin_sm[0], 
 						right: dvc_dots.optional.margin_sm[1], 
 						bottom: dvc_dots.optional.margin_sm[2], 
@@ -351,17 +434,32 @@ function drawTieFighter(){
 		var chart_width = parseInt(graphic_dots.style("width")) - margin.left - margin.right;
 		var height = Math.ceil((chart_width * dvc_dots.optional.aspectRatio_sm[1]) / dvc_dots.optional.aspectRatio_sm[0]) - margin.top - margin.bottom;
 	
-	} else {
-		ball = 6
+	} else if (parseInt(graphic_dots.style("width"))< threshold_md_dots ){
+		//console.log("md")
+		ball = 7
 		var margin = {	top: dvc_dots.optional.margin_md[0], 
 						right: dvc_dots.optional.margin_md[1], 
 						bottom: dvc_dots.optional.margin_md[2], 
 						left: dvc_dots.optional.margin_md[3]};
 		var chart_width = parseInt(graphic_dots.style("width")) - margin.left - margin.right;
 		var height = Math.ceil((chart_width * dvc_dots.optional.aspectRatio_md[1]) / dvc_dots.optional.aspectRatio_md[0]) - margin.top - margin.bottom;
+	} else {
+		//console.log("lg")
+		
+		ball = 8
+		var margin = {	top: dvc_dots.optional.margin_lg[0], 
+						right: dvc_dots.optional.margin_lg[1], 
+						bottom: dvc_dots.optional.margin_lg[2], 
+						left: dvc_dots.optional.margin_lg[3]};
+		var chart_width = parseInt(graphic_dots.style("width")) - margin.left - margin.right;
+		var height = Math.ceil((chart_width * dvc_dots.optional.aspectRatio_lg[1]) / dvc_dots.optional.aspectRatio_lg[0]) - margin.top - margin.bottom;
+		
 	}
  	// clear out existing graphics
 	graphic_dots.selectAll("*").remove();
+	keypoints_dots.selectAll("*").remove();
+	keypoints_dots2.selectAll("*").remove();
+			
 			
 	var xDot = d3.scaleLinear()
 		.range([ 0, chart_width]);
@@ -396,22 +494,34 @@ function drawTieFighter(){
 				};
 			});
 	
-	var xDotDomain = [0, 150]
+	var xDotDomain = [0, 40]
 	
 	xDot.domain(xDotDomain);
 	
-//	var legend = d3.select('#graphic_dots').append('svg')
-//			.attr("width", chart_width + margin.left + margin.right)
-//			.attr("height", height + margin.top + margin.bottom + 30)
-//			.append("g")
-//			.attr("id", "legend")
-	
+	var legend = d3.select('#graphic_dots').append('ul')
+                .attr('class', 'key')
+            	.selectAll('g')
+                .data(labels)
+            	.enter().append('li')
+				.attr("id", function(d,i){ return "key"+i })
+                .attr('class', function(d, i) {
+					if(i==1){
+						return "anno"
+					}	
+				});
+       	
+		legend.append('b')
+			.style("background-color", function(d,i) { return colourArray[i]; })
+       
+	    legend.append('label')
+            .html(function(d,i) { return labels[i]; });
+	 
 	//create svg for chart
 	var svg = d3.select('#graphic_dots').append('svg')
 			.attr("id","tie_fighter_chart")
 			.style("background-color","#fff")
 			.attr("width", chart_width + margin.left + margin.right)
-			.attr("height", height + margin.top + margin.bottom +80)
+			.attr("height", height + margin.top + margin.bottom)
 			.append("g")
 			.attr("transform", "translate(" + margin.left + "," + (margin.top) + ")")
 
@@ -435,7 +545,8 @@ function drawTieFighter(){
 		 .attr("x",chart_width)
 		 .attr("dy", ".71em")
 		 .style("text-anchor", "end")
-		 .text(dvc.essential.xAxisLabel);
+		 .text("Average % share of expenditure, 2005 to 2018");
+
 
 	//move the x number down a bit
 	d3.select("#graphic_dots").selectAll(".tick").select("text").attr("transform","translate(0,10)")
@@ -444,7 +555,7 @@ function drawTieFighter(){
 	svg.append('g')
 		.attr('class', 'y axis')
 		.attr('transform', 'translate(' + 0  + ', 0)')
-		.call(yDotAxis);
+		//.call(yDotAxis);
 
 	d3.select(".y.axis").selectAll("line").remove();
 
@@ -453,36 +564,238 @@ function drawTieFighter(){
 
 graphic_data_dots.columns.forEach(
 		function(decile){
-			if(decile != "name" && decile != "inflation_by_COICOP"){
+			if (decile == "inflation_by_COICOP"){
+//				svg.append("g").attr("class", "inflat_vals")
+//					.selectAll("text")
+//					.data(lines)
+//					.enter()
+//					.append('text')
+//					.attr("transform", function(d,i){ return "translate("+ (chart_width+20) +","+ (yDot(d.name) +10) +")" })
+//					.text(function(d,i){ return d.inflation_by_COICOP})
+			
+				placement = [24.7, 14.8, 12.6, 11.9, 11.4, 8.9, 5.5, 5.9, 4.5, 2.5, 2.2, 3.3]
+				
+				svg.append("g").attr("class", "y axis labels")
+					.selectAll("text")
+					.data(lines)
+					.enter()
+					.append('text')
+					.attr("text-anchor", function(d,i){ 
+						if(i==0){
+							return "end"
+						} else {
+							return "start"
+						}
+					 })
+					.attr("transform", function(d,i){
+						if(i==0){
+							return "translate("+ ( xDot(placement[i]-2))+","+ (yDot(d.name)) +")" 
+						} else {
+							return "translate("+ ( xDot(placement[i]+2))+","+ (yDot(d.name)) +")" 
+						}
+					})
+					.text(function(d,i){ return d.name})
+				
+				
+				svg.append("g").attr("class", "dotted_lines")
+					.selectAll("line")
+					.data(lines)
+					.enter()
+					.append('line')
+					.attr("stroke", "#ccc")
+					.attr("stroke-dasharray",5)
+					.attr("x1", function(d,i){ 
+							if(i==0){ 
+								return xDot(placement[i]-0.5) 
+							} else {
+								return xDot(placement[i]+0.5) 
+							} 
+					})
+					.attr("x2", function(d,i){ 
+							if(i==0){ 
+								return xDot(placement[i]-2) 
+							} else {
+								return xDot(placement[i]+2) 
+							}
+					
+					})
+					.attr("y1", function(d,i){ return yDot(d.name) })
+					.attr("y2", function(d,i){ return yDot(d.name) })
+					
+			} else if(decile != "name" && decile != "inflation_by_COICOP"){
 				circles.append("g").attr("class", "circle_"+decile)
 					.selectAll("circle")
 					.data(lines)
 					.enter()
 					.append('circle')
 					.attr('class',"circle "+decile)
-					.attr("fill","grey")
-					//.attr("stroke-width", "1px")
-					//.attr("stroke", "black")
-					.attr("opacity", "0.4")
+					.attr("fill","none")
+					.attr("stroke-width", "1px")
+					.attr("stroke", "#ccc")
+					.attr("stroke-opacity", "0.8")
 					.attr('cx',function(d,i) { return xDot(d[decile]); })
 					.attr('cy',function(d,i) { return yDot(d.name); })
 					.attr('r', ball);
-			} else if (decile == "inflation_by_COICOP"){
-				svg.append("g").attr("class", "inflat_vals")
-					.selectAll("text")
-					.data(lines)
-					.enter()
-					.append('text')
-					.attr("transform", function(d,i){ return "translate("+ (chart_width+20) +","+ (yDot(d.name) +10) +")" })
-					.text(function(d,i){ return d.inflation_by_COICOP})
-			}
+				
+				
+				
+			} 
 		}
 	)
 	
 	
+	//annotations
+	anno3_cx=[]
+	anno3_cy=[]
+
+	d3.selectAll(".circle_decile11")
+			.selectAll(".decile11")
+			.each( function(d,i){
+
+				anno3_cx.push(d3.select(this).attr("cx"))
+				anno3_cy.push(d3.select(this).attr("cy"))
+
+
+				d3.selectAll(".circles").append("circle")
+					.style("stroke", "#aaa" )
+					.style("fill", "#aaa")
+					.attr("class", "")
+					.style("stroke-width", 2)
+					.attr("stroke-opacity", 0.7/*function(){
+						if(i==7){
+							return "0.7"
+						} else {
+							return "0.2"
+						}
+					}*/)			
+					.attr("fill-opacity", 0.7 /*function(){
+						if(i==7){
+							return "0.7"
+						} else {
+							return "0.2"
+						}
+					}*/)
+					.attr("cx", function(d){ return  anno3_cx[i]})
+					.attr("cy", function(d){ return anno3_cy[i]})
+					.attr('r', ball)
+			})	
+	
+	anno_cx=[]
+	anno_cy=[]
+
+	d3.selectAll(".circle_decile2")
+			.selectAll(".decile2")
+			.each( function(d,i){
+
+				anno_cx.push(d3.select(this).attr("cx"))
+				anno_cy.push(d3.select(this).attr("cy"))
+
+
+				d3.selectAll(".circles").append("circle")
+					.style("stroke", "#ff9933" )
+					.style("fill", "#ff9933")
+					.attr("class", "anno")
+					.style("stroke-width", 2)
+					.attr("stroke-opacity",0.7 /*function(){
+						if(i==0){
+							return "0.8"
+						} else {
+							return "0.3"
+						}
+					}*/)			
+					.attr("fill-opacity", 0.7 /*function(){
+						if(i==0){
+							return "0.8"
+						} else {
+							return "0.3"
+						}
+					}*/)
+					.attr("cx", function(d){ return  anno_cx[i]})
+					.attr("cy", function(d){ return anno_cy[i]})
+					.attr('r', ball)
+			})	
+	
+	
+	
+	anno2_cx=[]
+	anno2_cy=[]
+
+	d3.selectAll(".circle_decile9")
+			.selectAll(".decile9")
+			.each( function(d,i){
+
+				anno2_cx.push(d3.select(this).attr("cx"))
+				anno2_cy.push(d3.select(this).attr("cy"))
+
+
+				d3.selectAll(".circles").append("circle")
+					.style("stroke", "#36add9" )
+					.style("fill", "#36add9")
+					.attr("class", "anno")
+					.style("stroke-width", 2)
+					.attr("stroke-opacity", 0.7/*function(){
+						if(i==7){
+							return "0.7"
+						} else {
+							return "0.2"
+						}
+					}*/)			
+					.attr("fill-opacity", 0.7 /*function(){
+						if(i==7){
+							return "0.7"
+						} else {
+							return "0.2"
+						}
+					}*/)
+					.attr("cx", function(d){ return  anno2_cx[i]})
+					.attr("cy", function(d){ return anno2_cy[i]})
+					.attr('r', ball)
+			})
+			
+	
+	
+	
+	if (parseInt(graphic_dots.style("width")) <= 530) { 
+		d3.select("#keypoints_dots").append("p").style("color", "#FF9933")
+			.text('Lower income households spend proportionally more of their expenditure on "essentials" such as food and housing, and therefore they are affected more by price changes in these categories')
+		
+	//	d3.select("#keypoints_dots").append("p").text("However this is offset by the fact that they spend proportionaly less in other categories.")
+		
+		d3.select("#keypoints_dots2").append("p").style("color", "#36add9").text('Higher income households spend proportionally less on essentials but more on "luxury" goods such as recreation and culture, and restaurants and hotels')
+	} else {
+		svg.append("g")
+			.attr("transform", "translate("+ xDot(32) +","+  yDot("Transport") +")")
+			.attr("class", "anno")
+			.append("text")
+			.attr("fill", "#ff9933")
+			.attr("text-anchor", "middle")
+			.tspans(function(d) {
+				return d3.wordwrap('Lower income households spend proportionally more of their expenditure on "essentials" such as food and housing, and therefore they are affected more by price changes in these categories', 35);  
+			});
+
+	/*	svg.append("g")
+			.attr("transform", "translate("+ xDot(33) +","+  (yDot("Food & non-alcoholic drinks")+15) +")")
+			.attr("class", "anno")
+			.append("text")
+			//.attr("fill", "#ccc")
+			.attr("text-anchor", "middle")
+			.tspans(function(d) {
+				return d3.wordwrap("However this is offset by the fact that they spend proportionaly less in other categories", 28);  
+			});*/
+
+		svg.append("g")
+			.attr("transform", "translate("+ xDot(33) +","+  yDot("Furniture, household equip. & maintenance") +")")
+			.attr("class", "anno")
+			.append("text")
+			.attr("fill", "#36add9")
+			.attr("text-anchor", "middle")
+			.tspans(function(d) {
+				return d3.wordwrap('Higher income households spend proportionally less on essentials but more on "luxury" goods such as recreation and culture, and restaurants and hotels', 30);  
+			});
+	}
+	
+	
 	// If you have labels rather than years then you can split the lines using a double space (in the CSV file).
-
-
 	function insertLinebreaksLabels() {
 					var str = this.textContent;
 
@@ -494,31 +807,55 @@ graphic_data_dots.columns.forEach(
 						var tspan = d3.select(this).append('tspan').text(words[j]);
 						if (j > 0)
 							tspan
-							.attr('x', -10)
+							.attr('x', 0)
 							.attr('dy', '1em');
 							}
 	};
 
-	d3.selectAll(".y text").each(insertLinebreaksLabels)
+	//d3.selectAll(".labels text").each(insertLinebreaksLabels)
 	
-	d3.select(".container-fluid").classed("hide", true)
+	//d3.select(".container-fluid").classed("hide", true)
 } //end drawTieFighter()
 
 		
 function drawLineChart(){
-	if(parseInt(d3.select("body").style("width"))>=500){
-	var margin = {	top: 	dvc.optional.margin_sm[0],
-					right: 	dvc.optional.margin_sm[1],
-					bottom: dvc.optional.margin_sm[2],
-					left: 	dvc.optional.margin_sm[3]
-				};
-	var size = 0;	// used for margin_centre and x_ticks
-	var chart_width = parseInt(graphic_line.style("width")) - margin.left - margin.right;
-	var height = Math.ceil((chart_width * dvc.optional.aspectRatio_sm[1]) / dvc.optional.aspectRatio_sm[0]) - margin.top - margin.bottom;
+	var threshold_md = 680;
+	var threshold_sm = dvc.optional.mobileBreakpoint;
+	
+	//set variables for chart dimensions dependent on width of #graphic
+	if (parseInt(graphic_line.style("width")) < threshold_sm) {
+		var margin = {	top: 	dvc.optional.margin_sm[0],
+						right: 	dvc.optional.margin_sm[1],
+						bottom: dvc.optional.margin_sm[2],
+						left: 	dvc.optional.margin_sm[3]
+					};
+		var size = 0;	// used for margin_centre and x_ticks
+		var chart_width = parseInt(graphic_line.style("width")) - margin.left - margin.right;
+		var height = Math.ceil((chart_width * dvc.optional.aspectRatio_sm[1]) / dvc.optional.aspectRatio_sm[0]) - margin.top - margin.bottom;
+	} else if (parseInt(graphic_line.style("width")) < threshold_md){
+		var margin = {	top: 	dvc.optional.margin_md[0],
+						right: 	dvc.optional.margin_md[1],
+						bottom: dvc.optional.margin_md[2],
+						left: 	dvc.optional.margin_md[3]
+					};
+		var size = 1;
+		var chart_width = parseInt(graphic_line.style("width")) - margin.left - margin.right;
+		var height = Math.ceil((chart_width * dvc.optional.aspectRatio_md[1]) / dvc.optional.aspectRatio_md[0]) - margin.top - margin.bottom;
+	} else {
+		var margin = {	top: 	dvc.optional.margin_lg[0],
+						right: 	dvc.optional.margin_lg[1],
+						bottom: dvc.optional.margin_lg[2],
+						left: 	dvc.optional.margin_lg[3]
+					};
+		var size = 2;
+		var chart_width = parseInt(graphic_line.style("width")) - margin.left - margin.right;
+		var height = Math.ceil((chart_width * dvc.optional.aspectRatio_lg[1]) / dvc.optional.aspectRatio_lg[0]) - margin.top - margin.bottom;
+	}
+
 	
 	// clear out existing graphics
 	graphic_line.selectAll("*").remove();
-	
+	keypoints_line.selectAll("*").remove();
 	
 	var x = d3.scaleTime()
 		        .range([0, chart_width]);
@@ -529,19 +866,44 @@ function drawLineChart(){
 	x.domain(d3.extent(graphic_data, function(d) { return d.date; }));
 
 	var xAxis = d3.axisBottom(x)
-					.tickFormat(function(d,i) {
-						var fmt = d3.timeFormat(dvc.optional.xAxisTextFormat_sm_md_lg[0]);
-						//console.log("S "+fmt(d));
-						return '\u2019' + fmt(d);
-					 })
-					.tickPadding(5)
+		.tickFormat(function(d,i) {
+			//specify date format for x axis depending on #graphic width
+			if (parseInt(graphic_line.style("width")) <= threshold_sm) {
+				var fmt = d3.timeFormat(dvc.optional.xAxisTextFormat_sm_md_lg[0]);
+				//console.log("S "+fmt(d));
+				return '\u2019' + fmt(d);
+			} else if (parseInt(graphic_line.style("width")) <= threshold_md){
+				var fmt = d3.timeFormat(dvc.optional.xAxisTextFormat_sm_md_lg[1]);
+				//console.log("M "+fmt(d));
+				return  fmt(d);
+			} else {
+				//console.log(dvc.optional.xAxisTextFormat_sm_md_lg[2] + ",  " + d);
+				var fmt = d3.timeFormat(dvc.optional.xAxisTextFormat_sm_md_lg[2]);
+				//console.log("L "+fmt(d));
+				return fmt(d);
+			}
+		})
+		.tickPadding(5)
 	
 	//specify number of ticks on x axis and whether 1st and last data point labels are included
-	xAxis.tickValues(x.ticks(dvc.optional.x_num_ticks_sm_md_lg[0]).concat( x.domain() ));
-	
+	if(parseInt(graphic_line.style("width"))<threshold_sm){
+		xAxis.tickValues(x.ticks(dvc.optional.x_num_ticks_sm_md_lg[0])/*.concat( x.domain() )*/);
+	} else if (parseInt(graphic_line.style("width")) <= threshold_md){
+		xAxis.tickValues(x.ticks(dvc.optional.x_num_ticks_sm_md_lg[1])/*.concat( x.domain() )*/);
+	} else {
+		xAxis.tickValues(x.ticks(dvc.optional.x_num_ticks_sm_md_lg[2])/*.concat( x.domain() )*/);
+	}
+
 	var yAxis = d3.axisLeft(y);
 	
-	yAxis.ticks(dvc.optional.y_num_ticks_sm_md_lg[0])
+	//specify number or ticks on y axis
+	if (parseInt(graphic_line.style("width")) <= threshold_sm) {
+		yAxis.ticks(dvc.optional.y_num_ticks_sm_md_lg[0])
+	 } else if (parseInt(graphic_line.style("width")) <= threshold_md){
+		yAxis.ticks(dvc.optional.y_num_ticks_sm_md_lg[1])
+	 } else {
+		yAxis.ticks(dvc.optional.y_num_ticks_sm_md_lg[2])
+	 }
 	
 	//gridlines
 	var y_axis_grid = function() { return yAxis; }
@@ -595,14 +957,7 @@ function drawLineChart(){
 	}
 
 	y.domain(yDomain);
-	
-	//create svg for chart
-	// var legend = d3.select('#graphic_line').append('svg')
-					//.attr("width", chart_width + margin.left + margin.right)
-					//.attr("height", margin.bottom +330) //height + margin.top + margin.bottom +30)
-					//.append("g")
-					//.attr("id", "legend");
-	
+	 
 	var svg = d3.select('#graphic_line').append('svg')
 					.attr("id","line_chart")
 					.style("background-color","#fff")
@@ -631,7 +986,7 @@ function drawLineChart(){
 		//y axis label
 		svg.append("text")
 			//.attr('class', 'unit')
-			.attr('transform','translate(' + -margin.left + ',-10)') // " + eval(-margin.top + (lineNo+1)*20) + "
+			.attr('transform','translate(' + -20 + ',-10)') // " + eval(-margin.top + (lineNo+1)*20) + "
 			.attr("font-size","12px")
 			.attr("fill","#666")
 			.text(function(d,i) { return dvc.essential.yAxisLabel});
@@ -645,63 +1000,6 @@ function drawLineChart(){
 
 		d3.select(".x").select("path").style("stroke", "#666")
 	
-//	//create centre line if required
-//	if (dvc.optional.centre_line == true){
-//		svg.append("line")
-//			//.attr("id","centreline")
-//			.attr("stroke", "#CCC")
-//			.attr("stroke-width", 3)
-//			.attr('y1',y(dvc.optional.centre_line_value))
-//			.attr('y2',y(dvc.optional.centre_line_value))
-//			.attr('x1',0)
-//			.attr('x2',chart_width);
-//	} else if(yDomain[0] <0){
-//		svg.append("line")
-//			//.attr("id","centreline")
-//			.attr("stroke", "#CCC")
-//			.attr("stroke-width", 3)
-//			.attr('y1',y(0))
-//			.attr('y2',y(0))
-//			.attr('x1',0)
-//			.attr('x2',chart_width);
-//	}
-
-	
-	//create vertical line if required
-	if (dvc.optional.vertical_line == true){
-
-		dvc.optional.annotateLineX1_Y1_X2_Y2.forEach(function(d,i) {
-
-		svg.append("line")
-			.attr('x1',x(d3.timeParse(dvc.essential.dateFormat)(dvc.optional.annotateLineX1_Y1_X2_Y2[i][0][0])))
-			.attr('x2',x(d3.timeParse(dvc.essential.dateFormat)(dvc.optional.annotateLineX1_Y1_X2_Y2[i][1][0])))
-			.attr('y1',y(dvc.optional.annotateLineX1_Y1_X2_Y2[i][0][1]))
-			.attr('y2',y(dvc.optional.annotateLineX1_Y1_X2_Y2[i][1][1]))
-			.style('stroke', '#888')
-			.style('stroke-width', 2);
-			//.style('stroke-dasharray', '5 5');   ,dash px,space px
-
-
-		})
-	}
-
-//	//create rectangle
-//	if (dvc.optional.annotateRect == true){
-//
-//		dvc.optional.annotateRectX_Y.forEach(function(d,i) {
-//
-//		svg.append("rect")
-//			.attr('x',x(d3.timeParse(dvc.essential.dateFormat)(dvc.optional.annotateRectX_Y[i][0][0]))  )
-//			.attr('y',y(dvc.optional.annotateRectX_Y[i][0][1]))
-//			.attr('height',y( dvc.optional.annotateRectX_Y[i][1][1] ) - y(dvc.optional.annotateRectX_Y[i][0][1])  )
-//			.attr('width',x(d3.timeParse(dvc.essential.dateFormat)(dvc.optional.annotateRectX_Y[i][1][0])) - x(d3.timeParse(dvc.essential.dateFormat)(dvc.optional.annotateRectX_Y[i][0][0])))
-//			.style('fill', dvc.optional.lineColor_opcty[i][0] )
-//			.style('stroke-width', 2)
-//			.style('opacity', dvc.optional.lineColor_opcty[i][1] );
-//
-//		})
-//	}
-	
 	//create lines
 	svg.append('g').attr("class", "lines").selectAll('path')
 		.data(d3.entries(lines))
@@ -709,16 +1007,165 @@ function drawLineChart(){
 		.append('path')
 			.attr('class', function(d){
 				 return 'line ' + d.key})
-			.style("stroke", "grey")
-			.style("opacity", 0.4)
+			.style("stroke", "#dadada")
+			.style("opacity", 1)
 			.style("fill", 'none')
-			.style("stroke-width", 2)
+			.style("stroke-width", 1)
 			.style("stroke-linecap", 'round')
 			.style("stroke-linejoin", 'round')
 			.attr('d', function(d) {
 				return line(d.value);
 			});
+			
+	d3.select('.lines')
+		.append("path")
+		.attr("class", "")
+		.attr("d", d3.select(".lines").select(".decile11").attr("d"))
+		.attr("id","selected_line")
+		.style("fill", "none")
+		.style("opacity", 0.9)
+		.style("stroke", "#aaa")
+		.style("stroke-width", 2);
+		
+	d3.select('.lines')
+		.append("path")
+		.attr("d", d3.select(".lines").select(".decile2").attr("d"))
+		.attr("class", "anno")
+		.attr("id","selected_line")
+		.style("fill", "none")
+		.style("opacity", 1)
+		.style("stroke", "#ff9933")
+		.style("stroke-width", 2);
+	
+	d3.select('.lines')
+		.append("path")
+		.attr("class", "anno")
+		.attr("d", d3.select(".lines").select(".decile9").attr("d"))
+		.attr("id","selected_line")
+		.style("fill", "none")
+		.style("opacity", 1)
+		.style("stroke", "#36add9")
+		.style("stroke-width", 2);
+		
 
+	
+	svg.append("g")
+		.attr("transform", function() {
+				if (parseInt(graphic_line.style("width")) <= 480) {
+				   return "translate("+ x(new Date("2009-01-23")) +","+  y(6.5) +")"
+			    } else if (parseInt(graphic_line.style("width")) <= 550) {
+				   return "translate("+ x(new Date("2009-01-23")) +","+  y(6.2) +")"
+			    } else if (parseInt(graphic_line.style("width")) <= threshold_md) {
+					return "translate("+ x(new Date("2008-10-23")) +","+  y(6.0) +")"
+			    } else {
+					return "translate("+ x(new Date("2008-10-23")) +","+  y(6.5) +")"
+			    }	  
+		 })
+		.attr("class", "anno")
+		.append("text")
+		.attr("text-anchor", "start")
+		.tspans(function(d) {
+			if (parseInt(graphic_line.style("width")) <= threshold_sm) {
+				return d3.wordwrap("The greatest variation in inflation rates between income deciles was in January 2009.", 30);  
+			} else {
+				return d3.wordwrap("The greatest variation in inflation rates between income deciles was in January 2009.", 30);  
+			} 
+		});
+		
+		
+	svg.append("g")
+		.attr("transform", function(){
+			if (parseInt(graphic_line.style("width")) <= 480) {
+				return "translate("+ x(new Date("2005-07-01")) +","+  y(6.4) +")"
+			} else {
+				return "translate("+ x(new Date("2005-10-01")) +","+  y(6.1) +")"
+			}		
+		})
+		.attr("class", "anno")
+		.append("text")
+		.attr("fill", "#9c9c9c")
+		.attr("text-anchor", "start")
+		.tspans(function(d) {
+			return d3.wordwrap("12-month growth rate, %", 9);
+		});
+	
+	svg.append("g")
+		.attr("transform", "translate("+ x(new Date("2009-04-10")) +","+  y(1.5) +")")
+		.attr("class", "anno")
+		.append("text")
+		.attr("fill", "#36add9")
+		.attr("text-anchor", "end")
+		.tspans(function(d) {
+			return d3.wordwrap("Decile 9: 2.1%.", 9);  
+		});
+		
+	
+	svg.append("g")
+		.attr("transform", "translate("+ x(new Date("2009-02-01")) +","+  y(4.5) +")")
+		.attr("class", "anno")
+		.append("text")
+		.attr("fill", "#ff9933")
+		.tspans(function(d) {
+			return d3.wordwrap("Decile 2: 3.9%.", 9);  
+		});
+	
+		
+	svg.append("g")
+		.attr("class", "anno")
+		.attr("transform", function(){
+			if (parseInt(graphic_line.style("width")) <= 480) {
+				return "translate("+ x(new Date("2018-03-15")) +","+  y(5) +")"
+			} else if(parseInt(graphic_line.style("width")) <= 825) {
+				return "translate("+ x(new Date("2018-03-15")) +","+  y(5) +")"
+			} else {
+				return "translate("+ x(new Date("2018-03-15")) +","+  y(4.2) +")"
+			}
+		})
+		.append("text")
+		.attr("text-anchor", "end")
+		.tspans(function(d) {
+			return d3.wordwrap("In March 2018, inflation rates were between 2.1% (in income decile 4) and 2.4% (in income decile 9).", 23);  
+		});
+	
+	svg.append("g")
+		.attr("class", "anno")
+		.attr("id", "anno_rect")
+		.append("rect")
+		.attr("x", x(new Date("2009-01-01")) )
+		.attr("width", x(new Date("2009-01-31")) -  x(new Date("2009-01-01")) )
+		.attr("y", y(5.5))
+		.attr("height", y(0)-y(5.5))
+		.style("fill", "grey")
+		.style("opacity", 0.1)
+		
+svg.append("g")
+		.attr("transform", "translate("+ x(new Date("2012-04-10")) +","+  y(5.5) +")")
+		.attr("class", "tspans")
+		.append("text")
+		.attr("id", "your_decile")
+		.attr("fill", "#3CB0F9")
+		.attr("text-anchor", "end")
+		.text("")
+		
+	
+//	svg.append('marker')
+//		.attr('id', 'arrow')
+//		.attr('viewBox', '-10 -10 20 20')
+//		.attr('markerWidth', 20)
+//		.attr('markerHeight', 20)
+//		.attr('orient', 'auto')
+//		.append('path')
+//		.attr("stroke", "black")
+//		.attr('d', 'M-6.75,-6.75 L 0,0 L -6.75,6.75')
+//
+//	d3.selectAll(".annopaths")
+//		.attr("stroke", "black")
+//		.attr('marker-end', 'url(#arrow)');
+	
+	
+
+	  
+	
 	// css fix
 	d3.selectAll("path").attr("fill","none");
 
@@ -735,276 +1182,11 @@ function drawLineChart(){
 	d3.selectAll(".x line")
 		.attr("stroke","#CCC")
 		.attr("stroke-width","1px")
-		.style("shape-rendering","crispEdges");
+		.style("shape-rendering","crispEdges");	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-//	d3.select('#'+measures[j])
-//		.select(".title_div")
-//		.append("h5")
-//		.attr("class", "measure_caption")
-//		.html(config[j].measure);
-//		
-//	x = d3.scaleTime()
-//			.range([0, chart_width])
-//			.domain(d3.extent(nest[j].values, function(d) { 
-//				return d.date; 
-//			}));
-//	
-//	xAxis = d3.axisBottom(x)
-//		.ticks(d3.timeYear.every(+(config[j].tickNo)))
-//		.tickFormat(d3.timeFormat("%Y"))
-//	
-//	y = d3.scaleLinear()
-//				.range([height, 0])
-//		
-//	y.domain([config[j].ymin,config[j].ymax]);
-//		
-//																				
-//		var svg = d3.select('#'+measures[j]).select(".graphic").append('svg')
-//				.attr("width", chart_width + margin.left + margin.right)
-//				.attr("height", height + margin.top + margin.bottom)
-//				.append("g")
-//				.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-//		
-//			svg.append("g")
-//				  .attr("class", "x axis")
-//				  .attr("transform", "translate(0," + height + ")")
-//				  .call(xAxis.tickValues(x.ticks(1).concat( x.domain() )));						
-//	
-//		svg.append("g")
-//			  .attr("class", "y axis")
-//			  .call(d3.axisLeft(y).ticks(5).tickSize( -chart_width));	  
-//
-//		line =d3.line()
-//			.x(function(d,i) { 
-//					return x(d.date); 
-//			})
-//			.y(function(d,i) { 
-//					return y(d.amt); 
-//			})
-//			.curve(d3.curveCardinal);
-//		
-//			// parse data into columns
-//	
-//	
-//	nest_section = nest[j].values;
-//	
-//	var lines = {};
-//		    for (var columns in nest_section[0]) {
-//		        if (columns == 'date') continue;
-//				if (columns == 'category') continue;
-//		        lines[columns] = nest_section.map(function(d) {
-//		           return {
-//		                'date': d.date,
-//		                'amt': d[columns]
-//		            };
-//		        });
-//		    }
-//			
-//			//create lines
-//			    svg.append('g').attr("class","lines").selectAll('path')
-//			        .data(d3.entries(lines))
-//			        .enter()
-//			        .append('path')
-//			            .attr('class', function(d){ return 'line ' +d.key })
-//						.style("stroke", "#d0d0d0" )
-//						.style("fill", 'none')
-//						.style("stroke-width", 1)
-//						.style("stroke-linecap", 'round')
-//						.style("stroke-linejoin", 'round')
-//			            .attr('d', function(d) {
-//			                return line(d.value);
-//			            });
-//		
-//				svg.append("g").attr("class", "circles").selectAll("circle")
-//					.data(d3.entries(lines))
-//			        .enter()
-//			        .append('circle')
-//			            .attr('class', function(d){ return 'circle ' +d.key })
-//						.style('fill', 'none')
-//						.attr("cx", function(d){
-//							return x(d.value[d.value.length-1].date);
-//												})
-//						.attr("cy", function(d){
-//							return y(d.value[d.value.length-1].amt);
-//												})
-//						.attr("r", 2)
-//			            
-//				svg.append("g").attr("class", "values").selectAll("text")
-//					.data(d3.entries(lines))
-//			        .enter()
-//			        .append('text')
-//			            .attr('class', function(d){ return 'value ' +d.key })
-//						.style('opacity', 0)
-//						.attr("text-anchor", "end")
-//						.attr("x", function(d){
-//							return x(d.value[d.value.length-1].date)+5;
-//						})
-//						.attr("y", function(d){
-//							return y(d.value[d.value.length-1].amt)-10;
-//						})
-//						.attr("r", 2)
-//						.text(function(d) {
-//			                return d.value[d.value.length-1].amt
-//			            });
-//	
-//					j++;	
-//					
-//					if(j<config.length){
-//						chartData = {}; 
-//						//getDimensions();
-//						drawLineChart();  
-//					} else {
-//						//d3.select(".container-fluid").classed("hide", true)					
-//					}
-//					
-	}
 	drawTieFighter();
 	} //end drawLineChart()
 	
-function drawBarChart(){
-	if(parseInt(d3.select("body").style("width"))>=500){
-	var margin = {top: dvc_bar.optional.margin_sm[0], right: dvc_bar.optional.margin_sm[1], bottom: dvc.optional.margin_sm[2], left: dvc_bar.optional.margin_sm[3]};
-	var chart_width = parseInt(graphic_bar.style("width"))- margin.left - margin.right;
-	var height = Math.ceil((chart_width * dvc_bar.optional.aspectRatio_sm[1]) / dvc_bar.optional.aspectRatio_sm[0]) - margin.top - margin.bottom;
-	
-	graphic_bar.selectAll("*").remove();
-	
-	xBar = d3.scaleBand()
-				.rangeRound([0, chart_width])
-				.paddingInner(0.1);
-
-	yBar = d3.scaleLinear()
-		.range([ height, 0]);
-
-	xBar.domain(graphic_data_bar.map(function(d) { return d.date; }));
-
-	var xBarAxis = d3.axisBottom(xBar)
-//		.tickFormat(function(d,i) {
-				//return i % 4 ? "" : '\u2019' + d.substring(2,4);
-//		})
-
-	var yBarAxis = d3.axisLeft(yBar);
-	yBarAxis.ticks(dvc_bar.optional.y_num_ticks_sm_md_lg[0])
-	
-	//gridlines
-	var yBar_axis_grid = function() { return yBarAxis; }
-
-	 // parse data into columns
-		    var bars = {};
-		    for (var column in graphic_data_bar[0]) {
-		        if (column == 'date') continue;
-		        bars[column] = graphic_data_bar.map(function(d) {
-		            return {
-		                'date': d.date,
-		                'amt': d[column]
-		            };
-		        });
-		    }
-
-	if (dvc_bar.essential.yAxisScale == "auto_zero_max"){
-			   var yBarDomain = [
-								0,
-								d3.max(d3.entries(bars), function(c) {
-									return d3.max(c.value, function(v) {
-										var n = v.amt;
-										return Math.ceil(n);
-									});
-								})
-					 ];
-	} else if (dvc_bar.essential.yAxisScale == "auto_min_max"){
-		var yBarDomain = [
-						d3.min(d3.entries(bars), function(c) {
-							return d3.min(c.value, function(v) {
-								var n = v.amt;
-								return Math.floor(n);
-							});
-						}),
-
-						d3.max(d3.entries(bars), function(c) {
-							return d3.max(c.value, function(v) {
-								var n = v.amt;
-								return Math.ceil(n);
-							});
-						})
-					];
-	} else {
-	   var yBarDomain = dvc_bar.essential.yAxisScale;
-	}
-
-	yBar.domain(yBarDomain);
-
-	//create svg for chart
-	var svg = d3.select('#graphic_bar').append('svg')
-		.attr("id","barchart")
-		.style("background-color","#fff")
-		.attr("width", chart_width + margin.left + margin.right)
-		.attr("height", height + margin.top + margin.bottom)
-		.append("g")
-		.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
-	   svg.append('g')
-			.attr('class', 'y axis')
-			.call(yBarAxis.tickSize(-chart_width, 0))
-		
-		svg.append('g')
-			.attr('class', 'y grid')
-			.call(yBar_axis_grid()
-				.tickSize(-chart_width, 0, 0)
-				.tickFormat('')
-			); 
-	
-	//create x axis, if y axis doesn't start at 0 drop x axis accordingly
-	svg.append('g')
-		.attr('class', 'x axis')
-		.attr('transform', 'translate(0,' + height  + ')')
-		.call(xBarAxis);
-
-	 d3.select(".x").select("path").style("stroke", "#666")
-	
-	svg.append('g').attr("class","bars").selectAll('rect')
-		.data(bars["growth"])
-		.enter()
-		.append('rect')
-		.attr("fill", "grey")
-		.attr("opacity", 0.4)
-		.attr("class", function(d,i){ return "bar decile"+(i+1)} )
-		.attr("width", xBar.bandwidth())
-		.attr("x", function(d) { return xBar(d.date); })
-		.attr("y", function(d) { return yBar(Math.max(0, d.amt)); })
-		.attr("height", function(d) { return 0 + Math.abs(yBar(d.amt) - yBar(0)); });
-
-		//create centre line if required
-		if (dvc.optional.centre_line == true){
-			svg.append("line")
-				.attr("id","centreline")
-				.attr('y1',yBar(dvc_bar.optional.centre_line_value))
-				.attr('y2',yBar(dvc_bar.optional.centre_line_value))
-				.attr('x1',0)
-				.attr('x2',chart_width);
-		} else if(yBarDomain[0] <0){
-			svg.append("line")
-				.attr("id","centreline")
-				.attr('y1',yBar(0))
-				.attr('y2',yBar(0))
-				.attr('x1',0)
-				.attr('x2',chart_width);
-		}
-	
-		
-	}
-	
-	drawLineChart()
-} //end drawBarChart()	
 	
 	
 //check to see if the web browser can handle 'inline svg'
@@ -1024,45 +1206,29 @@ if (Modernizr)
 
 					});
 
-					d3.json("./data/config_bar.json", function(error, config_bar) {
-					dvc_bar=config_bar
+					//load config
+					d3.json("./data/config_dots.json", function(error, config_dots) {
+								dvc_dots=config_dots;
 
-						//load chart data
-						d3.csv("./data/"+dvc_bar.essential.graphic_data_url, function(error, data_bar) {
-								graphic_data_bar = data_bar;
+								//load chart data
+								d3.csv("./data/"+dvc_dots.essential.graphic_data_url, function(error, data_dots) {
+								graphic_data_dots = data_dots;
 
-								// graphic_data.forEach(function(d) {
-								// 	d.date = d3.time.format(dvc.essential.dateFormat).parse(d.date);
+								//use pym to create iframed chart dependent on specified variables
+								pymChild = new pym.Child({ renderCallback: drawLineChart});
 
-								// });
-
-								names = d3.keys(/*data*/graphic_data_bar[0]).filter(function(key) { return key !== "state"; });
-
-								/*data*/graphic_data_bar.forEach(function(d) {
-								  d.ages = names.map(function(name) { return {name: name, value: +d[name]}; });
 								});
 
-							   //load config
-								d3.json("./data/config_dots.json", function(error, config_dots) {
-											dvc_dots=config_dots;
-
-											//load chart data
-											d3.csv("./data/"+dvc_dots.essential.graphic_data_url, function(error, data_dots) {
-											graphic_data_dots = data_dots;
-
-											//use pym to create iframed chart dependent on specified variables
-											pymChild = new pym.Child({ renderCallback: drawBarChart});
-
-											});
-
-								})
-						})
-				
-					});
+					})
 			})
 
 		})
 	
+			
+		d3.select('#reveal').on("click",function(){
+			d3.select("#inputs").classed("hide", false)
+			d3.select(".reveal").classed("hide", true)
+		}) //end refresh
 	
 		addremoveAdult();
 			
@@ -1123,11 +1289,13 @@ if (Modernizr)
 			}
 		
 		d3.select('#submit').on("click",function(){
-					d3.select(".container-fluid").classed("hide", false)
-					d3.select("#inputs").classed("hide", true)
-					d3.select(".blurb").classed("hide", false)
-					d3.select(".decile_exp").classed("hide", false)
-						
+					//d3.select(".container-fluid").classed("hide", false)
+					//d3.select("#inputs").classed("hide", true)
+					//d3.select(".blurb").classed("hide", false)
+					//d3.select(".decile_exp").classed("hide", false)
+					d3.select("#refresh").classed("hide", false)
+					
+					d3.selectAll(".anno").remove();
 			
 					event.preventDefault();
 					event.stopPropagation();
@@ -1137,160 +1305,39 @@ if (Modernizr)
 					regExp = RegExp(/[0-9]{1,3}/);
 					
 					if(regExp.test(parseFloat($("#hhincome").val().replace(/,/g, ''))) == true ) {
-					//$("#incomeform").attr("class","hide");
-					
-					//d3.select("#nextback").classed("hide",false);
-					
-					//d3.select("#next1").on("click", pageUp);
-					//d3.select("#back").on("click", pageDown);
 					
 					//Get number of adults
 					adults = $("#adults").val() - $("#child").val();
 					 
 					//Get number of children <15
-					children = $("#child").val();					
-						
+					children = $("#child").val();	
+					
 					
 					//Get Weekly / Monthly / Yearly value
-					//if($("#incPeriod").val() ==2) {
-//						dvc.respIncomePeriod=12;
-//					} else if($("#incPeriod").val() ==1) {
-//						dvc.respIncomePeriod=52;
-//					} else {
-//						dvc.respIncomePeriod=1;
-//					};
-										
-					
+					if($("#incPeriod").val() ==2) {
+						dvc.respIncomePeriod=12;
+					} else if($("#incPeriod").val() ==1) {
+						dvc.respIncomePeriod=52;
+					} else {
+						dvc.respIncomePeriod=1;
+					};
 					
 					//Get income data and annualise it...
-					income = parseFloat($("#hhincome").val().replace(/,/g, ''))  /** dvc.respIncomePeriod;*/
-										
-					//Get council tax and annualise it
-					//dvc.respTax = parseFloat($("#hhtax").val().replace(/,/g, '')) * dvc.respTaxPeriod;
-					
+					income = parseFloat($("#hhincome").val().replace(/,/g, '')) * dvc.respIncomePeriod;  
+						
 					//Work out the equivalisation factor
 					//0.67+((Questions!B3+Calculations!B6-1)*0.33)+(Calculations!B7*0.2)
 					equivalisation = 0.67 + ((+adults - 1)*0.33) + (children*0.2);
-					
-					//Work out disposable income
-					//respDisposable = +respIncome - +respTax;
-					
-					//Work out equivalised  disposable income
-					//dvc.respDisposableEquiv = dvc.respDisposable / dvc.equivalisation;
-					
 						
 					// ZH WOrk out equivalised income
 					equiv_income = income/equivalisation;
-						
+					console.log(equiv_income)	
 					//Let's work out what decile this falls into
 					for(i = 0; i <= 10; i++){
 						if(equiv_income > deciles[i]){
 							decile = i;
 						}
 					}
-					
-//					d3.selectAll(".highlighted").remove();
-//					
-//					highlight_path=[]
-//					d3.selectAll(".lines").selectAll(".Decile_"+(decile+1)).each( function(d){
-//						highlight_path.push(d3.select(this).attr("d"))
-//						console.log(highlight_path)
-//						
-//						d3.selectAll(".lines").append("path")
-//							.style("stroke", "#3CB0F9" )
-//							.style("fill", "none")
-//							.attr("class", "highlighted")
-//							.style("stroke-width", 2)
-//							.attr("d", function(d,i){ return highlight_path[i]})
-//					})
-//						
-//					
-//					d3.selectAll(".circle")
-//						.style("fill", "none")
-//						
-//					d3.selectAll(".Decile_"+(decile+1))
-//						.filter(".circle")
-//						.style("fill", "3CB0F9")
-//						
-//					d3.selectAll(".value")
-//						.style("opacity", 0)
-//						
-//					d3.selectAll(".Decile_"+(decile+1))
-//						.filter(".value")
-//						.style("opacity", 1)
-					
-//					writeAnnotation();
-//
-//					function writeAnnotation(){
-//
-//								dvc_bar.essential.annotationChart.forEach(function(d,i) {
-//
-//									// draw annotation text based on content of var annotationArray ...
-//									d3.select("#barchart")
-//										.append("text")
-//										//.text(dvc_bar.essential.annotationChart[i])
-//										.attr("class","annotext" + i)
-//										.attr("text-anchor", dvc_bar.essential.annotationAlign[i])
-//										.attr('y',y(dvc_bar.essential.annotationXY[i][1]))
-//										.attr('x',x(dvc_bar.essential.annotationXY[i][0]));
-//
-//									d3.selectAll(".annotext" + (i))
-//										.each(insertLinebreaks);
-//
-//									function insertLinebreaks() {
-//
-//										var str = this;
-//
-//										var el1 = dvc_bar.essential.annotationChart[i];
-//										//var el = el1.data;
-//
-//										var words = el1.split('  ');
-//
-//										d3.select(this/*str*/).text('');
-//
-//										for (var j = 0; j < words.length; j++) {
-//											console.log(words)
-//											var tspan = d3.select(this).append('tspan').text(words[j]);
-//											if (j > 0)
-//												tspan.attr('x', x(dvc_bar.essential.annotationXY[i][0])).attr('dy', '22');
-//										}
-//									};
-//								});	// end foreach
-//
-//					}// end function writeAnnotation()	
-					if(parseInt(d3.select("body").style("width"))>=500){	
-						
-						d3.select("#barchart")
-							.append("text")
-							//.text(dvc_bar.essential.annotationChart[i])
-							.attr("class","annotext")
-							.attr("text-anchor", dvc_bar.essential.annotationAlign[i])
-							.attr('y',25)
-							.attr('x',30);
-
-						d3.select(".annotext").append("tspan").text(function(){
-								if(decile+1 <=4){
-									return "Your household has a lower income than "
-								} else {
-									return "Your household has a higher income than "
-								} 
-						})
-
-						d3.select(".annotext").append("tspan").text("around ").attr("x", 30).attr("dy","28")
-
-
-						d3.select(".annotext").append("tspan").attr("class","decile").text(function(){
-								if(decile+1 <=4){
-									return (100-(10*(decile+1)))+ "%" 
-								} else {
-									return (10*(decile+1))-10+ "%"
-								} 
-						})
-
-						d3.select(".annotext").append("tspan").text(" of the population")
-						
-					}
-						
 						
 					d3.select("#high_low").text(function(){
 							if(decile+1 <=4){
@@ -1302,94 +1349,23 @@ if (Modernizr)
 					d3.select("#percent_pop").text((100-(10*(decile+1)))+ "%")	
 						
 						
-					if(parseInt(d3.select("body").style("width"))>=500){	
-						d3.select("#barchart")
-							.append("text")
-							//.text(dvc_bar.essential.annotationChart[i])
-							.attr("class","annotext_av")
-							.style("fill", "orange")
-							.style("font-size", "10px")
-							.attr("text-anchor", "middle")
-							.attr('y',75)
-							.attr('x',xBar("15001 to 15500"));
-
-						d3.select(".annotext_av").append("tspan").text("UK average:")
-
-						d3.select(".annotext_av").append("tspan").text("£xx,xxx").attr("x", xBar("15001 to 15500")).attr("dy","15")
-
-						
+					d3.select("#percent_inflat").text(graphic_data[graphic_data.length-1]["decile"+(decile+1)]+"%")
+					d3.select("#your_decile").text("Your household is in decile "+(decile+1))
+					d3.select("#key2").select("label").text("Decile "+(decile+1))
 					
-						
-						
-						
-						
-						
-						
-					d3.select("#line_chart")
-						.append("text")
-						//.text(dvc_bar.essential.annotationChart[i])
-						.attr("class","annotext2")
-						.attr("text-anchor", "start")
-						.attr('y',35)
-						.attr('x',35);
-
-					d3.select(".annotext2").append("tspan").text("It experiances inflation of ")
+					price_change = [36,33,33,32,32,32,31,31,31,33,32]
 					
-					d3.select(".annotext2").append("tspan").attr("class","decile").text("xx%")
-						
-					d3.select(".annotext2").append("tspan").attr("id","inflation_comparison")
-						.style("fill", "orange")
-						.style("font-size", "10px")
-						.text("(UK average = xx%)")
-						
-					}
-
-					d3.select("#percent_inflat").text( "xx%")	
-					
-					if(parseInt(d3.select("body").style("width"))>=500){	
-						d3.select('.lines')
-								.append("path")
-								.attr("d", d3.select(".lines").selectAll(".average").attr("d"))
-								.attr("id","average_line")
-								.style("fill", "none")
-								.style("opacity", 1)
-								.style("stroke", "orange")
-								.style("stroke-width", 1);
-					}
-						
-						highlight_av_cx=[]
-						highlight_av_cy=[]
-					d3.selectAll(".circle_decile11")
-							.selectAll(".decile11")
-							.each( function(d,i){
-
-								highlight_av_cx.push(d3.select(this).attr("cx"))
-								highlight_av_cy.push(d3.select(this).attr("cy"))
-
-
-								d3.selectAll(".circles").append("circle")
-									.style("stroke", "orange" )
-									.style("fill", "orange")
-									.attr("class", "average_circle")
-									.style("stroke-width", 2)							
-									.attr("opacity", "0.7")
-									.attr("cx", function(d){ return highlight_av_cx[i]})
-									.attr("cy", function(d){ return highlight_av_cy[i]})
-									.attr('r', ball)
-							})	
-						
-						
-						
-						
+					d3.select("#price_change").text(price_change[decile]+"%")
 						
 					d3.select(".comparison1")
 						.append("text")
 						.html("Compared to ")
 						
+						
 					d3.select('#dropdown')
 						.append('select')
 						.attr('class','dropdown')
-						//.on('change', onselect)
+						//.on('change', highlight_selected_decile)
 						.selectAll("option")
 						.data(graphic_data.columns)
 						.enter()
@@ -1397,53 +1373,54 @@ if (Modernizr)
 						.append('option')
 						.attr("value", function(d,i){return i})
 						//.property("selected", function(d, i) {return i===dvc.varload;})
-						.text(function(d,i){if(d=="average"){
-												return "the "+d
+						.text(function(d,i){if(d=="decile11"){
+												return "the average"
 											} else {
 												return "a "+d
 											}}
 							 );
 						
 					
-					$('.dropdown').select2()
-
+					//$('.dropdown').trigger("change.select2")
+					
+						$('#dropdown').on('change', function () {
+							//console.log('Change made to dropdown');
+							highlight_selected_decile() 
+						});
+						
+					//$('.dropdown').on("change", highlight_selected_decile() )
+						
 					d3.select(".comparison2")
 						.append("text")
-						.html("household you're experiencing <span class='decile'>xx</span> times more inflation. Your group spends the following on...")
+						.html("household you're experiencing <span class='decile'>xx</span> times more inflation. ")
 						
-					//.selectAll(".decile"+(decile+1))
-				
-					unhighlight_all_deciles();
-					highlight_all_deciles();
-						
-					function unhighlight_all_deciles (){
-						d3.select("#selected_line").remove();
-						d3.selectAll(".selceted_circle").remove();
-						d3.select(".bars").selectAll(".bar").attr("fill", "grey")					
-								.attr("opacity", "0.4")
 					
-					}
-						
-					function highlight_all_deciles (){
+						unhighlight_your_decile();
+						highlight_your_decile();
+
+						function unhighlight_your_decile (){
+							d3.select("#highlighted_line").remove();
+							d3.selectAll(".highlighted_circle").remove();
+						}
+
+						function highlight_your_decile (){
+							//console.log("Highlight your decile,  decile: "+(1+decile))
 						if(parseInt(d3.select("body").style("width"))>=500){
 							d3.select('.lines')
 								.append("path")
-								.attr("d", d3.select(".lines").selectAll(".decile"+(decile+1)).attr("d"))
-								.attr("id","selected_line")
+								.attr("d", d3.select(".lines").selectAll(".decile"+(1+decile)).attr("d"))
+								.attr("id","highlighted_line")
 								.style("fill", "none")
 								.style("opacity", 1)
 								.style("stroke", "#3CB0F9")
 								.style("stroke-width", 2);
-
-							d3.select(".bars").selectAll(".decile"+(decile+1)).attr("fill", "#3CB0F9")					
-									.attr("opacity", "0.9")
 						}
 						
 						highlight_circles_cx=[]
 						highlight_circles_cy=[]
 
-						d3.selectAll(".circle_decile"+(decile+1))
-							.selectAll(".decile"+(decile+1))
+						d3.selectAll(".circle_decile"+(1+decile))
+							.selectAll(".decile"+(1+decile))
 							.each( function(d,i){
 
 								highlight_circles_cx.push(d3.select(this).attr("cx"))
@@ -1453,7 +1430,7 @@ if (Modernizr)
 								d3.selectAll(".circles").append("circle")
 									.style("stroke", "#3CB0F9" )
 									.style("fill", "#3CB0F9")
-									.attr("class", "selected_circle")
+									.attr("class", "highlighted_circle")
 									.style("stroke-width", 2)							
 									.attr("opacity", "0.7")
 									.attr("cx", function(d){ return highlight_circles_cx[i]})
@@ -1461,68 +1438,58 @@ if (Modernizr)
 									.attr('r', ball)
 							})	
 					}	
-						
-					
-//						
-//					d3.select(".circles")
-//						.append("circle")
-//						.attr("fill","red")
-//						.attr("id", "selected_circle")
-//						.attr("opacity", "1")
-//						.attr('cx',d3.selectAll(".circles").selectAll(".decile"+(decile+1)).attr("cx"))
-//						.attr('cy',d3.selectAll(".circles").selectAll(".decile"+(decile+1)).attr("cy"))
-//						.attr('r', ball)
+					//	console.log("select average")
+						$('.dropdown').val('10').trigger('change'); // Set default of dropdown to be "the average"	
 						
 						
-					
-					
+						function unhighlight_selected_decile (){
+						//	console.log("remove previous selection")
+							d3.select("#selected_line").remove();
+							d3.selectAll(".selected_circle").remove();
+						}
 						
+						//function to highlight selected decile e.g from dropdown
+						function highlight_selected_decile(){
+							unhighlight_selected_decile()
+							
+							var selection_decile = (parseInt($(".dropdown").val())) + 1
+						//	console.log("Comparison decile selected: "+selection_decile)
+							
+							if(parseInt(d3.select("body").style("width"))>=500){	
+								d3.select('.lines')
+										.append("path")
+										.attr("d", d3.select(".lines").selectAll(".decile"+selection_decile).attr("d"))
+										.attr("id","selected_line")
+										.style("fill", "none")
+										.style("opacity", 1)
+										.style("stroke", "orange")
+										.style("stroke-width", 2);
+							}
+
+							selected_cx=[]
+							selected_cy=[]
+
+							d3.selectAll(".circle_decile"+selection_decile)
+									.selectAll(".decile"+selection_decile)
+									.each( function(d,i){
+
+										selected_cx.push(d3.select(this).attr("cx"))
+										selected_cy.push(d3.select(this).attr("cy"))
+
+
+										d3.selectAll(".circles").append("circle")
+											.style("stroke", "orange" )
+											.style("fill", "orange")
+											.attr("class", "selected_circle")
+											.style("stroke-width", 2)							
+											.attr("opacity", "0.7")
+											.attr("cx", function(d){ return selected_cx[i]})
+											.attr("cy", function(d){ return selected_cy[i]})
+											.attr('r', ball)
+									})	
+						} //end highlighted selected decile
+
 						
-						
-						
-//					d3.selectAll('.lines')
-//						.append("path")
-//						.attr("d", d3.selectAll(".Decile_"+decile).attr("d"))
-//						.attr("id","selected")
-//						.style("fill", "none")
-//						.style("stroke", "orange")
-//						.style("stroke-width", 2);
-						
-						
-					//First make the chart based on the equivalised annual income
-					//makeChart(dvc.disposableincome);
-					//if(dvc.pageCount<=0) {d3.select("#back").classed("hide", true);} else {d3.select("#back").classed("hide", false);}
-					
-					//dvc.formatpound = d3.format(",.0f");
-					//dvc.formatcomma = d3.format(".1f");
-				
-					//if((dvc.decile+1) <=3) {
-					//	titlemsg = "Poorest " + (dvc.decile+1) + "0%"					
-					//	txtMsg = "Your disposable income puts you in the <span class='spanHigh'> poorest " + (dvc.decile+1) + "0%</span> of all households in the UK.";
-						
-						 
-					//} 
-					//else if((dvc.decile+1) >=8)  {
-						
-					//	titlemsg = "Richest " + (10 - dvc.decile) + "0%"	
-					//	txtMsg = "Your disposable income puts you in the <span class='spanHigh'> richest " + (10 - dvc.decile) + "0%</span> of all households in the UK.";
-						
-					/*}
-					else {
-						titlemsg = "Near the middle"	
-						txtMsg = "Your disposable income puts you in a group somewhere in the middle." ;
-						
-						
-						
-					}
-												
-					var txtMsg2 = "After adjusting for the number of people you live with, you have the equivalent of <span class='spanHigh'>£"+ dvc.formatpound(dvc.respDisposableEquiv/12) + " a month</span> (£" + dvc.formatpound(dvc.respDisposableEquiv) + " a year) left to spend or save after paying direct taxes like income tax and council tax.<br><br>" + 
-										"This is your comparable <span class='spanTitle'>disposable income</span>.<br><br>" + txtMsg;
-																		
-					d3.select(".titlebar").text(titlemsg);
-	
-					d3.select("#commentary").select("p").html(txtMsg2);
-					*/
 					if (pymChild) {
 						pymChild.sendHeight();
 					}
@@ -1545,28 +1512,6 @@ if (Modernizr)
 			location.reload();
 		}) //end refresh
 		
-//		//load chart data
-//				d3.csv("data.csv", function(error, csv) {
-//					chartData = csv;
-//					
-//				 	nest = d3.nest()
-//					  .key(function(d) { return d.category;})
-//					  .entries(csv);
-//					
-//					nest.forEach(function(d,i) {
-//						d.values.forEach(function (d,k){
-//							d.date = d3.timeParse("%Y")(d.date);
-//						})
-//						d.values.columns = ["category", "date", "Decile 1", "Decile 2", "Decile 3", "Decile 4", "Decile 5", "Decile 6", "Decile 7", "Decile 8", "Decile 9", "Decile 10"]
-//					});
-//
-//					//use pym to create iframed chart dependent on specified variables
-//					pymChild = new pym.Child({ renderCallback: createStructure });					
-//				});
-		
-
-	//})
-
 //plugin bootstrap minus and plus
 //http://jsfiddle.net/laelitenetwork/puJ6G/
 $('.btn-number').click(function(e){
